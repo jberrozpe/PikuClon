@@ -5,6 +5,12 @@ signal mision_actualizada
 var hablo_con_npc: bool = false
 var estrella_recogida: bool = false
 var mision_completada: bool = false
+var punto_aparicion: String = ""
+
+
+func ir_a_escena(ruta_escena: String, id_punto_aparicion: String = "") -> void:
+	punto_aparicion = id_punto_aparicion
+	get_tree().call_deferred("change_scene_to_file", ruta_escena)
 
 
 func registrar_charla_npc() -> void:

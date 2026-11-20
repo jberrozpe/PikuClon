@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
 [ext_resource type="PackedScene" path="res://escenas/interruptor.tscn" id="2_interruptor"]
 [ext_resource type="PackedScene" path="res://escenas/puerta.tscn" id="3_puerta"]
 [ext_resource type="PackedScene" path="res://escenas/npc.tscn" id="4_npc"]
 [ext_resource type="PackedScene" path="res://escenas/objeto_mision.tscn" id="5_objeto_mision"]
+[ext_resource type="PackedScene" path="res://escenas/puerta_transicion.tscn" id="6_transicion"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
 size = Vector2(1152, 80)
@@ -174,6 +175,7 @@ position = Vector2(780, 568)
 
 [node name="Puerta" parent="." instance=ExtResource("3_puerta")]
 position = Vector2(980, 568)
+mantener_abierta_si_estrella = true
 
 [node name="ParedEncimaPuerta" type="StaticBody2D" parent="."]
 position = Vector2(980, 214)
@@ -192,7 +194,15 @@ color = Color(0.568627, 0.45098, 0.380392, 1)
 position = Vector2(130, 568)
 
 [node name="ObjetoMision" parent="." instance=ExtResource("5_objeto_mision")]
-position = Vector2(1075, 520)
+position = Vector2(1038, 520)
+
+[node name="PuertaTransicion" parent="." instance=ExtResource("6_transicion")]
+position = Vector2(1126, 568)
+escena_destino = "res://escenas/nivel_2.tscn"
+punto_aparicion_destino = "PuntoDesdeNivel1"
+
+[node name="PuntoDesdeNivel2" type="Marker2D" parent="."]
+position = Vector2(1062, 520)
 
 [connection signal="activado" from="Interruptor" to="Puerta" method="abrir"]
 [connection signal="desactivado" from="Interruptor" to="Puerta" method="cerrar"]

@@ -42,6 +42,19 @@ var en_bolita: bool = false
 func _ready() -> void:
 	_configurar_controles()
 	efecto_patada.visible = false
+	_aplicar_punto_aparicion()
+
+
+func _aplicar_punto_aparicion() -> void:
+	if GameState.punto_aparicion.is_empty():
+		return
+	var escena_actual := get_tree().current_scene
+	if escena_actual == null:
+		return
+	var marcador := escena_actual.find_child(GameState.punto_aparicion, true, false)
+	if marcador is Node2D:
+		global_position = (marcador as Node2D).global_position
+	GameState.punto_aparicion = ""
 
 
 func _unhandled_input(event: InputEvent) -> void:
