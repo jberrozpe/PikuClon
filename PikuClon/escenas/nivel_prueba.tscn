@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
 [ext_resource type="PackedScene" path="res://escenas/interruptor.tscn" id="2_interruptor"]
 [ext_resource type="PackedScene" path="res://escenas/puerta.tscn" id="3_puerta"]
+[ext_resource type="PackedScene" path="res://escenas/npc.tscn" id="4_npc"]
+[ext_resource type="PackedScene" path="res://escenas/objeto_mision.tscn" id="5_objeto_mision"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
 size = Vector2(1152, 80)
@@ -185,6 +187,12 @@ offset_top = -214.0
 offset_right = 18.0
 offset_bottom = 214.0
 color = Color(0.568627, 0.45098, 0.380392, 1)
+
+[node name="NPC" parent="." instance=ExtResource("4_npc")]
+position = Vector2(130, 568)
+
+[node name="ObjetoMision" parent="." instance=ExtResource("5_objeto_mision")]
+position = Vector2(1075, 520)
 
 [connection signal="activado" from="Interruptor" to="Puerta" method="abrir"]
 [connection signal="desactivado" from="Interruptor" to="Puerta" method="cerrar"]

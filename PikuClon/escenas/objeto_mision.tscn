@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/objeto_mision.gd" id="1_objeto"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_estrella"]
+radius = 22.0
+
+[node name="ObjetoMision" type="Area2D"]
+script = ExtResource("1_objeto")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_estrella")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="EstrellaBorde" type="Polygon2D" parent="Visual"]
+color = Color(0.85, 0.6, 0.08, 1)
+polygon = PackedVector2Array(0, -22, 6, -8, 21, -7, 9, 3, 13, 18, 0, 10, -13, 18, -9, 3, -21, -7, -6, -8)
+
+[node name="Estrella" type="Polygon2D" parent="Visual"]
+color = Color(1, 0.85, 0.22, 1)
+polygon = PackedVector2Array(0, -18, 5, -6, 17, -5, 7, 2, 10, 14, 0, 8, -10, 14, -7, 2, -17, -5, -5, -6)
