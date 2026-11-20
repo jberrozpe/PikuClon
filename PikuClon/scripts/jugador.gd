@@ -44,6 +44,11 @@ func _ready() -> void:
 	efecto_patada.visible = false
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_R:
+		get_tree().reload_current_scene()
+
+
 func _physics_process(delta: float) -> void:
 	if temporizador_patada > 0.0:
 		temporizador_patada -= delta

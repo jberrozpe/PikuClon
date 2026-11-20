@@ -27,7 +27,7 @@ radius = 22.0
 height = 76.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_patada"]
-size = Vector2(48, 56)
+size = Vector2(56, 64)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_caja"]
 friction = 0.65
@@ -158,7 +158,7 @@ color = Color(0.113725, 0.113725, 0.113725, 1)
 polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
 
 [node name="ZonaPatada" type="Area2D" parent="Jugador"]
-position = Vector2(34, 8)
+position = Vector2(34, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador/ZonaPatada"]
 shape = SubResource("RectangleShape2D_patada")
