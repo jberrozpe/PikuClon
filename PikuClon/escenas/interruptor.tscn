@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/interruptor.gd" id="1_interruptor"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_zona"]
+size = Vector2(54, 20)
+
+[node name="Interruptor" type="Node2D"]
+script = ExtResource("1_interruptor")
+
+[node name="Tapa" type="ColorRect" parent="."]
+offset_left = -26.0
+offset_top = -18.0
+offset_right = 26.0
+offset_bottom = -6.0
+color = Color(0.901961, 0.25098, 0.25098, 1)
+
+[node name="Base" type="ColorRect" parent="."]
+offset_left = -34.0
+offset_top = -8.0
+offset_right = 34.0
+color = Color(0.258824, 0.278431, 0.321569, 1)
+
+[node name="BaseColision" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BaseColision"]
+polygon = PackedVector2Array(-36, 0, -28, -7, 28, -7, 36, 0)
+
+[node name="ZonaDeteccion" type="Area2D" parent="."]
+position = Vector2(0, -14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaDeteccion"]
+shape = SubResource("RectangleShape2D_zona")

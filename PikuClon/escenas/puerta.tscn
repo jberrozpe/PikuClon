@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/puerta.gd" id="1_puerta"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_puerta"]
+size = Vector2(28, 140)
+
+[node name="Puerta" type="Node2D"]
+script = ExtResource("1_puerta")
+
+[node name="CuerpoPuerta" type="AnimatableBody2D" parent="."]
+sync_to_physics = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CuerpoPuerta"]
+position = Vector2(0, -70)
+shape = SubResource("RectangleShape2D_puerta")
+
+[node name="Visual" type="ColorRect" parent="CuerpoPuerta"]
+offset_left = -14.0
+offset_top = -140.0
+offset_right = 14.0
+color = Color(0.219608, 0.321569, 0.45098, 1)
+
+[node name="Detalle" type="ColorRect" parent="CuerpoPuerta"]
+offset_left = -8.0
+offset_top = -132.0
+offset_right = 8.0
+offset_bottom = -8.0
+color = Color(0.329412, 0.466667, 0.627451, 1)

@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
+[ext_resource type="PackedScene" path="res://escenas/interruptor.tscn" id="2_interruptor"]
+[ext_resource type="PackedScene" path="res://escenas/puerta.tscn" id="3_puerta"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
 size = Vector2(1152, 80)
@@ -13,6 +15,9 @@ size = Vector2(220, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_plat_alta"]
 size = Vector2(200, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pared_puerta"]
+size = Vector2(36, 428)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_caja"]
 size = Vector2(56, 56)
@@ -161,3 +166,25 @@ shape = SubResource("RectangleShape2D_patada")
 [node name="EfectoPatada" type="Polygon2D" parent="Jugador/ZonaPatada"]
 color = Color(1, 0.85, 0.3, 0.85)
 polygon = PackedVector2Array(-6, -12, 16, -6, 6, 0, 18, 10, -4, 12)
+
+[node name="Interruptor" parent="." instance=ExtResource("2_interruptor")]
+position = Vector2(780, 568)
+
+[node name="Puerta" parent="." instance=ExtResource("3_puerta")]
+position = Vector2(980, 568)
+
+[node name="ParedEncimaPuerta" type="StaticBody2D" parent="."]
+position = Vector2(980, 214)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedEncimaPuerta"]
+shape = SubResource("RectangleShape2D_pared_puerta")
+
+[node name="Visual" type="ColorRect" parent="ParedEncimaPuerta"]
+offset_left = -18.0
+offset_top = -214.0
+offset_right = 18.0
+offset_bottom = 214.0
+color = Color(0.568627, 0.45098, 0.380392, 1)
+
+[connection signal="activado" from="Interruptor" to="Puerta" method="abrir"]
+[connection signal="desactivado" from="Interruptor" to="Puerta" method="cerrar"]
