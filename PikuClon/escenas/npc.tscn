@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/npc.gd" id="1_npc"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/npc_hablar.wav" id="2_sonido"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_zona"]
 size = Vector2(120, 96)
@@ -131,3 +132,6 @@ text = "¡Hola!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="SonidoHablar" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_sonido")

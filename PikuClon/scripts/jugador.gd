@@ -37,6 +37,8 @@ var en_bolita: bool = false
 @onready var ojos: Node2D = $CuerpoVisual/Ojos
 @onready var zona_patada: Area2D = $ZonaPatada
 @onready var efecto_patada: Polygon2D = $ZonaPatada/EfectoPatada
+@onready var sonido_salto: AudioStreamPlayer = get_node_or_null("SonidoSalto")
+@onready var sonido_patada: AudioStreamPlayer = get_node_or_null("SonidoPatada")
 
 
 func _ready() -> void:
@@ -93,6 +95,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y = velocidad_salto
 		temporizador_coyote = 0.0
 		torso.scale = Vector2(0.80, 1.24)
+		if sonido_salto:
+			sonido_salto.play()
 	elif Input.is_action_just_released("saltar") and velocity.y < -120.0:
 		velocity.y *= 0.52
 
@@ -141,6 +145,8 @@ func _ejecutar_patada() -> void:
 	temporizador_patada = enfriamiento_patada
 	temporizador_anim_patada = 0.18
 	efecto_patada.visible = true
+	if sonido_patada:
+		sonido_patada.play()
 
 	var golpeo_algo := false
 	for cuerpo in zona_patada.get_overlapping_bodies():

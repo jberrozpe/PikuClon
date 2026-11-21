@@ -13,6 +13,7 @@ var _tiempo: float = 0.0
 @onready var indicador: Control = $Indicador
 @onready var bocadillo: Control = $Bocadillo
 @onready var texto_bocadillo: Label = $Bocadillo/Texto
+@onready var sonido_hablar: AudioStreamPlayer2D = $SonidoHablar
 
 
 func _ready() -> void:
@@ -53,6 +54,7 @@ func _alternar_dialogo() -> void:
 
 	bocadillo.visible = true
 	indicador.visible = false
+	sonido_hablar.play()
 
 
 func _on_body_entered(body: Node2D) -> void:

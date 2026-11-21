@@ -10,6 +10,7 @@ var _posicion_cerrada: Vector2 = Vector2.ZERO
 var _posicion_abierta: Vector2 = Vector2.ZERO
 
 @onready var cuerpo_puerta: AnimatableBody2D = $CuerpoPuerta
+@onready var sonido_puerta: AudioStreamPlayer2D = $SonidoPuerta
 
 
 func _ready() -> void:
@@ -27,7 +28,9 @@ func _physics_process(delta: float) -> void:
 
 
 func abrir() -> void:
-	esta_abierta = true
+	if not esta_abierta:
+		esta_abierta = true
+		sonido_puerta.play()
 
 
 func cerrar() -> void:

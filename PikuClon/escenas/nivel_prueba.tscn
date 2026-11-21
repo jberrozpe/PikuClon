@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
 [ext_resource type="PackedScene" path="res://escenas/interruptor.tscn" id="2_interruptor"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" path="res://escenas/npc.tscn" id="4_npc"]
 [ext_resource type="PackedScene" path="res://escenas/objeto_mision.tscn" id="5_objeto_mision"]
 [ext_resource type="PackedScene" path="res://escenas/puerta_transicion.tscn" id="6_transicion"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/salto.wav" id="7_salto"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/patada.wav" id="8_patada"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
 size = Vector2(1152, 80)
@@ -169,6 +171,12 @@ shape = SubResource("RectangleShape2D_patada")
 [node name="EfectoPatada" type="Polygon2D" parent="Jugador/ZonaPatada"]
 color = Color(1, 0.85, 0.3, 0.85)
 polygon = PackedVector2Array(-6, -12, 16, -6, 6, 0, 18, 10, -4, 12)
+
+[node name="SonidoSalto" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("7_salto")
+
+[node name="SonidoPatada" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("8_patada")
 
 [node name="Interruptor" parent="." instance=ExtResource("2_interruptor")]
 position = Vector2(780, 568)

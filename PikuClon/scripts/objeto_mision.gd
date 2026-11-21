@@ -5,8 +5,10 @@ extends Area2D
 
 var _tiempo: float = 0.0
 var _y_inicial: float = 0.0
+var _recogida: bool = false
 
 @onready var visual: Node2D = $Visual
+@onready var sonido_recoger: AudioStreamPlayer = $SonidoRecoger
 
 
 func _ready() -> void:
@@ -24,6 +26,12 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is CharacterBody2D:
-		GameState.recoger_estrella()
-		queue_free()
+	if _recogida or not (body is CharacterBody2D):
+		return
+	_recogida = true
+	GameState.recoger_estrella()
+	visual.visible = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	sonido_recoger.play()
+	await sonido_recoger.finished
+	queue_free()

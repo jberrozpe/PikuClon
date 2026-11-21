@@ -15,6 +15,7 @@ var _pos_y_inicial: float = 0.0
 
 @onready var tapa: ColorRect = $Tapa
 @onready var zona_deteccion: Area2D = $ZonaDeteccion
+@onready var sonido_activacion: AudioStreamPlayer2D = $SonidoActivacion
 
 
 func _ready() -> void:
@@ -56,6 +57,7 @@ func _actualizar_estado() -> void:
 		_esta_activo = nuevo_estado
 		estado_cambiado.emit(_esta_activo)
 		if _esta_activo:
+			sonido_activacion.play()
 			activado.emit()
 		else:
 			desactivado.emit()
