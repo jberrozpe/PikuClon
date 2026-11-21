@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/boss.gd" id="1_boss"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/don_cuadrado.svg" id="2_sprite"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/estrella.wav" id="3_golpe"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/interruptor.wav" id="4_choque"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boss"]
+size = Vector2(114, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_zona_golpe"]
+size = Vector2(132, 120)
+
+[node name="Boss" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_boss")
+
+[node name="Visual" type="Sprite2D" parent="."]
+texture = ExtResource("2_sprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_boss")
+
+[node name="EstrellasMareo" type="Node2D" parent="."]
+position = Vector2(0, -82)
+
+[node name="Estrella1" type="Polygon2D" parent="EstrellasMareo"]
+position = Vector2(-28, 0)
+color = Color(1, 0.85, 0.22, 1)
+polygon = PackedVector2Array(0, -9, 3, -3, 9, -2, 4, 2, 6, 8, 0, 5, -6, 8, -4, 2, -9, -2, -3, -3)
+
+[node name="Estrella2" type="Polygon2D" parent="EstrellasMareo"]
+position = Vector2(28, 0)
+color = Color(1, 0.85, 0.22, 1)
+polygon = PackedVector2Array(0, -9, 3, -3, 9, -2, 4, 2, 6, 8, 0, 5, -6, 8, -4, 2, -9, -2, -3, -3)
+
+[node name="ZonaGolpe" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaGolpe"]
+shape = SubResource("RectangleShape2D_zona_golpe")
+
+[node name="ParticulasConfetti" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 36
+lifetime = 0.9
+one_shot = true
+explosiveness = 0.95
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 420)
+initial_velocity_min = 120.0
+initial_velocity_max = 280.0
+scale_amount_min = 5.0
+scale_amount_max = 9.0
+color = Color(1, 0.819608, 0.25098, 1)
+
+[node name="SonidoGolpe" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_golpe")
+
+[node name="SonidoChoque" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_choque")

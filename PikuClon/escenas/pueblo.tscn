@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3]
+[gd_scene load_steps=32 format=3]
 
 [ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
 [ext_resource type="PackedScene" path="res://escenas/nube_plataforma.tscn" id="2_nube_plat"]
@@ -19,6 +19,12 @@
 [ext_resource type="AudioStream" path="res://recursos/sonidos/patada.wav" id="17_patada"]
 [ext_resource type="AudioStream" path="res://recursos/sonidos/npc_hablar.wav" id="18_hablar"]
 [ext_resource type="AudioStream" path="res://recursos/sonidos/estrella.wav" id="19_estrella"]
+[ext_resource type="Script" path="res://scripts/fiesta_pueblo.gd" id="20_fiesta_gd"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/don_quesito.svg" id="21_quesito"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/vaca_alpina.svg" id="22_vaca"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/enanito.svg" id="23_enanito"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/caballero_ingles.svg" id="24_ingles"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/mono_termal.svg" id="25_mono"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
 size = Vector2(2400, 80)
@@ -634,3 +640,136 @@ limit_right = 2400
 limit_bottom = 648
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
+
+[node name="FiestaPueblo" type="Node2D" parent="."]
+visible = false
+script = ExtResource("20_fiesta_gd")
+
+[node name="LluviaConfetti" type="CPUParticles2D" parent="FiestaPueblo"]
+position = Vector2(1200, -20)
+emitting = false
+amount = 90
+lifetime = 4.5
+emission_shape = 3
+emission_rect_extents = Vector2(1200, 10)
+direction = Vector2(0, 1)
+spread = 25.0
+gravity = Vector2(0, 65)
+initial_velocity_min = 40.0
+initial_velocity_max = 110.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+scale_amount_min = 5.0
+scale_amount_max = 9.0
+color = Color(1, 0.819608, 0.25098, 1)
+
+[node name="FuegosArtificiales" type="Node2D" parent="FiestaPueblo"]
+
+[node name="InvitadosFiesta" type="Node2D" parent="FiestaPueblo"]
+
+[node name="DonQuesito" type="Sprite2D" parent="FiestaPueblo/InvitadosFiesta"]
+position = Vector2(820, 526)
+texture = ExtResource("21_quesito")
+
+[node name="VacaAlpina" type="Sprite2D" parent="FiestaPueblo/InvitadosFiesta"]
+position = Vector2(1070, 533)
+texture = ExtResource("22_vaca")
+
+[node name="Enanito" type="Sprite2D" parent="FiestaPueblo/InvitadosFiesta"]
+position = Vector2(1380, 531)
+texture = ExtResource("23_enanito")
+
+[node name="CaballeroIngles" type="Sprite2D" parent="FiestaPueblo/InvitadosFiesta"]
+position = Vector2(1470, 528)
+texture = ExtResource("24_ingles")
+
+[node name="MonoTermal" type="Sprite2D" parent="FiestaPueblo/InvitadosFiesta"]
+position = Vector2(1660, 536)
+texture = ExtResource("25_mono")
+
+[node name="CartelGracias" type="CanvasLayer" parent="FiestaPueblo"]
+layer = 18
+visible = false
+
+[node name="Panel" type="Control" parent="FiestaPueblo/CartelGracias"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -120.0
+offset_right = 270.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Borde" type="ColorRect" parent="FiestaPueblo/CartelGracias/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 1)
+
+[node name="Fondo" type="ColorRect" parent="FiestaPueblo/CartelGracias/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.956863, 0.839216, 1)
+
+[node name="Titulo" type="Label" parent="FiestaPueblo/CartelGracias/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 20.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.901961, 0.223529, 0.27451, 1)
+theme_override_font_sizes/font_size = 26
+text = "¡Gracias por jugar!"
+horizontal_alignment = 1
+
+[node name="Texto" type="Label" parent="FiestaPueblo/CartelGracias/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 68.0
+offset_right = -20.0
+offset_bottom = 148.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 15
+text = "¡Derrotaste a Don Cuadrado y el festival ha comenzado!
+Todos tus amigos están celebrando en el Pueblo."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BtnExplorar" type="Button" parent="FiestaPueblo/CartelGracias/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.0
+offset_top = -56.0
+offset_right = 105.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Seguir explorando"
+
+[node name="SonidoCohete" type="AudioStreamPlayer" parent="FiestaPueblo"]
+volume_db = -10.0
+stream = ExtResource("19_estrella")

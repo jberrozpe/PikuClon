@@ -26,6 +26,8 @@ func _process(delta: float) -> void:
 	_tiempo += delta
 	if rol != "maquina":
 		visual.scale.y = 1.0 + sin(_tiempo * 3.5) * 0.03
+		if GameState.juego_completado:
+			visual.position.y = -40.0 - absf(sin(_tiempo * 5.0)) * 18.0
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -58,6 +60,17 @@ func _avanzar_dialogo() -> void:
 
 
 func _obtener_frases() -> Array[String]:
+	if GameState.juego_completado:
+		match rol:
+			"alcalde":
+				return ["¡VIVA! ¡Has derrotado a Don Cuadrado y salvado el festival! ¡Gracias, héroe!"]
+			"vecino1":
+				return ["¡Qué lluvia de confetti tan increíble! ¡A bailar toda la noche!"]
+			"vecino2":
+				return ["¡Todos nuestros amigos del mundo han venido a la fiesta!"]
+			"maquina":
+				return ["¡FUEGOS ARTIFICIALES ACTIVADOS! ¡PUM, PUM, PUM!"]
+
 	match rol:
 		"alcalde":
 			if GameState.piezas_brillantes >= GameState.TOTAL_PIEZAS:

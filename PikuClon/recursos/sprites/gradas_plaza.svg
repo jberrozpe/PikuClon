@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="220" viewBox="0 0 1280 220">
+  <rect x="0" y="60" width="1280" height="160" fill="#D64933" stroke="#1D1E26" stroke-width="3"/>
+  <rect x="0" y="100" width="1280" height="22" fill="#A63423"/>
+  <rect x="0" y="145" width="1280" height="22" fill="#8C2A1C"/>
+  <!-- Cheerful crowd dots -->
+  <circle cx="90" cy="82" r="14" fill="#FFD166"/>
+  <circle cx="160" cy="84" r="14" fill="#3F88C5"/>
+  <circle cx="240" cy="80" r="14" fill="#2EC4B6"/>
+  <circle cx="330" cy="83" r="14" fill="#F15BB5"/>
+  <circle cx="420" cy="81" r="14" fill="#9B5DE5"/>
+  <circle cx="520" cy="84" r="14" fill="#FFD166"/>
+  <circle cx="620" cy="80" r="14" fill="#00BBF9"/>
+  <circle cx="720" cy="83" r="14" fill="#FF8FA3"/>
+  <circle cx="820" cy="81" r="14" fill="#2EC4B6"/>
+  <circle cx="920" cy="84" r="14" fill="#FFD166"/>
+  <circle cx="1020" cy="80" r="14" fill="#3F88C5"/>
+  <circle cx="1120" cy="83" r="14" fill="#9B5DE5"/>
+  <circle cx="1200" cy="81" r="14" fill="#F15BB5"/>
+  <circle cx="130" cy="128" r="13" fill="#2EC4B6"/>
+  <circle cx="290" cy="128" r="13" fill="#FFD166"/>
+  <circle cx="470" cy="128" r="13" fill="#FF8FA3"/>
+  <circle cx="670" cy="128" r="13" fill="#3F88C5"/>
+  <circle cx="870" cy="128" r="13" fill="#FFD166"/>
+  <circle cx="1070" cy="128" r="13" fill="#2EC4B6"/>
+</svg>

@@ -19,12 +19,14 @@ const MAPA_ESCENAS := {
 	"res://escenas/nivel_inglaterra.tscn": "inglaterra",
 	"res://escenas/nivel_japon.tscn": "japon",
 	"res://escenas/nivel_espana.tscn": "espana_boss",
+	"res://escenas/nivel_espana_boss.tscn": "espana_boss",
 	"res://escenas/fiesta_final.tscn": "fiesta_final",
 }
 
 var _reproductor: AudioStreamPlayer
 var _tema_actual: String = ""
 var _ultima_escena: String = ""
+var _ultimo_completado: bool = false
 
 
 func _ready() -> void:
@@ -41,9 +43,12 @@ func _process(_delta: float) -> void:
 	if escena == null:
 		return
 	var ruta := escena.scene_file_path
-	if ruta != _ultima_escena:
+	if ruta != _ultima_escena or GameState.juego_completado != _ultimo_completado:
 		_ultima_escena = ruta
+		_ultimo_completado = GameState.juego_completado
 		var tema: String = MAPA_ESCENAS.get(ruta, "pueblo")
+		if ruta == "res://escenas/pueblo.tscn" and GameState.juego_completado:
+			tema = "fiesta_final"
 		reproducir_tema(tema)
 
 

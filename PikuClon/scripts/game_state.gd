@@ -33,6 +33,7 @@ var hablo_con_mono: bool = false
 var onigiri_recogido: bool = false
 var mono_completado: bool = false
 var boss_derrotado: bool = false
+var juego_completado: bool = false
 var punto_aparicion: String = ""
 var zona_actual: String = "Pueblo"
 
@@ -272,6 +273,7 @@ func completar_mono() -> void:
 func derrotar_boss() -> void:
 	if not boss_derrotado:
 		boss_derrotado = true
+		juego_completado = true
 		desbloquear_prenda("sombrero", "corona")
 		mision_actualizada.emit()
 
@@ -305,4 +307,5 @@ func reiniciar_estado() -> void:
 	onigiri_recogido = false
 	mono_completado = false
 	boss_derrotado = false
+	juego_completado = false
 	mision_actualizada.emit()
