@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/puerta.gd" id="1_puerta"]
 [ext_resource type="AudioStream" path="res://recursos/sonidos/puerta.wav" id="2_sonido"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/puerta.svg" id="3_sprite"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puerta"]
 size = Vector2(28, 140)
@@ -16,18 +17,9 @@ sync_to_physics = false
 position = Vector2(0, -70)
 shape = SubResource("RectangleShape2D_puerta")
 
-[node name="Visual" type="ColorRect" parent="CuerpoPuerta"]
-offset_left = -14.0
-offset_top = -140.0
-offset_right = 14.0
-color = Color(0.219608, 0.321569, 0.45098, 1)
-
-[node name="Detalle" type="ColorRect" parent="CuerpoPuerta"]
-offset_left = -8.0
-offset_top = -132.0
-offset_right = 8.0
-offset_bottom = -8.0
-color = Color(0.329412, 0.466667, 0.627451, 1)
+[node name="Visual" type="Sprite2D" parent="CuerpoPuerta"]
+position = Vector2(0, -70)
+texture = ExtResource("3_sprite")
 
 [node name="SonidoPuerta" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_sonido")

@@ -31,7 +31,7 @@ var estaba_en_suelo: bool = false
 var en_bolita: bool = false
 
 @onready var cuerpo_visual: Node2D = $CuerpoVisual
-@onready var torso: Polygon2D = $CuerpoVisual/Torso
+@onready var torso: Node2D = $CuerpoVisual/Torso
 @onready var pierna_izq: Line2D = $CuerpoVisual/PiernaIzq
 @onready var pierna_der: Line2D = $CuerpoVisual/PiernaDer
 @onready var ojos: Node2D = $CuerpoVisual/Ojos

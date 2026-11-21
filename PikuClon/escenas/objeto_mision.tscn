@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/objeto_mision.gd" id="1_objeto"]
 [ext_resource type="AudioStream" path="res://recursos/sonidos/estrella.wav" id="2_sonido"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/estrella.svg" id="3_sprite"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_estrella"]
 radius = 22.0
@@ -14,13 +15,8 @@ shape = SubResource("CircleShape2D_estrella")
 
 [node name="Visual" type="Node2D" parent="."]
 
-[node name="EstrellaBorde" type="Polygon2D" parent="Visual"]
-color = Color(0.85, 0.6, 0.08, 1)
-polygon = PackedVector2Array(0, -22, 6, -8, 21, -7, 9, 3, 13, 18, 0, 10, -13, 18, -9, 3, -21, -7, -6, -8)
-
-[node name="Estrella" type="Polygon2D" parent="Visual"]
-color = Color(1, 0.85, 0.22, 1)
-polygon = PackedVector2Array(0, -18, 5, -6, 17, -5, 7, 2, 10, 14, 0, 8, -10, 14, -7, 2, -17, -5, -5, -6)
+[node name="EstrellaSprite" type="Sprite2D" parent="Visual"]
+texture = ExtResource("3_sprite")
 
 [node name="SonidoRecoger" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_sonido")

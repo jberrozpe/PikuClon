@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=22 format=3]
 
 [ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
 [ext_resource type="PackedScene" path="res://escenas/interruptor.tscn" id="2_interruptor"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" path="res://escenas/puerta_transicion.tscn" id="6_transicion"]
 [ext_resource type="AudioStream" path="res://recursos/sonidos/salto.wav" id="7_salto"]
 [ext_resource type="AudioStream" path="res://recursos/sonidos/patada.wav" id="8_patada"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/jugador_cuerpo.svg" id="9_jugador_sprite"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/caja_madera.svg" id="10_caja_sprite"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/nube.svg" id="11_nube_sprite"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/hierba.svg" id="12_hierba_sprite"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
 size = Vector2(1152, 80)
@@ -44,6 +48,29 @@ bounce = 0.1
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(1, 0.952941, 0.839216, 1)
+
+[node name="Decoracion" type="Node2D" parent="."]
+
+[node name="Nube1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(210, 110)
+texture = ExtResource("11_nube_sprite")
+
+[node name="Nube2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(680, 90)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("11_nube_sprite")
+
+[node name="Hierba1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(290, 558)
+texture = ExtResource("12_hierba_sprite")
+
+[node name="Hierba2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(520, 558)
+texture = ExtResource("12_hierba_sprite")
+
+[node name="Hierba3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(880, 558)
+texture = ExtResource("12_hierba_sprite")
 
 [node name="Suelo" type="StaticBody2D" parent="."]
 position = Vector2(576, 608)
@@ -104,19 +131,8 @@ physics_material_override = SubResource("PhysicsMaterial_caja")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CajaFisica"]
 shape = SubResource("RectangleShape2D_caja")
 
-[node name="Borde" type="ColorRect" parent="CajaFisica"]
-offset_left = -28.0
-offset_top = -28.0
-offset_right = 28.0
-offset_bottom = 28.0
-color = Color(0.6, 0.42, 0.18, 1)
-
-[node name="Relleno" type="ColorRect" parent="CajaFisica"]
-offset_left = -23.0
-offset_top = -23.0
-offset_right = 23.0
-offset_bottom = 23.0
-color = Color(0.913725, 0.768627, 0.415686, 1)
+[node name="Visual" type="Sprite2D" parent="CajaFisica"]
+texture = ExtResource("10_caja_sprite")
 
 [node name="Jugador" type="CharacterBody2D" parent="."]
 position = Vector2(220, 520)
@@ -145,9 +161,9 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Torso" type="Polygon2D" parent="Jugador/CuerpoVisual"]
-color = Color(0.901961, 0.223529, 0.27451, 1)
-polygon = PackedVector2Array(0, -34, 12, -31, 20, -21, 24, -7, 22, 9, 15, 20, 0, 23, -15, 20, -22, 9, -24, -7, -20, -21, -12, -31)
+[node name="Torso" type="Sprite2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(0, -6)
+texture = ExtResource("9_jugador_sprite")
 
 [node name="Ojos" type="Node2D" parent="Jugador/CuerpoVisual"]
 position = Vector2(4, -12)

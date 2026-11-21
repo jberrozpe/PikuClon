@@ -13,14 +13,14 @@ var _cuerpos_encima: Array[Node2D] = []
 var _esta_activo: bool = false
 var _pos_y_inicial: float = 0.0
 
-@onready var tapa: ColorRect = $Tapa
+@onready var tapa: Sprite2D = $Tapa
 @onready var zona_deteccion: Area2D = $ZonaDeteccion
 @onready var sonido_activacion: AudioStreamPlayer2D = $SonidoActivacion
 
 
 func _ready() -> void:
 	_pos_y_inicial = tapa.position.y
-	tapa.color = color_reposo
+	tapa.modulate = color_reposo
 	zona_deteccion.body_entered.connect(_on_body_entered)
 	zona_deteccion.body_exited.connect(_on_body_exited)
 
@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 	tapa.position.y = lerpf(tapa.position.y, pos_objetivo, factor)
 
 	var color_objetivo := color_activo if _esta_activo else color_reposo
-	tapa.color = tapa.color.lerp(color_objetivo, factor)
+	tapa.modulate = tapa.modulate.lerp(color_objetivo, factor)
 
 
 func _on_body_entered(body: Node2D) -> void:
