@@ -13,11 +13,11 @@ var punto_aparicion: String = ""
 var zona_actual: String = "Pueblo"
 
 var vestuario_desbloqueado: Dictionary = {
-	"sombrero": ["copa", "helice"],
-	"gafas": ["sol", "estrella"],
-	"guantes": ["blancos"],
-	"corbata": ["corbata"],
-	"camisa": ["rayas"],
+	"sombrero": [],
+	"gafas": [],
+	"guantes": [],
+	"corbata": [],
+	"camisa": [],
 }
 
 var vestuario_equipado: Dictionary = {
@@ -49,7 +49,8 @@ func recoger_estrella() -> void:
 func completar_mision() -> void:
 	if not mision_completada:
 		mision_completada = true
-		desbloquear_accesorio("sombrero", "corona")
+		desbloquear_prenda("sombrero", "corona")
+		desbloquear_prenda("camisa", "rayas")
 		mision_actualizada.emit()
 
 
@@ -68,17 +69,22 @@ func marcar_rayo_en_caja() -> void:
 func completar_mision_quesito() -> void:
 	if not mision_quesito_completada:
 		mision_quesito_completada = true
-		desbloquear_accesorio("sombrero", "corona")
+		desbloquear_prenda("sombrero", "helice")
+		desbloquear_prenda("gafas", "estrella")
 		mision_actualizada.emit()
 
 
-func desbloquear_accesorio(categoria: String, id_item: String) -> void:
+func desbloquear_prenda(categoria: String, id_item: String) -> void:
 	if not vestuario_desbloqueado.has(categoria):
 		vestuario_desbloqueado[categoria] = []
 	var lista: Array = vestuario_desbloqueado[categoria]
 	if not lista.has(id_item):
 		lista.append(id_item)
 		vestuario_cambiado.emit()
+
+
+func desbloquear_accesorio(categoria: String, id_item: String) -> void:
+	desbloquear_prenda(categoria, id_item)
 
 
 func esta_desbloqueado(categoria: String, id_item: String) -> bool:

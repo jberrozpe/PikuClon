@@ -122,8 +122,11 @@ func _actualizar_botones() -> void:
 
 		boton.disabled = not desbloqueado
 		if not desbloqueado:
-			boton.text = "Bloq. (" + nombre + ")"
+			boton.text = "???"
+			boton.modulate = Color(0.65, 0.65, 0.7, 1.0)
 		elif equipado:
 			boton.text = "[OK] " + nombre
+			boton.modulate = Color.WHITE
 		else:
 			boton.text = nombre
+			boton.modulate = Color.WHITE
