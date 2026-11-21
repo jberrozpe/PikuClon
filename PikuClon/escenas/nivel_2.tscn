@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3]
+[gd_scene load_steps=24 format=3]
 
 [ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
 [ext_resource type="PackedScene" path="res://escenas/puerta_transicion.tscn" id="2_transicion"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" path="res://recursos/sprites/caja_rayo.svg" id="10_caja_rayo_sprite"]
 [ext_resource type="Texture2D" path="res://recursos/sprites/pelota_rayo.svg" id="11_pelota_sprite"]
 [ext_resource type="AudioStream" path="res://recursos/sonidos/estrella.wav" id="12_sonido_exito"]
+[ext_resource type="PackedScene" path="res://escenas/nube_plataforma.tscn" id="13_nube_plat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
 size = Vector2(1152, 80)
@@ -226,6 +227,24 @@ stream = ExtResource("3_salto")
 
 [node name="SonidoPatada" type="AudioStreamPlayer" parent="Jugador"]
 stream = ExtResource("4_patada")
+
+[node name="Camera2D" type="Camera2D" parent="Jugador"]
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 648
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+
+[node name="NubePlataforma1" parent="." instance=ExtResource("13_nube_plat")]
+position = Vector2(510, 440)
+desplazamiento = Vector2(0, -70)
+velocidad = 1.8
+
+[node name="NubePlataforma2" parent="." instance=ExtResource("13_nube_plat")]
+position = Vector2(730, 260)
+desplazamiento = Vector2(120, 0)
+velocidad = 1.4
 
 [node name="DonQuesito" parent="." instance=ExtResource("8_quesito")]
 position = Vector2(235, 568)

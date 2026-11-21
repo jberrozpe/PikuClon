@@ -1,0 +1,262 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/mapa_ui.gd" id="1_mapa"]
+
+[node name="MapaUI" type="CanvasLayer"]
+layer = 20
+script = ExtResource("1_mapa")
+
+[node name="Contenedor" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FondoOscuro" type="ColorRect" parent="Contenedor"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0705882, 0.0862745, 0.121569, 0.72)
+
+[node name="Panel" type="Control" parent="Contenedor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -220.0
+offset_right = 380.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Borde" type="ColorRect" parent="Contenedor/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 1)
+
+[node name="Fondo" type="ColorRect" parent="Contenedor/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.980392, 0.94902, 0.866667, 1)
+
+[node name="Titulo" type="Label" parent="Contenedor/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 12.0
+offset_bottom = 42.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 20
+text = "MAPA DEL MUNDO  —  [M] Cerrar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MapaZona" type="Control" parent="Contenedor/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 50.0
+offset_right = -20.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Mar" type="ColorRect" parent="Contenedor/Panel/MapaZona"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.678431, 0.870588, 0.94902, 1)
+
+[node name="ContinenteOeste" type="Polygon2D" parent="Contenedor/Panel/MapaZona"]
+color = Color(0.666667, 0.839216, 0.568627, 1)
+polygon = PackedVector2Array(28, 80, 175, 55, 250, 130, 220, 275, 80, 290, 25, 210)
+
+[node name="ContinenteCentro" type="Polygon2D" parent="Contenedor/Panel/MapaZona"]
+color = Color(0.752941, 0.87451, 0.588235, 1)
+polygon = PackedVector2Array(270, 50, 490, 40, 520, 185, 430, 285, 280, 260, 255, 145)
+
+[node name="IslaEste" type="Polygon2D" parent="Contenedor/Panel/MapaZona"]
+color = Color(0.666667, 0.839216, 0.568627, 1)
+polygon = PackedVector2Array(555, 70, 685, 65, 695, 225, 575, 250, 540, 160)
+
+[node name="Rutas" type="Line2D" parent="Contenedor/Panel/MapaZona"]
+points = PackedVector2Array(130, 220, 150, 115, 340, 100, 430, 185, 620, 145, 340, 225, 130, 220)
+width = 4.0
+default_color = Color(0.870588, 0.592157, 0.341176, 0.85)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Zonas" type="Node2D" parent="Contenedor/Panel/MapaZona"]
+
+[node name="Pueblo" type="Node2D" parent="Contenedor/Panel/MapaZona/Zonas"]
+position = Vector2(130, 220)
+
+[node name="Punto" type="Polygon2D" parent="Contenedor/Panel/MapaZona/Zonas/Pueblo"]
+color = Color(0.901961, 0.223529, 0.27451, 1)
+polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+
+[node name="Nombre" type="Label" parent="Contenedor/Panel/MapaZona/Zonas/Pueblo"]
+offset_left = -45.0
+offset_top = 14.0
+offset_right = 45.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 13
+text = "Pueblo"
+horizontal_alignment = 1
+
+[node name="Inglaterra" type="Node2D" parent="Contenedor/Panel/MapaZona/Zonas"]
+position = Vector2(150, 115)
+
+[node name="Punto" type="Polygon2D" parent="Contenedor/Panel/MapaZona/Zonas/Inglaterra"]
+color = Color(0.247059, 0.54902, 0.878431, 1)
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="Nombre" type="Label" parent="Contenedor/Panel/MapaZona/Zonas/Inglaterra"]
+offset_left = -50.0
+offset_top = 12.0
+offset_right = 50.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 13
+text = "Inglaterra"
+horizontal_alignment = 1
+
+[node name="Selva Negra" type="Node2D" parent="Contenedor/Panel/MapaZona/Zonas"]
+position = Vector2(340, 100)
+
+[node name="Punto" type="Polygon2D" parent="Contenedor/Panel/MapaZona/Zonas/Selva Negra"]
+color = Color(0.227451, 0.54902, 0.321569, 1)
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="Nombre" type="Label" parent="Contenedor/Panel/MapaZona/Zonas/Selva Negra"]
+offset_left = -55.0
+offset_top = 12.0
+offset_right = 55.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 13
+text = "Selva Negra"
+horizontal_alignment = 1
+
+[node name="Austria" type="Node2D" parent="Contenedor/Panel/MapaZona/Zonas"]
+position = Vector2(430, 185)
+
+[node name="Punto" type="Polygon2D" parent="Contenedor/Panel/MapaZona/Zonas/Austria"]
+color = Color(0.952941, 0.678431, 0.227451, 1)
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="Nombre" type="Label" parent="Contenedor/Panel/MapaZona/Zonas/Austria"]
+offset_left = -45.0
+offset_top = 12.0
+offset_right = 45.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 13
+text = "Austria"
+horizontal_alignment = 1
+
+[node name="Japón" type="Node2D" parent="Contenedor/Panel/MapaZona/Zonas"]
+position = Vector2(620, 145)
+
+[node name="Punto" type="Polygon2D" parent="Contenedor/Panel/MapaZona/Zonas/Japón"]
+color = Color(0.901961, 0.439216, 0.619608, 1)
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="Nombre" type="Label" parent="Contenedor/Panel/MapaZona/Zonas/Japón"]
+offset_left = -45.0
+offset_top = 12.0
+offset_right = 45.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 13
+text = "Japón"
+horizontal_alignment = 1
+
+[node name="España" type="Node2D" parent="Contenedor/Panel/MapaZona/Zonas"]
+position = Vector2(340, 225)
+
+[node name="Punto" type="Polygon2D" parent="Contenedor/Panel/MapaZona/Zonas/España"]
+color = Color(0.952941, 0.54902, 0.156863, 1)
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="Nombre" type="Label" parent="Contenedor/Panel/MapaZona/Zonas/España"]
+offset_left = -45.0
+offset_top = 12.0
+offset_right = 45.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 13
+text = "España"
+horizontal_alignment = 1
+
+[node name="MarcadorJugador" type="Polygon2D" parent="Contenedor/Panel/MapaZona"]
+z_index = 5
+position = Vector2(130, 196)
+color = Color(0.901961, 0.223529, 0.27451, 1)
+polygon = PackedVector2Array(0, 10, -10, -8, 10, -8)
+
+[node name="Pie" type="Control" parent="Contenedor/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -58.0
+offset_right = -20.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="EtiquetaZona" type="Label" parent="Contenedor/Panel/Pie"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 22.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 15
+text = "Ubicación actual: Pueblo"
+horizontal_alignment = 1
+
+[node name="EtiquetaMisiones" type="Label" parent="Contenedor/Panel/Pie"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.32, 0.34, 0.4, 1)
+theme_override_font_sizes/font_size = 13
+text = "Misión Estrella: Pendiente  |  Misión Rayo: Pendiente"
+horizontal_alignment = 1

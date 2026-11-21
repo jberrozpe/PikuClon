@@ -21,6 +21,16 @@ extends CharacterBody2D
 @export var fuerza_patada_y: float = -260.0
 @export var enfriamiento_patada: float = 0.32
 
+@export_group("Camara")
+@export var camara_limite_izquierdo: int = 0
+@export var camara_limite_superior: int = 0
+@export var camara_limite_derecho: int = 1152
+@export var camara_limite_inferior: int = 648
+@export var camara_suavizado: float = 7.0
+
+@export_group("Nivel")
+@export var nombre_zona: String = "Pueblo"
+
 var direccion_mirada: float = 1.0
 var tiempo_caminar: float = 0.0
 var temporizador_patada: float = 0.0
@@ -45,6 +55,24 @@ func _ready() -> void:
 	_configurar_controles()
 	efecto_patada.visible = false
 	_aplicar_punto_aparicion()
+	_configurar_camara()
+	GameState.zona_actual = nombre_zona
+	GameState.mision_actualizada.emit()
+
+
+func _configurar_camara() -> void:
+	var camara: Camera2D = get_node_or_null("Camera2D")
+	if camara == null:
+		camara = Camera2D.new()
+		camara.name = "Camera2D"
+		add_child(camara)
+	camara.limit_left = camara_limite_izquierdo
+	camara.limit_top = camara_limite_superior
+	camara.limit_right = camara_limite_derecho
+	camara.limit_bottom = camara_limite_inferior
+	camara.position_smoothing_enabled = true
+	camara.position_smoothing_speed = camara_suavizado
+	camara.enabled = true
 
 
 func _aplicar_punto_aparicion() -> void:

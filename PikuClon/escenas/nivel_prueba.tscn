@@ -194,6 +194,14 @@ stream = ExtResource("7_salto")
 [node name="SonidoPatada" type="AudioStreamPlayer" parent="Jugador"]
 stream = ExtResource("8_patada")
 
+[node name="Camera2D" type="Camera2D" parent="Jugador"]
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 648
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+
 [node name="Interruptor" parent="." instance=ExtResource("2_interruptor")]
 position = Vector2(780, 568)
 

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/nube_plataforma.gd" id="1_nube"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/nube_plataforma.svg" id="2_sprite"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nube"]
+size = Vector2(124, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_detector"]
+size = Vector2(116, 10)
+
+[node name="NubePlataforma" type="AnimatableBody2D"]
+sync_to_physics = false
+script = ExtResource("1_nube")
+
+[node name="Visual" type="Sprite2D" parent="."]
+texture = ExtResource("2_sprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_nube")
+one_way_collision = true
+
+[node name="DetectorPisar" type="Area2D" parent="."]
+position = Vector2(0, -14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorPisar"]
+shape = SubResource("RectangleShape2D_detector")

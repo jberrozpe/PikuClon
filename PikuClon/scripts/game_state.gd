@@ -9,6 +9,7 @@ var hablo_con_quesito: bool = false
 var rayo_en_caja: bool = false
 var mision_quesito_completada: bool = false
 var punto_aparicion: String = ""
+var zona_actual: String = "Pueblo"
 
 
 func ir_a_escena(ruta_escena: String, id_punto_aparicion: String = "") -> void:
