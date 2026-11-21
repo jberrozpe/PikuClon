@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/seta_trampolin.gd" id="1_seta"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/seta_trampolin.svg" id="2_sprite"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/salto.wav" id="3_sonido"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_base"]
+size = Vector2(56, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_detector"]
+size = Vector2(58, 12)
+
+[node name="SetaTrampolin" type="Node2D"]
+script = ExtResource("1_seta")
+
+[node name="Visual" type="Sprite2D" parent="."]
+position = Vector2(0, -21)
+texture = ExtResource("2_sprite")
+
+[node name="BaseColision" type="StaticBody2D" parent="."]
+position = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseColision"]
+shape = SubResource("RectangleShape2D_base")
+
+[node name="DetectorSalto" type="Area2D" parent="."]
+position = Vector2(0, -34)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorSalto"]
+shape = SubResource("RectangleShape2D_detector")
+
+[node name="SonidoRebote" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sonido")

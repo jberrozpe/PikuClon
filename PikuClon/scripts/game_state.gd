@@ -20,6 +20,10 @@ var pieza_austria_recogida: bool = false
 var hablo_con_vaca: bool = false
 var flor_vaca_recogida: bool = false
 var vaca_completada: bool = false
+var pieza_selva_recogida: bool = false
+var hablo_con_enanito: bool = false
+var bellota_recogida: bool = false
+var enanito_completado: bool = false
 var punto_aparicion: String = ""
 var zona_actual: String = "Pueblo"
 
@@ -178,6 +182,32 @@ func completar_vaca() -> void:
 		mision_actualizada.emit()
 
 
+func recoger_pieza_selva() -> void:
+	if not pieza_selva_recogida:
+		pieza_selva_recogida = true
+		sumar_pieza_brillante()
+
+
+func registrar_charla_enanito() -> void:
+	if not hablo_con_enanito:
+		hablo_con_enanito = true
+		mision_actualizada.emit()
+
+
+func recoger_bellota() -> void:
+	if not bellota_recogida:
+		bellota_recogida = true
+		mision_actualizada.emit()
+
+
+func completar_enanito() -> void:
+	if not enanito_completado:
+		enanito_completado = true
+		desbloquear_prenda("camisa", "rayas")
+		desbloquear_prenda("sombrero", "copa")
+		mision_actualizada.emit()
+
+
 func reiniciar_estado() -> void:
 	piezas_brillantes = 0
 	hablo_con_alcalde = false
@@ -194,4 +224,8 @@ func reiniciar_estado() -> void:
 	hablo_con_vaca = false
 	flor_vaca_recogida = false
 	vaca_completada = false
+	pieza_selva_recogida = false
+	hablo_con_enanito = false
+	bellota_recogida = false
+	enanito_completado = false
 	mision_actualizada.emit()
