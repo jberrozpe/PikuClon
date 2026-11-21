@@ -185,7 +185,7 @@ shape = SubResource("CircleShape2D_oveja")
 texture = ExtResource("9_oveja")
 
 [node name="TunelBajo" type="StaticBody2D" parent="."]
-position = Vector2(1070, 456)
+position = Vector2(1010, 456)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TunelBajo"]
 shape = SubResource("RectangleShape2D_tunel")
@@ -200,11 +200,11 @@ color = Color(0.368627, 0.568627, 0.341176, 1)
 [node name="Rampa" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Rampa"]
-polygon = PackedVector2Array(1240, 568, 1240, 490, 1460, 568)
+polygon = PackedVector2Array(1220, 568, 1300, 505, 1480, 568)
 
 [node name="Visual" type="Polygon2D" parent="Rampa"]
 color = Color(0.411765, 0.690196, 0.376471, 1)
-polygon = PackedVector2Array(1240, 568, 1240, 490, 1460, 568)
+polygon = PackedVector2Array(1220, 568, 1300, 505, 1480, 568)
 
 [node name="RizoCamino" type="Path2D" parent="."]
 position = Vector2(1580, 536)
