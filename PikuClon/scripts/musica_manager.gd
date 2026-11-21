@@ -1,14 +1,14 @@
 extends Node
 
 const TEMAS := {
-	"pueblo": "res://recursos/musica/pueblo.wav",
-	"prueba": "res://recursos/musica/prueba.wav",
-	"austria": "res://recursos/musica/austria.wav",
-	"selva_negra": "res://recursos/musica/selva_negra.wav",
-	"inglaterra": "res://recursos/musica/inglaterra.wav",
-	"japon": "res://recursos/musica/japon.wav",
-	"espana_boss": "res://recursos/musica/espana_boss.wav",
-	"fiesta_final": "res://recursos/musica/fiesta_final.wav",
+	"pueblo": "res://recursos/musica/pueblo.mp3",
+	"prueba": "res://recursos/musica/prueba.mp3",
+	"austria": "res://recursos/musica/austria.mp3",
+	"selva_negra": "res://recursos/musica/selva_negra.mp3",
+	"inglaterra": "res://recursos/musica/inglaterra.mp3",
+	"japon": "res://recursos/musica/japon.mp3",
+	"espana_boss": "res://recursos/musica/espana_boss.mp3",
+	"fiesta_final": "res://recursos/musica/fiesta_final.mp3",
 }
 
 const MAPA_ESCENAS := {
@@ -61,7 +61,9 @@ func reproducir_tema(nombre_tema: String) -> void:
 
 	var ruta: String = TEMAS[nombre_tema]
 	var recurso := load(ruta)
-	if recurso is AudioStreamWAV:
+	if recurso is AudioStreamMP3:
+		(recurso as AudioStreamMP3).loop = true
+	elif recurso is AudioStreamWAV:
 		var wav := recurso as AudioStreamWAV
 		wav.loop_mode = AudioStreamWAV.LOOP_FORWARD
 		wav.loop_begin = 0
