@@ -1,0 +1,122 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/don_quesito.gd" id="1_quesito"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/npc_hablar.wav" id="2_sonido"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/don_quesito.svg" id="3_sprite"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_zona"]
+size = Vector2(130, 110)
+
+[node name="DonQuesito" type="Node2D"]
+script = ExtResource("1_quesito")
+
+[node name="CuerpoVisual" type="Node2D" parent="."]
+
+[node name="PiernaIzq" type="Line2D" parent="CuerpoVisual"]
+position = Vector2(-12, -36)
+points = PackedVector2Array(0, 0, -1.5, 18, 0, 36)
+width = 3.5
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PiernaDer" type="Line2D" parent="CuerpoVisual"]
+position = Vector2(12, -36)
+points = PackedVector2Array(0, 0, 1.5, 18, 0, 36)
+width = 3.5
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="CuerpoSprite" type="Sprite2D" parent="CuerpoVisual"]
+position = Vector2(0, -76)
+texture = ExtResource("3_sprite")
+
+[node name="ZonaInteraccion" type="Area2D" parent="."]
+position = Vector2(0, -55)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaInteraccion"]
+shape = SubResource("RectangleShape2D_zona")
+
+[node name="Indicador" type="Control" parent="."]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -46.0
+offset_top = -150.0
+offset_right = 46.0
+offset_bottom = -122.0
+
+[node name="Fondo" type="ColorRect" parent="Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.113725, 0.141176, 0.85)
+
+[node name="Texto" type="Label" parent="Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 13
+text = "[E] Hablar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bocadillo" type="Control" parent="."]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -140.0
+offset_top = -242.0
+offset_right = 140.0
+offset_bottom = -126.0
+
+[node name="Borde" type="ColorRect" parent="Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.113725, 0.141176, 1)
+
+[node name="Fondo" type="ColorRect" parent="Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Texto" type="Label" parent="Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.113725, 0.113725, 0.141176, 1)
+theme_override_font_sizes/font_size = 13
+text = "¡Socorro!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SonidoHablar" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_sonido")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=23 format=3]
 
 [ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
 [ext_resource type="PackedScene" path="res://escenas/puerta_transicion.tscn" id="2_transicion"]
@@ -7,6 +7,11 @@
 [ext_resource type="Texture2D" path="res://recursos/sprites/jugador_cuerpo.svg" id="5_jugador_sprite"]
 [ext_resource type="Texture2D" path="res://recursos/sprites/nube.svg" id="6_nube_sprite"]
 [ext_resource type="Texture2D" path="res://recursos/sprites/hierba.svg" id="7_hierba_sprite"]
+[ext_resource type="PackedScene" path="res://escenas/don_quesito.tscn" id="8_quesito"]
+[ext_resource type="Script" path="res://scripts/caja_rayo.gd" id="9_caja_rayo_gd"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/caja_rayo.svg" id="10_caja_rayo_sprite"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/pelota_rayo.svg" id="11_pelota_sprite"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/estrella.wav" id="12_sonido_exito"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
 size = Vector2(1152, 80)
@@ -29,6 +34,16 @@ height = 76.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_patada"]
 size = Vector2(56, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_caja_rayo"]
+size = Vector2(76, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rayo"]
+radius = 18.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rayo"]
+friction = 0.45
+bounce = 0.45
 
 [node name="Nivel2" type="Node2D"]
 
@@ -211,3 +226,30 @@ stream = ExtResource("3_salto")
 
 [node name="SonidoPatada" type="AudioStreamPlayer" parent="Jugador"]
 stream = ExtResource("4_patada")
+
+[node name="DonQuesito" parent="." instance=ExtResource("8_quesito")]
+position = Vector2(235, 568)
+
+[node name="CajaRayo" type="Area2D" parent="."]
+position = Vector2(360, 548)
+script = ExtResource("9_caja_rayo_gd")
+
+[node name="Visual" type="Sprite2D" parent="CajaRayo"]
+texture = ExtResource("10_caja_rayo_sprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CajaRayo"]
+shape = SubResource("RectangleShape2D_caja_rayo")
+
+[node name="SonidoExito" type="AudioStreamPlayer2D" parent="CajaRayo"]
+stream = ExtResource("12_sonido_exito")
+
+[node name="PelotaRayo" type="RigidBody2D" parent="."]
+position = Vector2(900, 545)
+mass = 0.8
+physics_material_override = SubResource("PhysicsMaterial_rayo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PelotaRayo"]
+shape = SubResource("CircleShape2D_rayo")
+
+[node name="Visual" type="Sprite2D" parent="PelotaRayo"]
+texture = ExtResource("11_pelota_sprite")

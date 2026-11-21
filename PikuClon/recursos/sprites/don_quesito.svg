@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="68" height="84" viewBox="0 0 68 84">
+  <!-- Tiny floating top hat (2cm above head, not touching) -->
+  <rect x="24" y="2" width="20" height="14" rx="2" fill="#1D1E26"/>
+  <rect x="24" y="12" width="20" height="3" fill="#E63946"/>
+  <rect x="19" y="15" width="30" height="4" rx="2" fill="#1D1E26"/>
+  <!-- Cheese triangle body -->
+  <polygon points="34,27 64,80 4,80" fill="#FFD166" stroke="#E09F3E" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Cheese holes -->
+  <circle cx="24" cy="68" r="4" fill="#E9A825"/>
+  <circle cx="48" cy="70" r="3.5" fill="#E9A825"/>
+  <circle cx="38" cy="44" r="2.5" fill="#E9A825"/>
+  <!-- One eye much bigger than the other -->
+  <circle cx="27" cy="52" r="6" fill="#FFFFFF" stroke="#1D1E26" stroke-width="2"/>
+  <circle cx="27" cy="52" r="2.5" fill="#1D1E26"/>
+  <circle cx="42" cy="53" r="3" fill="#FFFFFF" stroke="#1D1E26" stroke-width="1.5"/>
+  <circle cx="42" cy="53" r="1.4" fill="#1D1E26"/>
+  <!-- Huge handlebar mustache covering almost the whole face -->
+  <path d="M34 61 C26 56, 14 58, 9 67 C15 69, 24 68, 34 65 C44 68, 53 69, 59 67 C54 58, 42 56, 34 61 Z" fill="#4A3525"/>
+</svg>
