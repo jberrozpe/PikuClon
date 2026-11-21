@@ -7,7 +7,7 @@ const DESTINOS := [
 	{"nombre": "Selva Negra Alemana", "escena": "res://escenas/nivel_selva_negra.tscn", "punto": "", "disponible": true},
 	{"nombre": "Campiña Inglesa", "escena": "res://escenas/nivel_inglaterra.tscn", "punto": "", "disponible": true},
 	{"nombre": "Japón y su Volcán", "escena": "res://escenas/nivel_japon.tscn", "punto": "", "disponible": true},
-	{"nombre": "España (Próximamente)", "escena": "", "punto": "", "disponible": false},
+	{"nombre": "España (Jefe Final)", "escena": "res://escenas/nivel_espana.tscn", "punto": "", "disponible": true},
 ]
 
 var _jugador_cerca: bool = false

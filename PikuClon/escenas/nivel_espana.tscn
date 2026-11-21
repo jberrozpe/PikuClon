@@ -1,0 +1,283 @@
+[gd_scene load_steps=26 format=3]
+
+[ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
+[ext_resource type="PackedScene" path="res://escenas/puerta_transicion.tscn" id="2_transicion"]
+[ext_resource type="Script" path="res://scripts/don_cuadrado_boss.gd" id="3_boss_gd"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/jugador_cuerpo.svg" id="4_jugador_sprite"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/noche_espana.svg" id="5_noche"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/tejado_espana.svg" id="6_tejado"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/farolillo.svg" id="7_farolillo"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/maceta_espana.svg" id="8_maceta"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/don_cuadrado.svg" id="9_cuadrado"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/salto.wav" id="10_salto"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/patada.wav" id="11_patada"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/interruptor.wav" id="12_golpe"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/estrella.wav" id="13_derrota"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
+size = Vector2(1280, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pared"]
+size = Vector2(40, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tejado"]
+size = Vector2(236, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_maceta"]
+size = Vector2(36, 44)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_maceta"]
+friction = 0.5
+bounce = 0.25
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boss"]
+size = Vector2(114, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boss_cabeza"]
+size = Vector2(104, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boss_cuerpo"]
+size = Vector2(124, 92)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jugador"]
+radius = 22.0
+height = 76.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_patada"]
+size = Vector2(56, 64)
+
+[node name="NivelEspana" type="Node2D"]
+
+[node name="Fondo" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 648.0
+color = Color(0.113725, 0.176471, 0.266667, 1)
+
+[node name="Decoracion" type="Node2D" parent="."]
+
+[node name="NocheEstrellada" type="Sprite2D" parent="Decoracion"]
+position = Vector2(640, 388)
+texture = ExtResource("5_noche")
+
+[node name="Farolillo1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(240, 140)
+texture = ExtResource("7_farolillo")
+
+[node name="Farolillo2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(500, 120)
+texture = ExtResource("7_farolillo")
+
+[node name="Farolillo3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(780, 120)
+texture = ExtResource("7_farolillo")
+
+[node name="Farolillo4" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1040, 140)
+texture = ExtResource("7_farolillo")
+
+[node name="Suelo" type="StaticBody2D" parent="."]
+position = Vector2(640, 608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Suelo"]
+shape = SubResource("RectangleShape2D_suelo")
+
+[node name="Visual" type="ColorRect" parent="Suelo"]
+offset_left = -640.0
+offset_top = -40.0
+offset_right = 640.0
+offset_bottom = 40.0
+color = Color(0.698039, 0.45098, 0.301961, 1)
+
+[node name="ParedIzquierda" type="StaticBody2D" parent="."]
+position = Vector2(-20, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedIzquierda"]
+shape = SubResource("RectangleShape2D_pared")
+
+[node name="ParedDerecha" type="StaticBody2D" parent="."]
+position = Vector2(1300, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedDerecha"]
+shape = SubResource("RectangleShape2D_pared")
+
+[node name="TejadoIzq" type="StaticBody2D" parent="."]
+position = Vector2(300, 420)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TejadoIzq"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_tejado")
+one_way_collision = true
+
+[node name="Visual" type="Sprite2D" parent="TejadoIzq"]
+texture = ExtResource("6_tejado")
+
+[node name="TejadoDer" type="StaticBody2D" parent="."]
+position = Vector2(980, 420)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TejadoDer"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_tejado")
+one_way_collision = true
+
+[node name="Visual" type="Sprite2D" parent="TejadoDer"]
+texture = ExtResource("6_tejado")
+
+[node name="Maceta1" type="RigidBody2D" parent="."]
+position = Vector2(340, 540)
+mass = 1.1
+physics_material_override = SubResource("PhysicsMaterial_maceta")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maceta1"]
+shape = SubResource("RectangleShape2D_maceta")
+
+[node name="Visual" type="Sprite2D" parent="Maceta1"]
+texture = ExtResource("8_maceta")
+
+[node name="Maceta2" type="RigidBody2D" parent="."]
+position = Vector2(940, 540)
+mass = 1.1
+physics_material_override = SubResource("PhysicsMaterial_maceta")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maceta2"]
+shape = SubResource("RectangleShape2D_maceta")
+
+[node name="Visual" type="Sprite2D" parent="Maceta2"]
+texture = ExtResource("8_maceta")
+
+[node name="DonCuadrado" type="CharacterBody2D" parent="."]
+position = Vector2(680, 495)
+collision_layer = 2
+script = ExtResource("3_boss_gd")
+
+[node name="Visual" type="Sprite2D" parent="DonCuadrado"]
+texture = ExtResource("9_cuadrado")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DonCuadrado"]
+shape = SubResource("RectangleShape2D_boss")
+
+[node name="ZonaCabeza" type="Area2D" parent="DonCuadrado"]
+position = Vector2(0, -64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DonCuadrado/ZonaCabeza"]
+shape = SubResource("RectangleShape2D_boss_cabeza")
+
+[node name="ZonaCuerpo" type="Area2D" parent="DonCuadrado"]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DonCuadrado/ZonaCuerpo"]
+shape = SubResource("RectangleShape2D_boss_cuerpo")
+
+[node name="SonidoGolpe" type="AudioStreamPlayer2D" parent="DonCuadrado"]
+stream = ExtResource("12_golpe")
+
+[node name="SonidoDerrota" type="AudioStreamPlayer2D" parent="DonCuadrado"]
+stream = ExtResource("13_derrota")
+
+[node name="HUDJefe" type="CanvasLayer" parent="."]
+layer = 12
+
+[node name="Titulo" type="Label" parent="HUDJefe"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 12.0
+offset_right = 200.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+text = "DON CUADRADO  (Salta encima o patéale macetas)"
+horizontal_alignment = 1
+
+[node name="Fondo" type="ColorRect" parent="HUDJefe"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 40.0
+offset_right = 150.0
+offset_bottom = 60.0
+grow_horizontal = 2
+color = Color(0.113725, 0.117647, 0.14902, 1)
+
+[node name="Relleno" type="ColorRect" parent="HUDJefe/Fondo"]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 297.0
+offset_bottom = 17.0
+color = Color(0.901961, 0.223529, 0.27451, 1)
+
+[node name="PuertaRegresoPueblo" parent="." instance=ExtResource("2_transicion")]
+position = Vector2(36, 568)
+escena_destino = "res://escenas/pueblo.tscn"
+punto_aparicion_destino = "PuntoDesdeViaje"
+
+[node name="Jugador" type="CharacterBody2D" parent="."]
+position = Vector2(140, 520)
+script = ExtResource("1_jugador")
+camara_limite_derecho = 1280
+nombre_zona = "España"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador"]
+shape = SubResource("CapsuleShape2D_jugador")
+
+[node name="CuerpoVisual" type="Node2D" parent="Jugador"]
+
+[node name="PiernaIzq" type="Line2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(-10, 12)
+points = PackedVector2Array(0, 0, -2, 13, 0, 26)
+width = 6.0
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PiernaDer" type="Line2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(10, 12)
+points = PackedVector2Array(0, 0, 2, 13, 0, 26)
+width = 6.0
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Torso" type="Sprite2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(0, -6)
+texture = ExtResource("4_jugador_sprite")
+
+[node name="Ojos" type="Node2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(4, -12)
+
+[node name="OjoIzq" type="Polygon2D" parent="Jugador/CuerpoVisual/Ojos"]
+position = Vector2(-7, 0)
+color = Color(0.113725, 0.113725, 0.113725, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[node name="OjoDer" type="Polygon2D" parent="Jugador/CuerpoVisual/Ojos"]
+position = Vector2(7, 0)
+color = Color(0.113725, 0.113725, 0.113725, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[node name="ZonaPatada" type="Area2D" parent="Jugador"]
+position = Vector2(34, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador/ZonaPatada"]
+shape = SubResource("RectangleShape2D_patada")
+
+[node name="EfectoPatada" type="Polygon2D" parent="Jugador/ZonaPatada"]
+color = Color(1, 0.85, 0.3, 0.85)
+polygon = PackedVector2Array(-6, -12, 16, -6, 6, 0, 18, 10, -4, 12)
+
+[node name="SonidoSalto" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("10_salto")
+
+[node name="SonidoPatada" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("11_patada")
+
+[node name="Camera2D" type="Camera2D" parent="Jugador"]
+limit_left = 0
+limit_top = 0
+limit_right = 1280
+limit_bottom = 648
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0

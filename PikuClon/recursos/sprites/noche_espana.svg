@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360">
+  <circle cx="1080" cy="84" r="38" fill="#FFF3B0"/>
+  <circle cx="1096" cy="76" r="34" fill="#1D2D44"/>
+  <circle cx="140" cy="60" r="3" fill="#FFFFFF"/>
+  <circle cx="290" cy="110" r="2.5" fill="#FFD166"/>
+  <circle cx="460" cy="48" r="3" fill="#FFFFFF"/>
+  <circle cx="640" cy="92" r="2.5" fill="#FFFFFF"/>
+  <circle cx="820" cy="54" r="3.5" fill="#FFD166"/>
+  <circle cx="940" cy="130" r="2.5" fill="#FFFFFF"/>
+  <polygon points="0,360 0,250 160,210 320,250 320,360" fill="#2B2D42"/>
+  <polygon points="340,360 340,230 520,185 700,230 700,360" fill="#25283D"/>
+  <polygon points="740,360 740,245 920,200 1100,245 1100,360" fill="#2B2D42"/>
+</svg>
