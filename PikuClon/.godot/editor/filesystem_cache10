@@ -1,5 +1,5 @@
 9cad1ddce9e5a63143ba340c9520626b
-::res://::1795225213
+::res://::1795225810
 AGENTS.md::TextFile::-1::1795216188::0::1::::<><><>0<>0<><>::
 export_presets.cfg::TextFile::-1::1795223311::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D::6197650625263314592::1795216188::1795218460::1::::<><><>0<>0<>a962b37daa3ae75d367b467740bb3259<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
@@ -29,12 +29,12 @@ puerta_transicion.tscn::PackedScene::-1::1795219290::0::1::::<><><>0<>0<><>::res
 seta_trampolin.tscn::PackedScene::-1::1795222498::0::1::::<><><>0<>0<><>::res://scripts/seta_trampolin.gd<>res://recursos/sprites/seta_trampolin.svg<>res://recursos/sonidos/salto.wav
 vapor_ascendente.tscn::PackedScene::-1::1795222804::0::1::::<><><>0<>0<><>::res://scripts/vapor_ascendente.gd<>res://recursos/sprites/nube_vapor.svg
 ::res://recursos/::1795222804
-::res://recursos/musica/::1795225167
+::res://recursos/musica/::1795225773
 austria.mp3::AudioStreamMP3::7287441991045012156::1795224528::1795224742::1::::<><><>0<>0<>8fcad54831c04e43dc3d4bf7c59a452b<>res://.godot/imported/austria.mp3-64a1e01b5445bf51216a501f4585c01f.mp3str::
 espana_boss.mp3::AudioStreamMP3::2446697996145913046::1795224975::1795225214::1::::<><><>0<>0<>5be65f8d2a8243845431d36f640c45af<>res://.godot/imported/espana_boss.mp3-0cfe0ddb48770c0310b504fbeba0fce3.mp3str::
 fiesta_final.mp3::AudioStreamMP3::3870557959038639886::1795224528::1795224742::1::::<><><>0<>0<>36b8334c7da3b65c852be2644e6b43f2<>res://.godot/imported/fiesta_final.mp3-820e356740ea6331340659f988118a36.mp3str::
 inglaterra.mp3::AudioStreamMP3::2727983796999378291::1795224528::1795224742::1::::<><><>0<>0<>5f5024581dec6bdc575abba357e02139<>res://.godot/imported/inglaterra.mp3-53cba0f10d972bde15f3fc2e9800ff54.mp3str::
-japon.mp3::AudioStreamMP3::439096748744553118::1795224528::1795224742::1::::<><><>0<>0<>d650eb523c1242dad80350d4efeb8bc4<>res://.godot/imported/japon.mp3-5dc19ae12e1416d3c4b5ad09d9f6c2ff.mp3str::
+japon.mp3::AudioStreamMP3::4284813990902332128::1795225603::1795225811::1::::<><><>0<>0<>c393192c11d359f0eb3a652c0a1d7c2f<>res://.godot/imported/japon.mp3-5dc19ae12e1416d3c4b5ad09d9f6c2ff.mp3str::
 prueba.mp3::AudioStreamMP3::3633193309970600694::1795224528::1795224742::1::::<><><>0<>0<>4a21511f038522ca71ec330604a6255e<>res://.godot/imported/prueba.mp3-f88229a8503067aac707555318653d7a.mp3str::
 pueblo.mp3::AudioStreamMP3::7572225661523482086::1795224528::1795224742::1::::<><><>0<>0<>8b5fecab6d19d51eafe6887ccdeb7a61<>res://.godot/imported/pueblo.mp3-954f7991d007504eff9319c875812780.mp3str::
 selva_negra.mp3::AudioStreamMP3::6350062268124792333::1795224528::1795224742::1::::<><><>0<>0<>8f17bd677dc491ffa8b0bfe135ad23cc<>res://.godot/imported/selva_negra.mp3-f69403c98e5557e8f9d6e2401361457c.mp3str::
