@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/vapor_ascendente.gd" id="1_vapor"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/nube_vapor.svg" id="2_sprite"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vapor"]
+size = Vector2(84, 240)
+
+[node name="VaporAscendente" type="Area2D"]
+script = ExtResource("1_vapor")
+
+[node name="Visual" type="Sprite2D" parent="."]
+scale = Vector2(1, 1.7)
+texture = ExtResource("2_sprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vapor")

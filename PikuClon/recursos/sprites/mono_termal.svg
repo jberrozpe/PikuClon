@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="68" height="64" viewBox="0 0 68 64">
+  <!-- Monkey head in hot spring -->
+  <circle cx="16" cy="22" r="7" fill="#8C5A32" stroke="#1D1E26" stroke-width="2"/>
+  <circle cx="52" cy="22" r="7" fill="#8C5A32" stroke="#1D1E26" stroke-width="2"/>
+  <circle cx="34" cy="24" r="18" fill="#8C5A32" stroke="#1D1E26" stroke-width="2.5"/>
+  <ellipse cx="34" cy="27" rx="13" ry="10" fill="#F4D58D"/>
+  <circle cx="28" cy="22" r="2.2" fill="#1D1E26"/>
+  <circle cx="40" cy="22" r="2.2" fill="#1D1E26"/>
+  <path d="M29 30 Q34 34 39 30" fill="none" stroke="#1D1E26" stroke-width="2" stroke-linecap="round"/>
+  <!-- Little white towel on head -->
+  <rect x="23" y="4" width="22" height="8" rx="3" fill="#FFFFFF" stroke="#1D1E26" stroke-width="2"/>
+  <!-- Wooden onsen tub & water -->
+  <rect x="4" y="34" width="60" height="8" rx="3" fill="#90E0EF"/>
+  <rect x="4" y="38" width="60" height="24" rx="4" fill="#A66E38" stroke="#1D1E26" stroke-width="2.5"/>
+  <line x1="6" y1="50" x2="62" y2="50" stroke="#5C3A21" stroke-width="3"/>
+</svg>

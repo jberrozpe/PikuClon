@@ -60,6 +60,7 @@ const TEXTURAS_VESTUARIO := {
 		"corona": "res://recursos/vestuario/sombrero_corona.svg",
 		"tiroles": "res://recursos/vestuario/sombrero_tiroles.svg",
 		"bombin": "res://recursos/vestuario/sombrero_bombin.svg",
+		"ninja": "res://recursos/vestuario/banda_ninja.svg",
 	},
 	"gafas": {
 		"sol": "res://recursos/vestuario/gafas_sol.svg",

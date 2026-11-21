@@ -28,6 +28,10 @@ var pieza_inglaterra_recogida: bool = false
 var hablo_con_ingles: bool = false
 var oveja_en_redil: bool = false
 var ingles_completado: bool = false
+var pieza_japon_recogida: bool = false
+var hablo_con_mono: bool = false
+var onigiri_recogido: bool = false
+var mono_completado: bool = false
 var punto_aparicion: String = ""
 var zona_actual: String = "Pueblo"
 
@@ -238,6 +242,32 @@ func completar_ingles() -> void:
 		mision_actualizada.emit()
 
 
+func recoger_pieza_japon() -> void:
+	if not pieza_japon_recogida:
+		pieza_japon_recogida = true
+		sumar_pieza_brillante()
+
+
+func registrar_charla_mono() -> void:
+	if not hablo_con_mono:
+		hablo_con_mono = true
+		mision_actualizada.emit()
+
+
+func recoger_onigiri() -> void:
+	if not onigiri_recogido:
+		onigiri_recogido = true
+		mision_actualizada.emit()
+
+
+func completar_mono() -> void:
+	if not mono_completado:
+		mono_completado = true
+		desbloquear_prenda("sombrero", "ninja")
+		desbloquear_prenda("gafas", "estrella")
+		mision_actualizada.emit()
+
+
 func reiniciar_estado() -> void:
 	piezas_brillantes = 0
 	hablo_con_alcalde = false
@@ -262,4 +292,8 @@ func reiniciar_estado() -> void:
 	hablo_con_ingles = false
 	oveja_en_redil = false
 	ingles_completado = false
+	pieza_japon_recogida = false
+	hablo_con_mono = false
+	onigiri_recogido = false
+	mono_completado = false
 	mision_actualizada.emit()

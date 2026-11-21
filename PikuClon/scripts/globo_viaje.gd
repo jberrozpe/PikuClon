@@ -6,7 +6,7 @@ const DESTINOS := [
 	{"nombre": "Montañas Austríacas", "escena": "res://escenas/nivel_austria.tscn", "punto": "", "disponible": true},
 	{"nombre": "Selva Negra Alemana", "escena": "res://escenas/nivel_selva_negra.tscn", "punto": "", "disponible": true},
 	{"nombre": "Campiña Inglesa", "escena": "res://escenas/nivel_inglaterra.tscn", "punto": "", "disponible": true},
-	{"nombre": "Japón (Próximamente)", "escena": "", "punto": "", "disponible": false},
+	{"nombre": "Japón y su Volcán", "escena": "res://escenas/nivel_japon.tscn", "punto": "", "disponible": true},
 	{"nombre": "España (Próximamente)", "escena": "", "punto": "", "disponible": false},
 ]
 
