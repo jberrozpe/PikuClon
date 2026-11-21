@@ -2,6 +2,7 @@ extends Node
 
 const TEMAS := {
 	"pueblo": "res://recursos/musica/pueblo.wav",
+	"prueba": "res://recursos/musica/prueba.wav",
 	"austria": "res://recursos/musica/austria.wav",
 	"selva_negra": "res://recursos/musica/selva_negra.wav",
 	"inglaterra": "res://recursos/musica/inglaterra.wav",
@@ -12,8 +13,8 @@ const TEMAS := {
 
 const MAPA_ESCENAS := {
 	"res://escenas/pueblo.tscn": "pueblo",
-	"res://escenas/nivel_prueba.tscn": "pueblo",
-	"res://escenas/nivel_2.tscn": "pueblo",
+	"res://escenas/nivel_prueba.tscn": "prueba",
+	"res://escenas/nivel_2.tscn": "prueba",
 	"res://escenas/nivel_austria.tscn": "austria",
 	"res://escenas/nivel_selva_negra.tscn": "selva_negra",
 	"res://escenas/nivel_inglaterra.tscn": "inglaterra",
