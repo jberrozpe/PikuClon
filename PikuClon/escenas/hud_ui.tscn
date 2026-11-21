@@ -1,0 +1,101 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/hud_ui.gd" id="1_hud"]
+
+[node name="HudUI" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="Contenedor" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CajaPiezas" type="Control" parent="Contenedor"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 248.0
+offset_bottom = 50.0
+mouse_filter = 2
+
+[node name="Borde" type="ColorRect" parent="Contenedor/CajaPiezas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.113725, 0.117647, 0.14902, 1)
+
+[node name="Fondo" type="ColorRect" parent="Contenedor/CajaPiezas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.960784, 0.858824, 1)
+
+[node name="Icono" type="Polygon2D" parent="Contenedor/CajaPiezas"]
+position = Vector2(22, 18)
+color = Color(1, 0.819608, 0.25098, 1)
+polygon = PackedVector2Array(0, -9, 3, -3, 9, -2, 4, 2, 6, 8, 0, 5, -6, 8, -4, 2, -9, -2, -3, -3)
+
+[node name="EtiquetaPiezas" type="Label" parent="Contenedor/CajaPiezas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 38.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 15
+text = "Piezas Brillantes: 0/4"
+vertical_alignment = 1
+
+[node name="CajaAtajos" type="Control" parent="Contenedor"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -236.0
+offset_top = 14.0
+offset_right = -16.0
+offset_bottom = 48.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="Fondo" type="ColorRect" parent="Contenedor/CajaAtajos"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.113725, 0.117647, 0.14902, 0.78)
+
+[node name="Texto" type="Label" parent="Contenedor/CajaAtajos"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 13
+text = "[M] Mapa   |   [C] Armario"
+horizontal_alignment = 1
+vertical_alignment = 1

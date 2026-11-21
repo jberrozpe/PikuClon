@@ -3,6 +3,13 @@ extends Node
 signal mision_actualizada
 signal vestuario_cambiado
 
+const TOTAL_PIEZAS: int = 4
+
+var piezas_brillantes: int = 0
+var hablo_con_alcalde: bool = false
+var carta_tejados_recogida: bool = false
+var vecino1_completado: bool = false
+var vecino2_completado: bool = false
 var hablo_con_npc: bool = false
 var estrella_recogida: bool = false
 var mision_completada: bool = false
@@ -109,7 +116,45 @@ func obtener_equipado(categoria: String) -> String:
 	return str(vestuario_equipado.get(categoria, ""))
 
 
+func sumar_pieza_brillante() -> void:
+	if piezas_brillantes < TOTAL_PIEZAS:
+		piezas_brillantes += 1
+		mision_actualizada.emit()
+
+
+func registrar_charla_alcalde() -> void:
+	if not hablo_con_alcalde:
+		hablo_con_alcalde = true
+		mision_actualizada.emit()
+
+
+func recoger_carta_tejados() -> void:
+	if not carta_tejados_recogida:
+		carta_tejados_recogida = true
+		mision_actualizada.emit()
+
+
+func completar_vecino1() -> void:
+	if not vecino1_completado:
+		vecino1_completado = true
+		desbloquear_prenda("gafas", "sol")
+		mision_actualizada.emit()
+
+
+func completar_vecino2() -> void:
+	if not vecino2_completado:
+		vecino2_completado = true
+		desbloquear_prenda("corbata", "corbata")
+		desbloquear_prenda("guantes", "blancos")
+		mision_actualizada.emit()
+
+
 func reiniciar_estado() -> void:
+	piezas_brillantes = 0
+	hablo_con_alcalde = false
+	carta_tejados_recogida = false
+	vecino1_completado = false
+	vecino2_completado = false
 	hablo_con_npc = false
 	estrella_recogida = false
 	mision_completada = false

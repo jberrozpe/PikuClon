@@ -1,0 +1,636 @@
+[gd_scene load_steps=26 format=3]
+
+[ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
+[ext_resource type="PackedScene" path="res://escenas/nube_plataforma.tscn" id="2_nube_plat"]
+[ext_resource type="PackedScene" path="res://escenas/globo_viaje.tscn" id="3_globo"]
+[ext_resource type="Script" path="res://scripts/npc_pueblo.gd" id="4_npc_pueblo"]
+[ext_resource type="Script" path="res://scripts/carta_tejados.gd" id="5_carta_gd"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/jugador_cuerpo.svg" id="6_jugador_sprite"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/casa_roja.svg" id="7_casa_roja"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/casa_azul.svg" id="8_casa_azul"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/casa_amarilla.svg" id="9_casa_amarilla"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/maquina_fuegos.svg" id="10_maquina"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/alcalde.svg" id="11_alcalde"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/vecino_1.svg" id="12_vecino1"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/vecino_2.svg" id="13_vecino2"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/nube.svg" id="14_nube"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/hierba.svg" id="15_hierba"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/salto.wav" id="16_salto"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/patada.wav" id="17_patada"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/npc_hablar.wav" id="18_hablar"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/estrella.wav" id="19_estrella"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
+size = Vector2(2400, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pared"]
+size = Vector2(40, 648)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jugador"]
+radius = 22.0
+height = 76.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_patada"]
+size = Vector2(56, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npc_zona"]
+size = Vector2(120, 110)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_carta"]
+size = Vector2(36, 28)
+
+[node name="Pueblo" type="Node2D"]
+
+[node name="Fondo" type="ColorRect" parent="."]
+offset_right = 2400.0
+offset_bottom = 648.0
+color = Color(0.858824, 0.945098, 0.992157, 1)
+
+[node name="Decoracion" type="Node2D" parent="."]
+
+[node name="Colina1" type="Polygon2D" parent="Decoracion"]
+color = Color(0.729412, 0.878431, 0.729412, 1)
+polygon = PackedVector2Array(60, 568, 280, 390, 540, 568)
+
+[node name="Colina2" type="Polygon2D" parent="Decoracion"]
+color = Color(0.658824, 0.839216, 0.678431, 1)
+polygon = PackedVector2Array(1050, 568, 1340, 370, 1660, 568)
+
+[node name="Colina3" type="Polygon2D" parent="Decoracion"]
+color = Color(0.729412, 0.878431, 0.729412, 1)
+polygon = PackedVector2Array(1750, 568, 2020, 410, 2320, 568)
+
+[node name="NubeFondo1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(230, 110)
+texture = ExtResource("14_nube")
+
+[node name="NubeFondo2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(760, 95)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("14_nube")
+
+[node name="NubeFondo3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1420, 115)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("14_nube")
+
+[node name="NubeFondo4" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2040, 100)
+texture = ExtResource("14_nube")
+
+[node name="CasaRoja" type="Sprite2D" parent="Decoracion"]
+position = Vector2(460, 488)
+texture = ExtResource("7_casa_roja")
+
+[node name="CasaAzul" type="Sprite2D" parent="Decoracion"]
+position = Vector2(960, 493)
+texture = ExtResource("8_casa_azul")
+
+[node name="CasaAmarilla" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1580, 485)
+texture = ExtResource("9_casa_amarilla")
+
+[node name="Hierba1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(210, 558)
+texture = ExtResource("15_hierba")
+
+[node name="Hierba2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(610, 558)
+texture = ExtResource("15_hierba")
+
+[node name="Hierba3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1130, 558)
+texture = ExtResource("15_hierba")
+
+[node name="Hierba4" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1410, 558)
+texture = ExtResource("15_hierba")
+
+[node name="Hierba5" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1920, 558)
+texture = ExtResource("15_hierba")
+
+[node name="Suelo" type="StaticBody2D" parent="."]
+position = Vector2(1200, 608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Suelo"]
+shape = SubResource("RectangleShape2D_suelo")
+
+[node name="Visual" type="ColorRect" parent="Suelo"]
+offset_left = -1200.0
+offset_top = -40.0
+offset_right = 1200.0
+offset_bottom = 40.0
+color = Color(0.470588, 0.721569, 0.443137, 1)
+
+[node name="ParedIzquierda" type="StaticBody2D" parent="."]
+position = Vector2(-20, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedIzquierda"]
+shape = SubResource("RectangleShape2D_pared")
+
+[node name="ParedDerecha" type="StaticBody2D" parent="."]
+position = Vector2(2420, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedDerecha"]
+shape = SubResource("RectangleShape2D_pared")
+
+[node name="Nube1" parent="." instance=ExtResource("2_nube_plat")]
+position = Vector2(310, 445)
+desplazamiento = Vector2(0, -45)
+velocidad = 1.6
+
+[node name="Nube2" parent="." instance=ExtResource("2_nube_plat")]
+position = Vector2(540, 345)
+desplazamiento = Vector2(110, 0)
+velocidad = 1.4
+
+[node name="Nube3" parent="." instance=ExtResource("2_nube_plat")]
+position = Vector2(850, 275)
+desplazamiento = Vector2(0, -50)
+velocidad = 1.7
+
+[node name="Nube4" parent="." instance=ExtResource("2_nube_plat")]
+position = Vector2(1110, 225)
+desplazamiento = Vector2(80, 0)
+velocidad = 1.3
+
+[node name="CartaPerdida" type="Area2D" parent="."]
+position = Vector2(1150, 178)
+script = ExtResource("5_carta_gd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CartaPerdida"]
+shape = SubResource("RectangleShape2D_carta")
+
+[node name="Visual" type="Node2D" parent="CartaPerdida"]
+
+[node name="Sobre" type="ColorRect" parent="CartaPerdida/Visual"]
+offset_left = -16.0
+offset_top = -11.0
+offset_right = 16.0
+offset_bottom = 11.0
+color = Color(1, 0.980392, 0.901961, 1)
+
+[node name="Sello" type="ColorRect" parent="CartaPerdida/Visual"]
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 5.0
+offset_bottom = 4.0
+color = Color(0.901961, 0.223529, 0.27451, 1)
+
+[node name="SonidoRecoger" type="AudioStreamPlayer" parent="CartaPerdida"]
+stream = ExtResource("19_estrella")
+
+[node name="Alcalde" type="Node2D" parent="."]
+position = Vector2(310, 568)
+script = ExtResource("4_npc_pueblo")
+
+[node name="Visual" type="Sprite2D" parent="Alcalde"]
+position = Vector2(0, -42)
+texture = ExtResource("11_alcalde")
+
+[node name="ZonaInteraccion" type="Area2D" parent="Alcalde"]
+position = Vector2(0, -50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alcalde/ZonaInteraccion"]
+shape = SubResource("RectangleShape2D_npc_zona")
+
+[node name="Indicador" type="Control" parent="Alcalde"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -46.0
+offset_top = -124.0
+offset_right = 46.0
+offset_bottom = -96.0
+
+[node name="Fondo" type="ColorRect" parent="Alcalde/Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 0.85)
+
+[node name="Texto" type="Label" parent="Alcalde/Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 13
+text = "[E] Hablar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bocadillo" type="Control" parent="Alcalde"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -140.0
+offset_top = -220.0
+offset_right = 140.0
+offset_bottom = -104.0
+
+[node name="Borde" type="ColorRect" parent="Alcalde/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 1)
+
+[node name="Fondo" type="ColorRect" parent="Alcalde/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Texto" type="Label" parent="Alcalde/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SonidoHablar" type="AudioStreamPlayer2D" parent="Alcalde"]
+stream = ExtResource("18_hablar")
+
+[node name="Vecino1" type="Node2D" parent="."]
+position = Vector2(690, 568)
+script = ExtResource("4_npc_pueblo")
+rol = "vecino1"
+
+[node name="Visual" type="Sprite2D" parent="Vecino1"]
+position = Vector2(0, -38)
+texture = ExtResource("12_vecino1")
+
+[node name="ZonaInteraccion" type="Area2D" parent="Vecino1"]
+position = Vector2(0, -50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vecino1/ZonaInteraccion"]
+shape = SubResource("RectangleShape2D_npc_zona")
+
+[node name="Indicador" type="Control" parent="Vecino1"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -46.0
+offset_top = -118.0
+offset_right = 46.0
+offset_bottom = -90.0
+
+[node name="Fondo" type="ColorRect" parent="Vecino1/Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 0.85)
+
+[node name="Texto" type="Label" parent="Vecino1/Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 13
+text = "[E] Hablar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bocadillo" type="Control" parent="Vecino1"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -140.0
+offset_top = -214.0
+offset_right = 140.0
+offset_bottom = -98.0
+
+[node name="Borde" type="ColorRect" parent="Vecino1/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 1)
+
+[node name="Fondo" type="ColorRect" parent="Vecino1/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Texto" type="Label" parent="Vecino1/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SonidoHablar" type="AudioStreamPlayer2D" parent="Vecino1"]
+stream = ExtResource("18_hablar")
+
+[node name="MaquinaFuegos" type="Node2D" parent="."]
+position = Vector2(1260, 568)
+script = ExtResource("4_npc_pueblo")
+rol = "maquina"
+
+[node name="Visual" type="Sprite2D" parent="MaquinaFuegos"]
+position = Vector2(0, -65)
+texture = ExtResource("10_maquina")
+
+[node name="ZonaInteraccion" type="Area2D" parent="MaquinaFuegos"]
+position = Vector2(0, -55)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MaquinaFuegos/ZonaInteraccion"]
+shape = SubResource("RectangleShape2D_npc_zona")
+
+[node name="Indicador" type="Control" parent="MaquinaFuegos"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -56.0
+offset_top = -168.0
+offset_right = 56.0
+offset_bottom = -140.0
+
+[node name="Fondo" type="ColorRect" parent="MaquinaFuegos/Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 0.85)
+
+[node name="Texto" type="Label" parent="MaquinaFuegos/Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 13
+text = "[E] Inspeccionar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bocadillo" type="Control" parent="MaquinaFuegos"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -140.0
+offset_top = -258.0
+offset_right = 140.0
+offset_bottom = -146.0
+
+[node name="Borde" type="ColorRect" parent="MaquinaFuegos/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 1)
+
+[node name="Fondo" type="ColorRect" parent="MaquinaFuegos/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Texto" type="Label" parent="MaquinaFuegos/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SonidoHablar" type="AudioStreamPlayer2D" parent="MaquinaFuegos"]
+stream = ExtResource("18_hablar")
+
+[node name="Vecino2" type="Node2D" parent="."]
+position = Vector2(1780, 568)
+script = ExtResource("4_npc_pueblo")
+rol = "vecino2"
+
+[node name="Visual" type="Sprite2D" parent="Vecino2"]
+position = Vector2(0, -38)
+texture = ExtResource("13_vecino2")
+
+[node name="ZonaInteraccion" type="Area2D" parent="Vecino2"]
+position = Vector2(0, -50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vecino2/ZonaInteraccion"]
+shape = SubResource("RectangleShape2D_npc_zona")
+
+[node name="Indicador" type="Control" parent="Vecino2"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -46.0
+offset_top = -118.0
+offset_right = 46.0
+offset_bottom = -90.0
+
+[node name="Fondo" type="ColorRect" parent="Vecino2/Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 0.85)
+
+[node name="Texto" type="Label" parent="Vecino2/Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 13
+text = "[E] Hablar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bocadillo" type="Control" parent="Vecino2"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -140.0
+offset_top = -214.0
+offset_right = 140.0
+offset_bottom = -98.0
+
+[node name="Borde" type="ColorRect" parent="Vecino2/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 1)
+
+[node name="Fondo" type="ColorRect" parent="Vecino2/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Texto" type="Label" parent="Vecino2/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SonidoHablar" type="AudioStreamPlayer2D" parent="Vecino2"]
+stream = ExtResource("18_hablar")
+
+[node name="GloboViaje" parent="." instance=ExtResource("3_globo")]
+position = Vector2(2150, 568)
+
+[node name="PuntoDesdeViaje" type="Marker2D" parent="."]
+position = Vector2(2020, 520)
+
+[node name="Jugador" type="CharacterBody2D" parent="."]
+position = Vector2(160, 520)
+script = ExtResource("1_jugador")
+camara_limite_derecho = 2400
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador"]
+shape = SubResource("CapsuleShape2D_jugador")
+
+[node name="CuerpoVisual" type="Node2D" parent="Jugador"]
+
+[node name="PiernaIzq" type="Line2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(-10, 12)
+points = PackedVector2Array(0, 0, -2, 13, 0, 26)
+width = 6.0
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PiernaDer" type="Line2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(10, 12)
+points = PackedVector2Array(0, 0, 2, 13, 0, 26)
+width = 6.0
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Torso" type="Sprite2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(0, -6)
+texture = ExtResource("6_jugador_sprite")
+
+[node name="Ojos" type="Node2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(4, -12)
+
+[node name="OjoIzq" type="Polygon2D" parent="Jugador/CuerpoVisual/Ojos"]
+position = Vector2(-7, 0)
+color = Color(0.113725, 0.113725, 0.113725, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[node name="OjoDer" type="Polygon2D" parent="Jugador/CuerpoVisual/Ojos"]
+position = Vector2(7, 0)
+color = Color(0.113725, 0.113725, 0.113725, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[node name="ZonaPatada" type="Area2D" parent="Jugador"]
+position = Vector2(34, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador/ZonaPatada"]
+shape = SubResource("RectangleShape2D_patada")
+
+[node name="EfectoPatada" type="Polygon2D" parent="Jugador/ZonaPatada"]
+color = Color(1, 0.85, 0.3, 0.85)
+polygon = PackedVector2Array(-6, -12, 16, -6, 6, 0, 18, 10, -4, 12)
+
+[node name="SonidoSalto" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("16_salto")
+
+[node name="SonidoPatada" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("17_patada")
+
+[node name="Camera2D" type="Camera2D" parent="Jugador"]
+limit_left = 0
+limit_top = 0
+limit_right = 2400
+limit_bottom = 648
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0

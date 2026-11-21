@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PikuClon"
-run/main_scene="res://escenas/nivel_prueba.tscn"
+run/main_scene="res://escenas/pueblo.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GameState="*res://scripts/game_state.gd"
 MapaUI="*res://escenas/mapa_ui.tscn"
 ArmarioUI="*res://escenas/armario_ui.tscn"
+HudUI="*res://escenas/hud_ui.tscn"
 
 [rendering]
 

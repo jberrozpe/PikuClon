@@ -236,5 +236,10 @@ punto_aparicion_destino = "PuntoDesdeNivel1"
 [node name="PuntoDesdeNivel2" type="Marker2D" parent="."]
 position = Vector2(1062, 520)
 
+[node name="PuertaRegresoPueblo" parent="." instance=ExtResource("6_transicion")]
+position = Vector2(36, 568)
+escena_destino = "res://escenas/pueblo.tscn"
+punto_aparicion_destino = "PuntoDesdeViaje"
+
 [connection signal="activado" from="Interruptor" to="Puerta" method="abrir"]
 [connection signal="desactivado" from="Interruptor" to="Puerta" method="cerrar"]
