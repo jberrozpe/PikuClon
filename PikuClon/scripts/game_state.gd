@@ -16,6 +16,10 @@ var mision_completada: bool = false
 var hablo_con_quesito: bool = false
 var rayo_en_caja: bool = false
 var mision_quesito_completada: bool = false
+var pieza_austria_recogida: bool = false
+var hablo_con_vaca: bool = false
+var flor_vaca_recogida: bool = false
+var vaca_completada: bool = false
 var punto_aparicion: String = ""
 var zona_actual: String = "Pueblo"
 
@@ -149,6 +153,31 @@ func completar_vecino2() -> void:
 		mision_actualizada.emit()
 
 
+func recoger_pieza_austria() -> void:
+	if not pieza_austria_recogida:
+		pieza_austria_recogida = true
+		sumar_pieza_brillante()
+
+
+func registrar_charla_vaca() -> void:
+	if not hablo_con_vaca:
+		hablo_con_vaca = true
+		mision_actualizada.emit()
+
+
+func recoger_flor_vaca() -> void:
+	if not flor_vaca_recogida:
+		flor_vaca_recogida = true
+		mision_actualizada.emit()
+
+
+func completar_vaca() -> void:
+	if not vaca_completada:
+		vaca_completada = true
+		desbloquear_prenda("sombrero", "tiroles")
+		mision_actualizada.emit()
+
+
 func reiniciar_estado() -> void:
 	piezas_brillantes = 0
 	hablo_con_alcalde = false
@@ -161,4 +190,8 @@ func reiniciar_estado() -> void:
 	hablo_con_quesito = false
 	rayo_en_caja = false
 	mision_quesito_completada = false
+	pieza_austria_recogida = false
+	hablo_con_vaca = false
+	flor_vaca_recogida = false
+	vaca_completada = false
 	mision_actualizada.emit()

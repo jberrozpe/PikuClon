@@ -1,0 +1,399 @@
+[gd_scene load_steps=25 format=3]
+
+[ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
+[ext_resource type="PackedScene" path="res://escenas/nube_plataforma.tscn" id="2_nube_plat"]
+[ext_resource type="PackedScene" path="res://escenas/puerta_transicion.tscn" id="3_transicion"]
+[ext_resource type="Script" path="res://scripts/npc_vaca.gd" id="4_npc_vaca"]
+[ext_resource type="Script" path="res://scripts/flor_vaca.gd" id="5_flor_vaca"]
+[ext_resource type="Script" path="res://scripts/pieza_brillante.gd" id="6_pieza"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/jugador_cuerpo.svg" id="7_jugador_sprite"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/montanas_alpes.svg" id="8_montanas"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/cabana_alpina.svg" id="9_cabana"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/edelweiss.svg" id="10_edelweiss"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/vaca_alpina.svg" id="11_vaca"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/pieza_brillante.svg" id="12_pieza_sprite"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/nube.svg" id="13_nube"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/salto.wav" id="14_salto"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/patada.wav" id="15_patada"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/npc_hablar.wav" id="16_hablar"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/estrella.wav" id="17_estrella"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
+size = Vector2(1400, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pared"]
+size = Vector2(40, 1700)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plat_med"]
+size = Vector2(220, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plat_cima"]
+size = Vector2(360, 32)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jugador"]
+radius = 22.0
+height = 76.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_patada"]
+size = Vector2(56, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_zona_vaca"]
+size = Vector2(130, 110)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_coleccionable"]
+radius = 22.0
+
+[node name="NivelAustria" type="Node2D"]
+
+[node name="FondoCielo" type="ColorRect" parent="."]
+offset_top = -1000.0
+offset_right = 1400.0
+offset_bottom = 648.0
+color = Color(0.768627, 0.901961, 0.988235, 1)
+
+[node name="Decoracion" type="Node2D" parent="."]
+
+[node name="Montanas" type="Sprite2D" parent="Decoracion"]
+position = Vector2(700, 360)
+scale = Vector2(1.12, 1.0)
+texture = ExtResource("8_montanas")
+
+[node name="NubeFondo1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(260, -180)
+texture = ExtResource("13_nube")
+
+[node name="NubeFondo2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1080, -420)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("13_nube")
+
+[node name="NubeFondo3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(320, -680)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("13_nube")
+
+[node name="CabanaAlpina" type="Sprite2D" parent="Decoracion"]
+position = Vector2(330, 488)
+texture = ExtResource("9_cabana")
+
+[node name="Edelweiss1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(190, 552)
+texture = ExtResource("10_edelweiss")
+
+[node name="Edelweiss2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(610, 552)
+texture = ExtResource("10_edelweiss")
+
+[node name="EdelweissCima" type="Sprite2D" parent="Decoracion"]
+position = Vector2(580, -712)
+texture = ExtResource("10_edelweiss")
+
+[node name="Suelo" type="StaticBody2D" parent="."]
+position = Vector2(700, 608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Suelo"]
+shape = SubResource("RectangleShape2D_suelo")
+
+[node name="Visual" type="ColorRect" parent="Suelo"]
+offset_left = -700.0
+offset_top = -40.0
+offset_right = 700.0
+offset_bottom = 40.0
+color = Color(0.411765, 0.678431, 0.431373, 1)
+
+[node name="ParedIzquierda" type="StaticBody2D" parent="."]
+position = Vector2(-20, -150)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedIzquierda"]
+shape = SubResource("RectangleShape2D_pared")
+
+[node name="ParedDerecha" type="StaticBody2D" parent="."]
+position = Vector2(1420, -150)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedDerecha"]
+shape = SubResource("RectangleShape2D_pared")
+
+[node name="PlataformaBase" type="StaticBody2D" parent="."]
+position = Vector2(760, 470)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaBase"]
+shape = SubResource("RectangleShape2D_plat_med")
+
+[node name="Visual" type="ColorRect" parent="PlataformaBase"]
+offset_left = -110.0
+offset_top = -14.0
+offset_right = 110.0
+offset_bottom = 14.0
+color = Color(0.54902, 0.419608, 0.321569, 1)
+
+[node name="Nube1" parent="." instance=ExtResource("2_nube_plat")]
+position = Vector2(980, 390)
+desplazamiento = Vector2(0, -60)
+velocidad = 1.6
+
+[node name="Nube2" parent="." instance=ExtResource("2_nube_plat")]
+position = Vector2(720, 260)
+desplazamiento = Vector2(-140, 0)
+velocidad = 1.4
+
+[node name="PlataformaMedia" type="StaticBody2D" parent="."]
+position = Vector2(420, 170)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaMedia"]
+shape = SubResource("RectangleShape2D_plat_med")
+
+[node name="Visual" type="ColorRect" parent="PlataformaMedia"]
+offset_left = -110.0
+offset_top = -14.0
+offset_right = 110.0
+offset_bottom = 14.0
+color = Color(0.54902, 0.419608, 0.321569, 1)
+
+[node name="FlorVaca" type="Area2D" parent="."]
+position = Vector2(380, 130)
+script = ExtResource("5_flor_vaca")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlorVaca"]
+shape = SubResource("CircleShape2D_coleccionable")
+
+[node name="Visual" type="Sprite2D" parent="FlorVaca"]
+modulate = Color(1, 0.92, 0.45, 1)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("10_edelweiss")
+
+[node name="SonidoRecoger" type="AudioStreamPlayer" parent="FlorVaca"]
+stream = ExtResource("17_estrella")
+
+[node name="Nube3" parent="." instance=ExtResource("2_nube_plat")]
+position = Vector2(620, 80)
+desplazamiento = Vector2(0, -75)
+velocidad = 1.6
+
+[node name="Nube4" parent="." instance=ExtResource("2_nube_plat")]
+position = Vector2(860, -70)
+desplazamiento = Vector2(140, 0)
+velocidad = 1.4
+
+[node name="PlataformaAlta" type="StaticBody2D" parent="."]
+position = Vector2(1140, -170)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaAlta"]
+shape = SubResource("RectangleShape2D_plat_med")
+
+[node name="Visual" type="ColorRect" parent="PlataformaAlta"]
+offset_left = -110.0
+offset_top = -14.0
+offset_right = 110.0
+offset_bottom = 14.0
+color = Color(0.54902, 0.419608, 0.321569, 1)
+
+[node name="Nube5" parent="." instance=ExtResource("2_nube_plat")]
+position = Vector2(940, -280)
+desplazamiento = Vector2(0, -80)
+velocidad = 1.7
+
+[node name="Nube6" parent="." instance=ExtResource("2_nube_plat")]
+position = Vector2(690, -420)
+desplazamiento = Vector2(-130, 0)
+velocidad = 1.4
+
+[node name="Nube7" parent="." instance=ExtResource("2_nube_plat")]
+position = Vector2(450, -550)
+desplazamiento = Vector2(0, -70)
+velocidad = 1.6
+
+[node name="PlataformaCima" type="StaticBody2D" parent="."]
+position = Vector2(700, -680)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaCima"]
+shape = SubResource("RectangleShape2D_plat_cima")
+
+[node name="Visual" type="ColorRect" parent="PlataformaCima"]
+offset_left = -180.0
+offset_top = -16.0
+offset_right = 180.0
+offset_bottom = 16.0
+color = Color(0.941176, 0.972549, 1, 1)
+
+[node name="PiezaBrillante1" type="Area2D" parent="."]
+position = Vector2(700, -735)
+script = ExtResource("6_pieza")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PiezaBrillante1"]
+shape = SubResource("CircleShape2D_coleccionable")
+
+[node name="Visual" type="Sprite2D" parent="PiezaBrillante1"]
+texture = ExtResource("12_pieza_sprite")
+
+[node name="SonidoRecoger" type="AudioStreamPlayer" parent="PiezaBrillante1"]
+stream = ExtResource("17_estrella")
+
+[node name="VacaAlpina" type="Node2D" parent="."]
+position = Vector2(520, 568)
+script = ExtResource("4_npc_vaca")
+
+[node name="Visual" type="Sprite2D" parent="VacaAlpina"]
+position = Vector2(0, -35)
+texture = ExtResource("11_vaca")
+
+[node name="ZonaInteraccion" type="Area2D" parent="VacaAlpina"]
+position = Vector2(0, -48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VacaAlpina/ZonaInteraccion"]
+shape = SubResource("RectangleShape2D_zona_vaca")
+
+[node name="Indicador" type="Control" parent="VacaAlpina"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -46.0
+offset_top = -114.0
+offset_right = 46.0
+offset_bottom = -86.0
+
+[node name="Fondo" type="ColorRect" parent="VacaAlpina/Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 0.85)
+
+[node name="Texto" type="Label" parent="VacaAlpina/Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 13
+text = "[E] Hablar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bocadillo" type="Control" parent="VacaAlpina"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -140.0
+offset_top = -212.0
+offset_right = 140.0
+offset_bottom = -94.0
+
+[node name="Borde" type="ColorRect" parent="VacaAlpina/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 1)
+
+[node name="Fondo" type="ColorRect" parent="VacaAlpina/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Texto" type="Label" parent="VacaAlpina/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SonidoHablar" type="AudioStreamPlayer2D" parent="VacaAlpina"]
+stream = ExtResource("16_hablar")
+
+[node name="PuertaRegresoPueblo" parent="." instance=ExtResource("3_transicion")]
+position = Vector2(36, 568)
+escena_destino = "res://escenas/pueblo.tscn"
+punto_aparicion_destino = "PuntoDesdeViaje"
+
+[node name="Jugador" type="CharacterBody2D" parent="."]
+position = Vector2(130, 520)
+script = ExtResource("1_jugador")
+camara_limite_superior = -952
+camara_limite_derecho = 1400
+nombre_zona = "Austria"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador"]
+shape = SubResource("CapsuleShape2D_jugador")
+
+[node name="CuerpoVisual" type="Node2D" parent="Jugador"]
+
+[node name="PiernaIzq" type="Line2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(-10, 12)
+points = PackedVector2Array(0, 0, -2, 13, 0, 26)
+width = 6.0
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PiernaDer" type="Line2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(10, 12)
+points = PackedVector2Array(0, 0, 2, 13, 0, 26)
+width = 6.0
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Torso" type="Sprite2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(0, -6)
+texture = ExtResource("7_jugador_sprite")
+
+[node name="Ojos" type="Node2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(4, -12)
+
+[node name="OjoIzq" type="Polygon2D" parent="Jugador/CuerpoVisual/Ojos"]
+position = Vector2(-7, 0)
+color = Color(0.113725, 0.113725, 0.113725, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[node name="OjoDer" type="Polygon2D" parent="Jugador/CuerpoVisual/Ojos"]
+position = Vector2(7, 0)
+color = Color(0.113725, 0.113725, 0.113725, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[node name="ZonaPatada" type="Area2D" parent="Jugador"]
+position = Vector2(34, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador/ZonaPatada"]
+shape = SubResource("RectangleShape2D_patada")
+
+[node name="EfectoPatada" type="Polygon2D" parent="Jugador/ZonaPatada"]
+color = Color(1, 0.85, 0.3, 0.85)
+polygon = PackedVector2Array(-6, -12, 16, -6, 6, 0, 18, 10, -4, 12)
+
+[node name="SonidoSalto" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("14_salto")
+
+[node name="SonidoPatada" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("15_patada")
+
+[node name="Camera2D" type="Camera2D" parent="Jugador"]
+limit_left = 0
+limit_top = -952
+limit_right = 1400
+limit_bottom = 648
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0

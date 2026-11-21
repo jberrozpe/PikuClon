@@ -3,7 +3,7 @@ extends Node2D
 const DESTINOS := [
 	{"nombre": "Zona de Pruebas", "escena": "res://escenas/nivel_prueba.tscn", "punto": "", "disponible": true},
 	{"nombre": "Casa de Don Quesito", "escena": "res://escenas/nivel_2.tscn", "punto": "PuntoDesdeNivel1", "disponible": true},
-	{"nombre": "Austria (Próximamente)", "escena": "", "punto": "", "disponible": false},
+	{"nombre": "Montañas Austríacas", "escena": "res://escenas/nivel_austria.tscn", "punto": "", "disponible": true},
 	{"nombre": "Selva Negra (Próximamente)", "escena": "", "punto": "", "disponible": false},
 	{"nombre": "Inglaterra (Próximamente)", "escena": "", "punto": "", "disponible": false},
 	{"nombre": "Japón (Próximamente)", "escena": "", "punto": "", "disponible": false},

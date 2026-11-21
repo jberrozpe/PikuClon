@@ -56,6 +56,7 @@ const TEXTURAS_VESTUARIO := {
 		"copa": "res://recursos/vestuario/sombrero_copa.svg",
 		"helice": "res://recursos/vestuario/sombrero_helice.svg",
 		"corona": "res://recursos/vestuario/sombrero_corona.svg",
+		"tiroles": "res://recursos/vestuario/sombrero_tiroles.svg",
 	},
 	"gafas": {
 		"sol": "res://recursos/vestuario/gafas_sol.svg",
