@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameState="*res://scripts/game_state.gd"
 MapaUI="*res://escenas/mapa_ui.tscn"
+ArmarioUI="*res://escenas/armario_ui.tscn"
 
 [rendering]
 

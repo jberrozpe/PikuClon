@@ -51,13 +51,95 @@ var en_bolita: bool = false
 @onready var sonido_patada: AudioStreamPlayer = get_node_or_null("SonidoPatada")
 
 
+const TEXTURAS_VESTUARIO := {
+	"sombrero": {
+		"copa": "res://recursos/vestuario/sombrero_copa.svg",
+		"helice": "res://recursos/vestuario/sombrero_helice.svg",
+		"corona": "res://recursos/vestuario/sombrero_corona.svg",
+	},
+	"gafas": {
+		"sol": "res://recursos/vestuario/gafas_sol.svg",
+		"estrella": "res://recursos/vestuario/gafas_estrella.svg",
+	},
+	"guantes": {
+		"blancos": "res://recursos/vestuario/guantes_blancos.svg",
+	},
+	"corbata": {
+		"corbata": "res://recursos/vestuario/corbata.svg",
+	},
+	"camisa": {
+		"rayas": "res://recursos/vestuario/camisa_rayas.svg",
+	},
+}
+
+var _capas_vestuario: Dictionary = {}
+
+
 func _ready() -> void:
 	_configurar_controles()
 	efecto_patada.visible = false
 	_aplicar_punto_aparicion()
 	_configurar_camara()
+	_configurar_vestuario()
 	GameState.zona_actual = nombre_zona
 	GameState.mision_actualizada.emit()
+	GameState.vestuario_cambiado.connect(_actualizar_vestuario)
+	_actualizar_vestuario()
+
+
+func _configurar_vestuario() -> void:
+	var capa_camisa := Sprite2D.new()
+	capa_camisa.name = "CapaCamisa"
+	capa_camisa.position = Vector2(0.0, 5.0)
+	cuerpo_visual.add_child(capa_camisa)
+	cuerpo_visual.move_child(capa_camisa, torso.get_index() + 1)
+
+	var capa_corbata := Sprite2D.new()
+	capa_corbata.name = "CapaCorbata"
+	capa_corbata.position = Vector2(0.0, 5.0)
+	cuerpo_visual.add_child(capa_corbata)
+	cuerpo_visual.move_child(capa_corbata, capa_camisa.get_index() + 1)
+
+	var capa_guantes := Sprite2D.new()
+	capa_guantes.name = "CapaGuantes"
+	capa_guantes.position = Vector2(0.0, 2.0)
+	cuerpo_visual.add_child(capa_guantes)
+
+	var capa_gafas := Sprite2D.new()
+	capa_gafas.name = "CapaGafas"
+	capa_gafas.position = Vector2(0.0, 0.0)
+	ojos.add_child(capa_gafas)
+
+	var capa_sombrero := Sprite2D.new()
+	capa_sombrero.name = "CapaSombrero"
+	capa_sombrero.position = Vector2(0.0, -40.0)
+	cuerpo_visual.add_child(capa_sombrero)
+
+	_capas_vestuario = {
+		"camisa": capa_camisa,
+		"corbata": capa_corbata,
+		"guantes": capa_guantes,
+		"gafas": capa_gafas,
+		"sombrero": capa_sombrero,
+	}
+
+
+func _actualizar_vestuario() -> void:
+	for categoria in _capas_vestuario.keys():
+		var sprite: Sprite2D = _capas_vestuario[categoria]
+		var id_equipado := GameState.obtener_equipado(categoria)
+		if id_equipado.is_empty():
+			sprite.texture = null
+			sprite.visible = false
+		else:
+			var rutas: Dictionary = TEXTURAS_VESTUARIO.get(categoria, {})
+			var ruta: String = rutas.get(id_equipado, "")
+			if ruta.is_empty():
+				sprite.texture = null
+				sprite.visible = false
+			else:
+				sprite.texture = load(ruta)
+				sprite.visible = true
 
 
 func _configurar_camara() -> void:
