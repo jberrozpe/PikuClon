@@ -24,6 +24,10 @@ var pieza_selva_recogida: bool = false
 var hablo_con_enanito: bool = false
 var bellota_recogida: bool = false
 var enanito_completado: bool = false
+var pieza_inglaterra_recogida: bool = false
+var hablo_con_ingles: bool = false
+var oveja_en_redil: bool = false
+var ingles_completado: bool = false
 var punto_aparicion: String = ""
 var zona_actual: String = "Pueblo"
 
@@ -208,6 +212,32 @@ func completar_enanito() -> void:
 		mision_actualizada.emit()
 
 
+func recoger_pieza_inglaterra() -> void:
+	if not pieza_inglaterra_recogida:
+		pieza_inglaterra_recogida = true
+		sumar_pieza_brillante()
+
+
+func registrar_charla_ingles() -> void:
+	if not hablo_con_ingles:
+		hablo_con_ingles = true
+		mision_actualizada.emit()
+
+
+func marcar_oveja_en_redil() -> void:
+	if not oveja_en_redil:
+		oveja_en_redil = true
+		mision_actualizada.emit()
+
+
+func completar_ingles() -> void:
+	if not ingles_completado:
+		ingles_completado = true
+		desbloquear_prenda("sombrero", "bombin")
+		desbloquear_prenda("guantes", "blancos")
+		mision_actualizada.emit()
+
+
 func reiniciar_estado() -> void:
 	piezas_brillantes = 0
 	hablo_con_alcalde = false
@@ -228,4 +258,8 @@ func reiniciar_estado() -> void:
 	hablo_con_enanito = false
 	bellota_recogida = false
 	enanito_completado = false
+	pieza_inglaterra_recogida = false
+	hablo_con_ingles = false
+	oveja_en_redil = false
+	ingles_completado = false
 	mision_actualizada.emit()

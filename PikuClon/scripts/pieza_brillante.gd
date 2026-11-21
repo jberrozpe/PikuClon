@@ -1,6 +1,6 @@
 extends Area2D
 
-@export_enum("austria", "selva_negra") var zona_pieza: String = "austria"
+@export_enum("austria", "selva_negra", "inglaterra") var zona_pieza: String = "austria"
 
 var _recogida: bool = false
 var _tiempo: float = 0.0
@@ -10,7 +10,13 @@ var _tiempo: float = 0.0
 
 
 func _ready() -> void:
-	var ya_recogida := GameState.pieza_austria_recogida if zona_pieza == "austria" else GameState.pieza_selva_recogida
+	var ya_recogida := false
+	if zona_pieza == "austria":
+		ya_recogida = GameState.pieza_austria_recogida
+	elif zona_pieza == "selva_negra":
+		ya_recogida = GameState.pieza_selva_recogida
+	else:
+		ya_recogida = GameState.pieza_inglaterra_recogida
 	if ya_recogida:
 		queue_free()
 		return
@@ -29,8 +35,10 @@ func _on_body_entered(body: Node2D) -> void:
 	_recogida = true
 	if zona_pieza == "austria":
 		GameState.recoger_pieza_austria()
-	else:
+	elif zona_pieza == "selva_negra":
 		GameState.recoger_pieza_selva()
+	else:
+		GameState.recoger_pieza_inglaterra()
 	visual.visible = false
 	$CollisionShape2D.set_deferred("disabled", true)
 	sonido.play()

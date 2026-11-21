@@ -2,10 +2,10 @@ extends CharacterBody2D
 
 @export_group("Movimiento")
 @export var velocidad_maxima: float = 290.0
-@export var velocidad_rodar: float = 350.0
+@export var velocidad_rodar: float = 440.0
 @export var aceleracion_suelo: float = 1900.0
 @export var friccion_suelo: float = 1700.0
-@export var friccion_rodar: float = 420.0
+@export var friccion_rodar: float = 190.0
 @export var aceleracion_aire: float = 1200.0
 @export var friccion_aire: float = 350.0
 
@@ -39,7 +39,9 @@ var temporizador_coyote: float = 0.0
 var tiempo_aterrizaje: float = 0.0
 var estaba_en_suelo: bool = false
 var en_bolita: bool = false
+var _en_rizo: bool = false
 
+@onready var colision_cuerpo: CollisionShape2D = $CollisionShape2D
 @onready var cuerpo_visual: Node2D = $CuerpoVisual
 @onready var torso: Node2D = $CuerpoVisual/Torso
 @onready var pierna_izq: Line2D = $CuerpoVisual/PiernaIzq
@@ -57,6 +59,7 @@ const TEXTURAS_VESTUARIO := {
 		"helice": "res://recursos/vestuario/sombrero_helice.svg",
 		"corona": "res://recursos/vestuario/sombrero_corona.svg",
 		"tiroles": "res://recursos/vestuario/sombrero_tiroles.svg",
+		"bombin": "res://recursos/vestuario/sombrero_bombin.svg",
 	},
 	"gafas": {
 		"sol": "res://recursos/vestuario/gafas_sol.svg",
@@ -77,6 +80,8 @@ var _capas_vestuario: Dictionary = {}
 
 
 func _ready() -> void:
+	floor_max_angle = deg_to_rad(65.0)
+	floor_snap_length = 12.0
 	_configurar_controles()
 	efecto_patada.visible = false
 	_aplicar_punto_aparicion()
@@ -176,6 +181,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if _en_rizo:
+		return
 	if temporizador_patada > 0.0:
 		temporizador_patada -= delta
 	if temporizador_anim_patada > 0.0:
@@ -212,17 +219,30 @@ func _physics_process(delta: float) -> void:
 		velocity.y *= 0.52
 
 	# Modo bolita / rodar (S o Flecha Abajo)
-	en_bolita = Input.is_action_pressed("agacharse")
+	var quiere_bolita := Input.is_action_pressed("agacharse")
+	if not quiere_bolita and en_bolita:
+		if test_move(global_transform, Vector2(0.0, -18.0)):
+			quiere_bolita = true
+	en_bolita = quiere_bolita
+	_actualizar_colision_bolita()
 
-	# Movimiento lateral fluido
+	# Movimiento lateral fluido y conservación de velocidad en rampas
 	var entrada_x := Input.get_axis("mover_izquierda", "mover_derecha")
 	var vel_objetivo := velocidad_rodar if en_bolita else velocidad_maxima
+	if en_bolita and is_on_floor():
+		var normal_suelo := get_floor_normal()
+		if absf(normal_suelo.x) > 0.05:
+			velocity.x += normal_suelo.x * 780.0 * delta
+
 	if entrada_x != 0.0:
 		direccion_mirada = sign(entrada_x)
 		var accel := aceleracion_suelo if is_on_floor() else aceleracion_aire
 		if en_bolita:
 			accel *= 0.85
-		velocity.x = move_toward(velocity.x, entrada_x * vel_objetivo, accel * delta)
+		if en_bolita and absf(velocity.x) > vel_objetivo and signf(velocity.x) == signf(entrada_x):
+			pass
+		else:
+			velocity.x = move_toward(velocity.x, entrada_x * vel_objetivo, accel * delta)
 	else:
 		var fric := friccion_rodar if (en_bolita and is_on_floor()) else (friccion_suelo if is_on_floor() else friccion_aire)
 		velocity.x = move_toward(velocity.x, 0.0, fric * delta)
@@ -239,6 +259,17 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	_empujar_cuerpos_fisicos()
 	_animar_personaje(delta, entrada_x)
+
+
+func _actualizar_colision_bolita() -> void:
+	if colision_cuerpo and colision_cuerpo.shape is CapsuleShape2D:
+		var cap := colision_cuerpo.shape as CapsuleShape2D
+		if en_bolita:
+			cap.height = 44.0
+			colision_cuerpo.position.y = 16.0
+		else:
+			cap.height = 76.0
+			colision_cuerpo.position.y = 0.0
 
 
 func _empujar_cuerpos_fisicos() -> void:

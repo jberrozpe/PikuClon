@@ -1,0 +1,425 @@
+[gd_scene load_steps=28 format=3]
+
+[ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
+[ext_resource type="PackedScene" path="res://escenas/puerta_transicion.tscn" id="2_transicion"]
+[ext_resource type="Script" path="res://scripts/npc_ingles.gd" id="3_npc_ingles"]
+[ext_resource type="Script" path="res://scripts/redil_ovejas.gd" id="4_redil"]
+[ext_resource type="Script" path="res://scripts/rizo_camino.gd" id="5_rizo"]
+[ext_resource type="Script" path="res://scripts/pieza_brillante.gd" id="6_pieza"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/jugador_cuerpo.svg" id="7_jugador_sprite"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/cabina_inglesa.svg" id="8_cabina"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/oveja.svg" id="9_oveja"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/caballero_ingles.svg" id="10_caballero"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/pieza_brillante.svg" id="11_pieza_sprite"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/nube.svg" id="12_nube"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/hierba.svg" id="13_hierba"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/salto.wav" id="14_salto"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/patada.wav" id="15_patada"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/npc_hablar.wav" id="16_hablar"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/estrella.wav" id="17_estrella"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
+size = Vector2(2400, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pared"]
+size = Vector2(40, 1000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tunel"]
+size = Vector2(260, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plat_meta"]
+size = Vector2(360, 28)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oveja"]
+radius = 22.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_oveja"]
+friction = 0.35
+bounce = 0.45
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_redil"]
+size = Vector2(96, 56)
+
+[sub_resource type="Curve2D" id="Curve2D_rizo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, -60, 0, 60, 0, 110, -40, 0, 60, 0, -60, 180, -140, 60, 0, -60, 0, 100, -240, 0, -60, 0, 60, 20, -140, -60, 0, 60, 0, 100, -40, 0, 0, 0, 0, 240, -110)
+}
+point_count = 7
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_entrada_rizo"]
+size = Vector2(40, 56)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jugador"]
+radius = 22.0
+height = 76.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_patada"]
+size = Vector2(56, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_zona_npc"]
+size = Vector2(120, 110)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_coleccionable"]
+radius = 22.0
+
+[node name="NivelInglaterra" type="Node2D"]
+
+[node name="Fondo" type="ColorRect" parent="."]
+offset_top = -260.0
+offset_right = 2400.0
+offset_bottom = 648.0
+color = Color(0.823529, 0.909804, 0.94902, 1)
+
+[node name="Decoracion" type="Node2D" parent="."]
+
+[node name="Colina1" type="Polygon2D" parent="Decoracion"]
+color = Color(0.568627, 0.807843, 0.486275, 1)
+polygon = PackedVector2Array(40, 568, 300, 380, 620, 568)
+
+[node name="Colina2" type="Polygon2D" parent="Decoracion"]
+color = Color(0.490196, 0.74902, 0.431373, 1)
+polygon = PackedVector2Array(700, 568, 1040, 340, 1380, 568)
+
+[node name="Colina3" type="Polygon2D" parent="Decoracion"]
+color = Color(0.568627, 0.807843, 0.486275, 1)
+polygon = PackedVector2Array(1560, 568, 1940, 350, 2320, 568)
+
+[node name="Nube1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(280, 100)
+texture = ExtResource("12_nube")
+
+[node name="Nube2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(960, 70)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("12_nube")
+
+[node name="Nube3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1740, 40)
+texture = ExtResource("12_nube")
+
+[node name="Cabina1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(290, 503)
+texture = ExtResource("8_cabina")
+
+[node name="Cabina2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2240, 315)
+texture = ExtResource("8_cabina")
+
+[node name="Hierba1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(180, 558)
+texture = ExtResource("13_hierba")
+
+[node name="Hierba2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(720, 558)
+texture = ExtResource("13_hierba")
+
+[node name="Hierba3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1420, 558)
+texture = ExtResource("13_hierba")
+
+[node name="Suelo" type="StaticBody2D" parent="."]
+position = Vector2(1200, 608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Suelo"]
+shape = SubResource("RectangleShape2D_suelo")
+
+[node name="Visual" type="ColorRect" parent="Suelo"]
+offset_left = -1200.0
+offset_top = -40.0
+offset_right = 1200.0
+offset_bottom = 40.0
+color = Color(0.411765, 0.690196, 0.376471, 1)
+
+[node name="ParedIzquierda" type="StaticBody2D" parent="."]
+position = Vector2(-20, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedIzquierda"]
+shape = SubResource("RectangleShape2D_pared")
+
+[node name="ParedDerecha" type="StaticBody2D" parent="."]
+position = Vector2(2420, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedDerecha"]
+shape = SubResource("RectangleShape2D_pared")
+
+[node name="RedilOvejas" type="Area2D" parent="."]
+position = Vector2(560, 540)
+script = ExtResource("4_redil")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RedilOvejas"]
+shape = SubResource("RectangleShape2D_redil")
+
+[node name="Fondo" type="ColorRect" parent="RedilOvejas"]
+offset_left = -48.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 28.0
+color = Color(0.6, 0.42, 0.24, 1)
+
+[node name="PosteIzq" type="ColorRect" parent="RedilOvejas"]
+offset_left = -48.0
+offset_top = -18.0
+offset_right = -40.0
+offset_bottom = 28.0
+color = Color(0.46, 0.3, 0.16, 1)
+
+[node name="PosteDer" type="ColorRect" parent="RedilOvejas"]
+offset_left = 40.0
+offset_top = -18.0
+offset_right = 48.0
+offset_bottom = 28.0
+color = Color(0.46, 0.3, 0.16, 1)
+
+[node name="SonidoExito" type="AudioStreamPlayer2D" parent="RedilOvejas"]
+stream = ExtResource("17_estrella")
+
+[node name="Oveja" type="RigidBody2D" parent="."]
+position = Vector2(790, 540)
+mass = 0.9
+physics_material_override = SubResource("PhysicsMaterial_oveja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Oveja"]
+shape = SubResource("CircleShape2D_oveja")
+
+[node name="Visual" type="Sprite2D" parent="Oveja"]
+texture = ExtResource("9_oveja")
+
+[node name="TunelBajo" type="StaticBody2D" parent="."]
+position = Vector2(1070, 456)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TunelBajo"]
+shape = SubResource("RectangleShape2D_tunel")
+
+[node name="Visual" type="ColorRect" parent="TunelBajo"]
+offset_left = -130.0
+offset_top = -60.0
+offset_right = 130.0
+offset_bottom = 60.0
+color = Color(0.368627, 0.568627, 0.341176, 1)
+
+[node name="Rampa" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Rampa"]
+polygon = PackedVector2Array(1240, 568, 1240, 490, 1460, 568)
+
+[node name="Visual" type="Polygon2D" parent="Rampa"]
+color = Color(0.411765, 0.690196, 0.376471, 1)
+polygon = PackedVector2Array(1240, 568, 1240, 490, 1460, 568)
+
+[node name="RizoCamino" type="Path2D" parent="."]
+position = Vector2(1580, 536)
+curve = SubResource("Curve2D_rizo")
+script = ExtResource("5_rizo")
+
+[node name="PistaVisual" type="Line2D" parent="RizoCamino"]
+width = 12.0
+default_color = Color(0.870588, 0.623529, 0.258824, 0.85)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Seguidor" type="PathFollow2D" parent="RizoCamino"]
+rotates = false
+loop = false
+
+[node name="EntradaRizo" type="Area2D" parent="RizoCamino"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RizoCamino/EntradaRizo"]
+shape = SubResource("RectangleShape2D_entrada_rizo")
+
+[node name="PlataformaMeta" type="StaticBody2D" parent="."]
+position = Vector2(2040, 394)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaMeta"]
+shape = SubResource("RectangleShape2D_plat_meta")
+
+[node name="Visual" type="ColorRect" parent="PlataformaMeta"]
+offset_left = -180.0
+offset_top = -14.0
+offset_right = 180.0
+offset_bottom = 14.0
+color = Color(0.411765, 0.690196, 0.376471, 1)
+
+[node name="PiezaBrillante3" type="Area2D" parent="."]
+position = Vector2(2110, 340)
+script = ExtResource("6_pieza")
+zona_pieza = "inglaterra"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PiezaBrillante3"]
+shape = SubResource("CircleShape2D_coleccionable")
+
+[node name="Visual" type="Sprite2D" parent="PiezaBrillante3"]
+texture = ExtResource("11_pieza_sprite")
+
+[node name="SonidoRecoger" type="AudioStreamPlayer" parent="PiezaBrillante3"]
+stream = ExtResource("17_estrella")
+
+[node name="CaballeroIngles" type="Node2D" parent="."]
+position = Vector2(420, 568)
+script = ExtResource("3_npc_ingles")
+
+[node name="Visual" type="Sprite2D" parent="CaballeroIngles"]
+position = Vector2(0, -40)
+texture = ExtResource("10_caballero")
+
+[node name="ZonaInteraccion" type="Area2D" parent="CaballeroIngles"]
+position = Vector2(0, -50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaballeroIngles/ZonaInteraccion"]
+shape = SubResource("RectangleShape2D_zona_npc")
+
+[node name="Indicador" type="Control" parent="CaballeroIngles"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -46.0
+offset_top = -120.0
+offset_right = 46.0
+offset_bottom = -92.0
+
+[node name="Fondo" type="ColorRect" parent="CaballeroIngles/Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 0.85)
+
+[node name="Texto" type="Label" parent="CaballeroIngles/Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 13
+text = "[E] Hablar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bocadillo" type="Control" parent="CaballeroIngles"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -140.0
+offset_top = -220.0
+offset_right = 140.0
+offset_bottom = -102.0
+
+[node name="Borde" type="ColorRect" parent="CaballeroIngles/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 1)
+
+[node name="Fondo" type="ColorRect" parent="CaballeroIngles/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Texto" type="Label" parent="CaballeroIngles/Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SonidoHablar" type="AudioStreamPlayer2D" parent="CaballeroIngles"]
+stream = ExtResource("16_hablar")
+
+[node name="PuertaRegresoPueblo" parent="." instance=ExtResource("2_transicion")]
+position = Vector2(36, 568)
+escena_destino = "res://escenas/pueblo.tscn"
+punto_aparicion_destino = "PuntoDesdeViaje"
+
+[node name="Jugador" type="CharacterBody2D" parent="."]
+position = Vector2(130, 520)
+script = ExtResource("1_jugador")
+camara_limite_superior = -260
+camara_limite_derecho = 2400
+nombre_zona = "Inglaterra"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador"]
+shape = SubResource("CapsuleShape2D_jugador")
+
+[node name="CuerpoVisual" type="Node2D" parent="Jugador"]
+
+[node name="PiernaIzq" type="Line2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(-10, 12)
+points = PackedVector2Array(0, 0, -2, 13, 0, 26)
+width = 6.0
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PiernaDer" type="Line2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(10, 12)
+points = PackedVector2Array(0, 0, 2, 13, 0, 26)
+width = 6.0
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Torso" type="Sprite2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(0, -6)
+texture = ExtResource("7_jugador_sprite")
+
+[node name="Ojos" type="Node2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(4, -12)
+
+[node name="OjoIzq" type="Polygon2D" parent="Jugador/CuerpoVisual/Ojos"]
+position = Vector2(-7, 0)
+color = Color(0.113725, 0.113725, 0.113725, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[node name="OjoDer" type="Polygon2D" parent="Jugador/CuerpoVisual/Ojos"]
+position = Vector2(7, 0)
+color = Color(0.113725, 0.113725, 0.113725, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[node name="ZonaPatada" type="Area2D" parent="Jugador"]
+position = Vector2(34, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador/ZonaPatada"]
+shape = SubResource("RectangleShape2D_patada")
+
+[node name="EfectoPatada" type="Polygon2D" parent="Jugador/ZonaPatada"]
+color = Color(1, 0.85, 0.3, 0.85)
+polygon = PackedVector2Array(-6, -12, 16, -6, 6, 0, 18, 10, -4, 12)
+
+[node name="SonidoSalto" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("14_salto")
+
+[node name="SonidoPatada" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("15_patada")
+
+[node name="Camera2D" type="Camera2D" parent="Jugador"]
+limit_left = 0
+limit_top = -260
+limit_right = 2400
+limit_bottom = 648
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0

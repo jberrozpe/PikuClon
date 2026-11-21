@@ -9,6 +9,7 @@ const CATALOGO := [
 			{"id": "helice", "nombre": "Hélice"},
 			{"id": "corona", "nombre": "Corona"},
 			{"id": "tiroles", "nombre": "Tirolés"},
+			{"id": "bombin", "nombre": "Bombín"},
 		],
 	},
 	{
