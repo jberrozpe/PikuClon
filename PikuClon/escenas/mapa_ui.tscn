@@ -217,6 +217,40 @@ theme_override_font_sizes/font_size = 13
 text = "España"
 horizontal_alignment = 1
 
+[node name="Tíbet" type="Node2D" parent="Contenedor/Panel/MapaZona/Zonas"]
+position = Vector2(520, 72)
+
+[node name="Punto" type="Polygon2D" parent="Contenedor/Panel/MapaZona/Zonas/Tíbet"]
+color = Color(0.498039, 0.784314, 0.972549, 1)
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="Nombre" type="Label" parent="Contenedor/Panel/MapaZona/Zonas/Tíbet"]
+offset_left = -45.0
+offset_top = 12.0
+offset_right = 45.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 13
+text = "Tíbet"
+horizontal_alignment = 1
+
+[node name="Arabia" type="Node2D" parent="Contenedor/Panel/MapaZona/Zonas"]
+position = Vector2(215, 272)
+
+[node name="Punto" type="Polygon2D" parent="Contenedor/Panel/MapaZona/Zonas/Arabia"]
+color = Color(0.909804, 0.690196, 0.294118, 1)
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="Nombre" type="Label" parent="Contenedor/Panel/MapaZona/Zonas/Arabia"]
+offset_left = -45.0
+offset_top = 12.0
+offset_right = 45.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 13
+text = "Arabia"
+horizontal_alignment = 1
+
 [node name="MarcadorJugador" type="Polygon2D" parent="Contenedor/Panel/MapaZona"]
 z_index = 5
 position = Vector2(130, 196)

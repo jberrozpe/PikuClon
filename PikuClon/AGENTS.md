@@ -4,3 +4,8 @@
 2. Mantén una estructura de carpetas limpia: `res://escenas/`, `res://scripts/`, `res://recursos/`.
 3. Cada vez que crees o modifiques algo, dime exactamente qué escena tengo que abrir en Godot para probarlo y qué teclas usar.
 4. Usa formas geométricas simples (`ColorRect`, `Polygon2D`) como gráficos temporales hasta que yo te dé arte definitivo.
+
+5. Todo arte nuevo (SVG) debe cumplir `docs/ESTILO_PIKUNIKU.md` y validarse con:
+   `python3 tools/validar_estilo.py`. No se exporta ningún asset con FAIL.
+6. Antes de añadir un sprite a una escena, colócalo apoyado en el suelo
+   (`pie(alto, escala)`) y evita más de 2 repeticiones del mismo sprite/escala.

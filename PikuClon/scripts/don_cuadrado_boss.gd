@@ -72,6 +72,8 @@ func _on_cuerpo_entered(body: Node2D) -> void:
 			return
 	if body is CharacterBody2D:
 		var jugador := body as CharacterBody2D
+		if bool(jugador.get("escudo_activo")):
+			return
 		var empuje := signf(jugador.global_position.x - global_position.x)
 		if empuje == 0.0:
 			empuje = direccion

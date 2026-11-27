@@ -1,4 +1,5 @@
-[gd_scene load_steps=24 format=3]
+[gd_scene load_steps=25 format=3]
+
 
 [ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
 [ext_resource type="PackedScene" path="res://escenas/puerta_transicion.tscn" id="2_transicion"]
@@ -8,11 +9,14 @@
 [ext_resource type="Texture2D" path="res://recursos/sprites/nube.svg" id="6_nube_sprite"]
 [ext_resource type="Texture2D" path="res://recursos/sprites/hierba.svg" id="7_hierba_sprite"]
 [ext_resource type="PackedScene" path="res://escenas/don_quesito.tscn" id="8_quesito"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/casa_queso.svg" id="30_casa_queso"]
 [ext_resource type="Script" path="res://scripts/caja_rayo.gd" id="9_caja_rayo_gd"]
 [ext_resource type="Texture2D" path="res://recursos/sprites/caja_rayo.svg" id="10_caja_rayo_sprite"]
 [ext_resource type="Texture2D" path="res://recursos/sprites/pelota_rayo.svg" id="11_pelota_sprite"]
 [ext_resource type="AudioStream" path="res://recursos/sonidos/estrella.wav" id="12_sonido_exito"]
 [ext_resource type="PackedScene" path="res://escenas/nube_plataforma.tscn" id="13_nube_plat"]
+[ext_resource type="Script" path="res://scripts/fondo_colinas.gd" id="80_colinas"]
+[ext_resource type="Script" path="res://scripts/decorar_terreno.gd" id="81_terreno_colinas"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
 size = Vector2(1152, 80)
@@ -46,12 +50,22 @@ radius = 18.0
 friction = 0.45
 bounce = 0.45
 
+
 [node name="Nivel2" type="Node2D"]
 
 [node name="Fondo" type="ColorRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0.831373, 0.929412, 0.980392, 1)
+
+[node name="Paisaje" type="Node2D" parent="."]
+script = ExtResource("80_colinas")
+estilo = "queso"
+ancho = 1152.0
+
+[node name="Terreno" type="Node" parent="."]
+script = ExtResource("81_terreno_colinas")
+material = "hierba"
 
 [node name="Decoracion" type="Node2D" parent="."]
 
@@ -245,6 +259,10 @@ velocidad = 1.8
 position = Vector2(730, 260)
 desplazamiento = Vector2(120, 0)
 velocidad = 1.4
+
+[node name="CasaQueso" type="Sprite2D" parent="Decoracion"]
+position = Vector2(760, 502)
+texture = ExtResource("30_casa_queso")
 
 [node name="DonQuesito" parent="." instance=ExtResource("8_quesito")]
 position = Vector2(235, 568)

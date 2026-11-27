@@ -1,0 +1,2 @@
+# Assets pendientes de simplificar. Debe estar VACÍO: si algo falla, se arregla
+# el asset, no se añade aquí. Solo el arte anterior a la norma (LEGADO) se avisa.

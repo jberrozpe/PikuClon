@@ -36,7 +36,10 @@ var _tipo_dialogo_actual: String = ""
 
 func _ready() -> void:
 	indicador.visible = false
+	TemaUI.vistir_indicador(indicador, TemaUI.AMARILLO)
 	bocadillo.visible = false
+	TemaUI.vistir_bocadillo(bocadillo, TemaUI.AMARILLO)
+	GameState.dialogo_abierto = false
 	zona_interaccion.body_entered.connect(_on_body_entered)
 	zona_interaccion.body_exited.connect(_on_body_exited)
 
@@ -73,6 +76,7 @@ func _avanzar_dialogo() -> void:
 		_indice_frase = 0
 		texto_bocadillo.text = _frases_actuales[_indice_frase]
 		bocadillo.visible = true
+		GameState.dialogo_abierto = true
 		indicador.visible = false
 		sonido_hablar.play()
 		return
@@ -83,6 +87,7 @@ func _avanzar_dialogo() -> void:
 		sonido_hablar.play()
 	else:
 		bocadillo.visible = false
+		GameState.dialogo_abierto = false
 		indicador.visible = true
 		if _tipo_dialogo_actual == "inicial":
 			GameState.registrar_charla_quesito()
@@ -102,3 +107,4 @@ func _on_body_exited(body: Node2D) -> void:
 		_jugador_cerca = false
 		indicador.visible = false
 		bocadillo.visible = false
+		GameState.dialogo_abierto = false

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="150" viewBox="0 0 220 150">
+  <path d="M8 142 Q4 120 34 112 Q70 104 104 116 Q128 124 150 114 Q188 104 212 122 Q218 134 212 142 Z" fill="#F2C230" stroke="#B8912A" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M40 146 Q36 118 62 104 Q88 92 112 106 Q130 118 126 146 Z" fill="#8C5A32" stroke="#5E3A1E" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M40 118 Q84 108 126 118 L126 132 Q84 122 40 132 Z" fill="#E8A020" stroke="#B87A12" stroke-width="2"/>
+  <rect x="70" y="116" width="16" height="14" rx="3" fill="#F2C230" stroke="#B87A12" stroke-width="2"/>
+  <circle cx="56" cy="134" r="9" fill="#FFD166" stroke="#B8912A" stroke-width="2"/>
+  <circle cx="96" cy="138" r="7" fill="#FFD166" stroke="#B8912A" stroke-width="2"/>
+  <path d="M160 108 l10 -20 l10 20 Z" fill="#3F88C5" stroke="#2C6595" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M188 116 l7 -14 l7 14 Z" fill="#E63946" stroke="#A81430" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="176" cy="130" r="6" fill="#43C59E" stroke="#2C8A62" stroke-width="2"/>
+  <path d="M150 92 l3 -8 l3 8 l8 1 l-6 5 l2 8 l-7 -4 l-7 4 l2 -8 l-6 -5 Z" fill="#FFF3D6" stroke="#B8912A" stroke-width="1.5"/>
+</svg>

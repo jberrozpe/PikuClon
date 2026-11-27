@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3]
+[gd_scene load_steps=29 format=3]
 
 [ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
 [ext_resource type="PackedScene" path="res://escenas/puerta_transicion.tscn" id="2_transicion"]
@@ -18,8 +18,25 @@
 [ext_resource type="AudioStream" path="res://recursos/sonidos/npc_hablar.wav" id="16_hablar"]
 [ext_resource type="AudioStream" path="res://recursos/sonidos/estrella.wav" id="17_estrella"]
 
+[ext_resource type="PackedScene" path="res://escenas/maestro_karate.tscn" id="18_maestro"]
+[ext_resource type="Script" path="res://scripts/objeto_practica.gd" id="19_practica"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/dojo.svg" id="20_dojo"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/bambu.svg" id="21_bambu"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/farol_piedra.svg" id="22_farol_piedra"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/nobori.svg" id="23_nobori"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/montana_japon.svg" id="24_montana"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/tablon_madera.svg" id="25_tablon"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/diana_madera.svg" id="26_diana"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/piedra_jardin.svg" id="27_piedra"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/tablon.wav" id="28_tablon"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/campana.wav" id="29_campana"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/farolillo.svg" id="30_farolillo"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/plataforma_madera.svg" id="31_plataforma"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/colinas_japon.svg" id="32_colinas"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/saco_arena.svg" id="31_saco"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
-size = Vector2(2200, 80)
+size = Vector2(5600, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pared"]
 size = Vector2(40, 1200)
@@ -43,23 +60,59 @@ size = Vector2(130, 110)
 [sub_resource type="CircleShape2D" id="CircleShape2D_coleccionable"]
 radius = 22.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tablon"]
+size = Vector2(84, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_diana"]
+size = Vector2(112, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plat_diana"]
+size = Vector2(220, 24)
+
 [node name="NivelJapon" type="Node2D"]
 
 [node name="Fondo" type="ColorRect" parent="."]
+offset_left = -900.0
 offset_top = -480.0
-offset_right = 2200.0
+offset_right = 5600.0
 offset_bottom = 648.0
 color = Color(0.992157, 0.894118, 0.917647, 1)
 
-[node name="Decoracion" type="Node2D" parent="."]
+[node name="FondoLejano" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 1)
 
-[node name="VolcanFuji" type="Sprite2D" parent="Decoracion"]
+[node name="VolcanFuji" type="Sprite2D" parent="FondoLejano"]
 position = Vector2(1420, 378)
 scale = Vector2(1.2, 1.15)
 texture = ExtResource("8_volcan")
 
-[node name="Nube1" type="Sprite2D" parent="Decoracion"]
-position = Vector2(320, 60)
+[node name="MontanaJapon" type="Sprite2D" parent="FondoLejano"]
+position = Vector2(2350, 430)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("24_montana")
+
+
+
+
+
+[node name="FondoMedio" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.55, 1)
+
+[node name="Colinas" type="Sprite2D" parent="FondoMedio"]
+position = Vector2(1800, 478)
+scale = Vector2(1.25, 0.62)
+texture = ExtResource("32_colinas")
+
+[node name="Decoracion" type="Node2D" parent="."]
+
+
+[node name="Nube6" type="Sprite2D" parent="Decoracion"]
+position = Vector2(4600, -140)
+scale = Vector2(1.15, 1.15)
+texture = ExtResource("13_nube")
+
+[node name="Nube5" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2600, 10)
 texture = ExtResource("13_nube")
 
 [node name="Nube2" type="Sprite2D" parent="Decoracion"]
@@ -67,8 +120,17 @@ position = Vector2(1020, -180)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("13_nube")
 
+[node name="Nube1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(320, 60)
+texture = ExtResource("13_nube")
+
+
+
+
+
 [node name="Torii1" type="Sprite2D" parent="Decoracion"]
-position = Vector2(210, 498)
+scale = Vector2(1.5, 1.5)
+position = Vector2(210, 463)
 texture = ExtResource("10_torii")
 
 [node name="Torii2" type="Sprite2D" parent="Decoracion"]
@@ -77,26 +139,74 @@ scale = Vector2(0.85, 0.85)
 texture = ExtResource("10_torii")
 
 [node name="Sakura1" type="Sprite2D" parent="Decoracion"]
-position = Vector2(520, 478)
+scale = Vector2(1.3, 1.3)
+position = Vector2(520, 451)
 texture = ExtResource("9_sakura")
 
 [node name="Sakura2" type="Sprite2D" parent="Decoracion"]
-position = Vector2(1180, 478)
-scale = Vector2(1.1, 1.1)
+position = Vector2(1180, 451)
+scale = Vector2(1.3, 1.3)
 texture = ExtResource("9_sakura")
 
+[node name="Bambu5" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1180, 470)
+texture = ExtResource("21_bambu")
+
+[node name="FarolPiedra5" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.2, 1.2)
+position = Vector2(1850, 477)
+texture = ExtResource("22_farol_piedra")
+
+[node name="Sakura5" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.2, 1.2)
+position = Vector2(1980, 451)
+texture = ExtResource("9_sakura")
+
+[node name="Nobori3" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.1, 1.1)
+position = Vector2(2120, 448)
+texture = ExtResource("23_nobori")
+
+[node name="PiedraJardin3" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.1, 1.1)
+position = Vector2(2180, 520)
+texture = ExtResource("27_piedra")
+
+[node name="Sakura6" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.1, 1.1)
+position = Vector2(4700, 451)
+texture = ExtResource("9_sakura")
+
+[node name="Bambu6" type="Sprite2D" parent="Decoracion"]
+position = Vector2(4880, 470)
+texture = ExtResource("21_bambu")
+
+[node name="FarolPiedra6" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.2, 1.2)
+position = Vector2(5090, 477)
+texture = ExtResource("22_farol_piedra")
+
+[node name="Nobori4" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.1, 1.1)
+position = Vector2(5450, 448)
+texture = ExtResource("23_nobori")
+
+[node name="PiedraJardin4" type="Sprite2D" parent="Decoracion"]
+position = Vector2(5560, 520)
+texture = ExtResource("27_piedra")
+
 [node name="Suelo" type="StaticBody2D" parent="."]
-position = Vector2(1100, 608)
+position = Vector2(2800, 608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Suelo"]
 shape = SubResource("RectangleShape2D_suelo")
 
 [node name="Visual" type="ColorRect" parent="Suelo"]
-offset_left = -1100.0
-offset_top = -40.0
-offset_right = 1100.0
-offset_bottom = 40.0
-color = Color(0.368627, 0.568627, 0.427451, 1)
+offset_left = -3400.0
+offset_top = -60.0
+offset_right = 2800.0
+offset_bottom = 60.0
+color = Color(0.42, 0.29, 0.2, 1)
 
 [node name="ParedIzquierda" type="StaticBody2D" parent="."]
 position = Vector2(-20, 100)
@@ -105,7 +215,7 @@ position = Vector2(-20, 100)
 shape = SubResource("RectangleShape2D_pared")
 
 [node name="ParedDerecha" type="StaticBody2D" parent="."]
-position = Vector2(2220, 100)
+position = Vector2(5620, 100)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ParedDerecha"]
 shape = SubResource("RectangleShape2D_pared")
@@ -119,12 +229,10 @@ position = Vector2(880, 230)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaVolcan1"]
 shape = SubResource("RectangleShape2D_plat")
 
-[node name="Visual" type="ColorRect" parent="PlataformaVolcan1"]
-offset_left = -130.0
-offset_top = -14.0
-offset_right = 130.0
-offset_bottom = 14.0
-color = Color(0.321569, 0.301961, 0.388235, 1)
+[node name="Visual" type="Sprite2D" parent="PlataformaVolcan1"]
+position = Vector2(0, 0)
+scale = Vector2(1.00, 0.93)
+texture = ExtResource("31_plataforma")
 
 [node name="Onigiri" type="Area2D" parent="."]
 position = Vector2(920, 184)
@@ -155,12 +263,10 @@ position = Vector2(1380, -30)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaVolcan2"]
 shape = SubResource("RectangleShape2D_plat")
 
-[node name="Visual" type="ColorRect" parent="PlataformaVolcan2"]
-offset_left = -130.0
-offset_top = -14.0
-offset_right = 130.0
-offset_bottom = 14.0
-color = Color(0.321569, 0.301961, 0.388235, 1)
+[node name="Visual" type="Sprite2D" parent="PlataformaVolcan2"]
+position = Vector2(0, 0)
+scale = Vector2(1.00, 0.93)
+texture = ExtResource("31_plataforma")
 
 [node name="Vapor3" parent="." instance=ExtResource("3_vapor")]
 position = Vector2(1620, -100)
@@ -171,12 +277,10 @@ position = Vector2(1890, -240)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaCrater"]
 shape = SubResource("RectangleShape2D_plat_cima")
 
-[node name="Visual" type="ColorRect" parent="PlataformaCrater"]
-offset_left = -180.0
-offset_top = -16.0
-offset_right = 180.0
-offset_bottom = 16.0
-color = Color(0.282353, 0.258824, 0.341176, 1)
+[node name="Visual" type="Sprite2D" parent="PlataformaCrater"]
+position = Vector2(0, 0)
+scale = Vector2(1.38, 1.07)
+texture = ExtResource("31_plataforma")
 
 [node name="PiezaBrillante4" type="Area2D" parent="."]
 position = Vector2(1940, -295)
@@ -287,15 +391,180 @@ autowrap_mode = 3
 stream = ExtResource("16_hablar")
 
 [node name="PuertaRegresoPueblo" parent="." instance=ExtResource("2_transicion")]
-position = Vector2(36, 568)
+position = Vector2(105, 568)
 escena_destino = "res://escenas/pueblo.tscn"
 punto_aparicion_destino = "PuntoDesdeViaje"
 
+[node name="PlataformaDiana1" type="StaticBody2D" parent="."]
+position = Vector2(4500, 470)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaDiana1"]
+shape = SubResource("RectangleShape2D_plat_diana")
+
+[node name="Visual" type="Sprite2D" parent="PlataformaDiana1"]
+position = Vector2(0, 0)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("31_plataforma")
+
+[node name="PlataformaDiana2" type="StaticBody2D" parent="."]
+position = Vector2(4750, 410)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaDiana2"]
+shape = SubResource("RectangleShape2D_plat_diana")
+
+[node name="Visual" type="Sprite2D" parent="PlataformaDiana2"]
+position = Vector2(0, 0)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("31_plataforma")
+
+[node name="PlataformaDiana3" type="StaticBody2D" parent="."]
+position = Vector2(5000, 470)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaDiana3"]
+shape = SubResource("RectangleShape2D_plat_diana")
+
+[node name="Visual" type="Sprite2D" parent="PlataformaDiana3"]
+position = Vector2(0, 0)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("31_plataforma")
+
+[node name="Tablon1" type="Area2D" parent="."]
+position = Vector2(2850, 570)
+script = ExtResource("19_practica")
+tipo = "tablon"
+indice = 0
+color_golpe = Color(0.721569, 0.521569, 0.329412, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tablon1"]
+position = Vector2(0, -50)
+shape = SubResource("RectangleShape2D_tablon")
+
+[node name="Visual" type="Node2D" parent="Tablon1"]
+position = Vector2(0, -50)
+
+[node name="Sprite" type="Sprite2D" parent="Tablon1/Visual"]
+texture = ExtResource("25_tablon")
+
+[node name="Sonido" type="AudioStreamPlayer" parent="Tablon1"]
+stream = ExtResource("28_tablon")
+
+[node name="Tablon2" type="Area2D" parent="."]
+position = Vector2(3050, 570)
+script = ExtResource("19_practica")
+tipo = "tablon"
+indice = 1
+color_golpe = Color(0.721569, 0.521569, 0.329412, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tablon2"]
+position = Vector2(0, -50)
+shape = SubResource("RectangleShape2D_tablon")
+
+[node name="Visual" type="Node2D" parent="Tablon2"]
+position = Vector2(0, -50)
+
+[node name="Sprite" type="Sprite2D" parent="Tablon2/Visual"]
+texture = ExtResource("25_tablon")
+
+[node name="Sonido" type="AudioStreamPlayer" parent="Tablon2"]
+stream = ExtResource("28_tablon")
+
+[node name="Tablon3" type="Area2D" parent="."]
+position = Vector2(3250, 570)
+script = ExtResource("19_practica")
+tipo = "tablon"
+indice = 2
+color_golpe = Color(0.721569, 0.521569, 0.329412, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tablon3"]
+position = Vector2(0, -50)
+shape = SubResource("RectangleShape2D_tablon")
+
+[node name="Visual" type="Node2D" parent="Tablon3"]
+position = Vector2(0, -50)
+
+[node name="Sprite" type="Sprite2D" parent="Tablon3/Visual"]
+texture = ExtResource("25_tablon")
+
+[node name="Sonido" type="AudioStreamPlayer" parent="Tablon3"]
+stream = ExtResource("28_tablon")
+
+[node name="Diana1" type="Area2D" parent="."]
+position = Vector2(4500, 430)
+script = ExtResource("19_practica")
+tipo = "diana"
+indice = 0
+color_golpe = Color(0.901961, 0.301961, 0.278431, 1)
+
+[node name="Cuerda" type="Line2D" parent="Diana1"]
+points = PackedVector2Array(0, -180, 0, -58)
+width = 2.5
+default_color = Color(0.113725, 0.117647, 0.14902, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Diana1"]
+shape = SubResource("RectangleShape2D_diana")
+
+[node name="Visual" type="Node2D" parent="Diana1"]
+
+[node name="Sprite" type="Sprite2D" parent="Diana1/Visual"]
+texture = ExtResource("26_diana")
+
+[node name="Sonido" type="AudioStreamPlayer" parent="Diana1"]
+stream = ExtResource("29_campana")
+
+[node name="Diana2" type="Area2D" parent="."]
+position = Vector2(4750, 370)
+script = ExtResource("19_practica")
+tipo = "diana"
+indice = 1
+color_golpe = Color(0.901961, 0.301961, 0.278431, 1)
+
+[node name="Cuerda" type="Line2D" parent="Diana2"]
+points = PackedVector2Array(0, -180, 0, -58)
+width = 2.5
+default_color = Color(0.113725, 0.117647, 0.14902, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Diana2"]
+shape = SubResource("RectangleShape2D_diana")
+
+[node name="Visual" type="Node2D" parent="Diana2"]
+
+[node name="Sprite" type="Sprite2D" parent="Diana2/Visual"]
+texture = ExtResource("26_diana")
+
+[node name="Sonido" type="AudioStreamPlayer" parent="Diana2"]
+stream = ExtResource("29_campana")
+
+[node name="Diana3" type="Area2D" parent="."]
+position = Vector2(5000, 430)
+script = ExtResource("19_practica")
+tipo = "diana"
+indice = 2
+color_golpe = Color(0.901961, 0.301961, 0.278431, 1)
+
+[node name="Cuerda" type="Line2D" parent="Diana3"]
+points = PackedVector2Array(0, -180, 0, -58)
+width = 2.5
+default_color = Color(0.113725, 0.117647, 0.14902, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Diana3"]
+shape = SubResource("RectangleShape2D_diana")
+
+[node name="Visual" type="Node2D" parent="Diana3"]
+
+[node name="Sprite" type="Sprite2D" parent="Diana3/Visual"]
+texture = ExtResource("26_diana")
+
+[node name="Sonido" type="AudioStreamPlayer" parent="Diana3"]
+stream = ExtResource("29_campana")
+
+[node name="MaestroKarate" parent="." instance=ExtResource("18_maestro")]
+position = Vector2(3400, 578)
+
 [node name="Jugador" type="CharacterBody2D" parent="."]
-position = Vector2(130, 520)
+position = Vector2(245, 520)
 script = ExtResource("1_jugador")
 camara_limite_superior = -450
-camara_limite_derecho = 2200
+camara_limite_derecho = 5600
 nombre_zona = "Japón"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador"]
@@ -357,7 +626,114 @@ stream = ExtResource("15_patada")
 [node name="Camera2D" type="Camera2D" parent="Jugador"]
 limit_left = 0
 limit_top = -450
-limit_right = 2200
+limit_right = 5600
 limit_bottom = 648
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
+
+
+[node name="Dojo" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.15, 1.15)
+position = Vector2(3700, 372)
+texture = ExtResource("20_dojo")
+
+
+
+[node name="Torii3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2700, 463)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_torii")
+
+[node name="Torii4" type="Sprite2D" parent="Decoracion"]
+position = Vector2(5350, 463)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_torii")
+
+[node name="Sakura3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2200, 451)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("9_sakura")
+
+[node name="Sakura4" type="Sprite2D" parent="Decoracion"]
+position = Vector2(4200, 451)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("9_sakura")
+
+[node name="Bambu1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2450, 470)
+texture = ExtResource("21_bambu")
+
+[node name="Bambu2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(4680, 470)
+scale = Vector2(1.0, 1.0)
+texture = ExtResource("21_bambu")
+
+[node name="Bambu3" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.0, 1.0)
+position = Vector2(4150, 470)
+texture = ExtResource("21_bambu")
+
+[node name="Bambu4" type="Sprite2D" parent="Decoracion"]
+position = Vector2(5250, 470)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("21_bambu")
+
+[node name="FarolPiedra1" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.3, 1.3)
+position = Vector2(2700, 477)
+texture = ExtResource("22_farol_piedra")
+
+[node name="FarolPiedra2" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.3, 1.3)
+position = Vector2(3900, 477)
+texture = ExtResource("22_farol_piedra")
+
+[node name="FarolPiedra3" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.3, 1.3)
+position = Vector2(4050, 477)
+texture = ExtResource("22_farol_piedra")
+
+[node name="FarolPiedra4" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.3, 1.3)
+position = Vector2(5150, 477)
+texture = ExtResource("22_farol_piedra")
+
+[node name="Nobori1" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.2, 1.2)
+position = Vector2(3300, 448)
+texture = ExtResource("23_nobori")
+
+[node name="Nobori2" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.2, 1.2)
+position = Vector2(2620, 448)
+texture = ExtResource("23_nobori")
+
+[node name="PiedraJardin1" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.2, 1.2)
+position = Vector2(4400, 520)
+texture = ExtResource("27_piedra")
+
+[node name="PiedraJardin2" type="Sprite2D" parent="Decoracion"]
+scale = Vector2(1.2, 1.2)
+position = Vector2(4950, 520)
+texture = ExtResource("27_piedra")
+
+[node name="FarolilloDojo1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(3560, 290)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("30_farolillo")
+
+[node name="FarolilloDojo2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(3840, 290)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("30_farolillo")
+
+[node name="SacoArena1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(4300, 480)
+texture = ExtResource("31_saco")
+
+[node name="SacoArena2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(5180, 480)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("31_saco")
+

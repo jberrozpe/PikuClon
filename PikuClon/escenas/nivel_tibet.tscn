@@ -1,0 +1,511 @@
+[gd_scene load_steps=40 format=3]
+
+[ext_resource type="Script" path="res://scripts/paisaje.gd" id="1_paisajegd"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/templo_tibetano.svg" id="4_templotibeta"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/pagoda.svg" id="5_pagodasvg"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/banderas_rezo.svg" id="6_banderasrezo"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/columna_hielo.svg" id="7_columnahielo"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/cristal_hielo.svg" id="8_cristalhielo"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/yak.svg" id="9_yaksvg"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/monje_discipulo.svg" id="10_monjediscipu"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/roca_nieve.svg" id="11_rocanievesvg"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/campana_tibetana.svg" id="12_campanatibet"]
+[ext_resource type="PackedScene" path="res://escenas/maestro_lama.tscn" id="21_maestrolamat"]
+[ext_resource type="Script" path="res://scripts/destruible_grito.gd" id="22_destruiblegr"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/piedra.wav" id="23_piedrawav"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/yeti.svg" id="27_yetisvg"]
+[ext_resource type="Script" path="res://scripts/enemigo.gd" id="28_enemigogd"]
+[ext_resource type="PackedScene" path="res://escenas/puerta_transicion.tscn" id="32_puertatransi"]
+[ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/jugador_cuerpo.svg" id="7_jugador_sprite"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/salto.wav" id="14_salto"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/patada.wav" id="15_patada"]
+[ext_resource type="Script" path="res://scripts/decorar_terreno.gd" id="33_decorarterre"]
+
+[sub_resource type="RectangleShape2D" id="shape_2"]
+size = Vector2(900, 40)
+[sub_resource type="RectangleShape2D" id="shape_3"]
+size = Vector2(420, 36)
+[sub_resource type="RectangleShape2D" id="shape_13"]
+size = Vector2(5600, 80)
+[sub_resource type="RectangleShape2D" id="shape_14"]
+size = Vector2(40, 1400)
+[sub_resource type="RectangleShape2D" id="shape_15"]
+size = Vector2(40, 1400)
+[sub_resource type="RectangleShape2D" id="shape_16"]
+size = Vector2(220, 34)
+[sub_resource type="RectangleShape2D" id="shape_17"]
+size = Vector2(220, 34)
+[sub_resource type="RectangleShape2D" id="shape_18"]
+size = Vector2(260, 34)
+[sub_resource type="RectangleShape2D" id="shape_19"]
+size = Vector2(220, 34)
+[sub_resource type="RectangleShape2D" id="shape_20"]
+size = Vector2(240, 34)
+[sub_resource type="RectangleShape2D" id="shape_24"]
+size = Vector2(110, 96)
+[sub_resource type="RectangleShape2D" id="shape_25"]
+size = Vector2(110, 96)
+[sub_resource type="RectangleShape2D" id="shape_26"]
+size = Vector2(110, 96)
+[sub_resource type="CapsuleShape2D" id="shape_29"]
+radius = 26.0
+height = 92.0
+[sub_resource type="CapsuleShape2D" id="shape_30"]
+radius = 26.0
+height = 92.0
+[sub_resource type="CapsuleShape2D" id="shape_31"]
+radius = 26.0
+height = 92.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jugador"]
+radius = 22.0
+height = 76.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_patada"]
+size = Vector2(56, 64)
+
+[node name="NivelTibet" type="Node2D"]
+
+[node name="Fondo" type="ColorRect" parent="."]
+offset_left = -200.0
+offset_top = -800.0
+offset_right = 5800.0
+offset_bottom = 700.0
+color = Color(0.75, 0.87, 0.98, 1)
+
+[node name="Paisaje" type="Node2D" parent="."]
+script = ExtResource("1_paisajegd")
+estilo = "tibet"
+ancho = 5600.0
+sol_x = 1500.0
+sol_y = 175.0
+sol_radio = 84.0
+
+[node name="Decoracion" type="Node2D" parent="."]
+
+[node name="BaseTemplo" type="Polygon2D" parent="Decoracion"]
+polygon = PackedVector2Array(2760, 516, 3640, 516, 3720, 574, 2680, 574)
+color = Color(0.55, 0.58, 0.65, 1)
+
+[node name="BaseTemploBorde" type="Line2D" parent="Decoracion"]
+points = PackedVector2Array(2760, 516, 3640, 516, 3720, 574)
+width = 3.0
+default_color = Color(0.33, 0.4, 0.48, 1)
+
+[node name="BasePagoda" type="Polygon2D" parent="Decoracion"]
+polygon = PackedVector2Array(3770, 486, 4130, 486, 4180, 574, 3720, 574)
+color = Color(0.55, 0.58, 0.65, 1)
+
+[node name="BasePagodaBorde" type="Line2D" parent="Decoracion"]
+points = PackedVector2Array(3770, 486, 4130, 486, 4180, 574)
+width = 3.0
+default_color = Color(0.33, 0.4, 0.48, 1)
+
+[node name="PlataformaTemplo" type="StaticBody2D" parent="."]
+position = Vector2(3200, 500)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaTemplo"]
+shape = SubResource("shape_2")
+
+[node name="Visual" type="ColorRect" parent="PlataformaTemplo"]
+offset_left = -450
+offset_top = -20
+offset_right = 450
+offset_bottom = 20
+color = Color(0.95, 0.98, 1, 1)
+
+[node name="PlataformaPagoda" type="StaticBody2D" parent="."]
+position = Vector2(3950, 470)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaPagoda"]
+shape = SubResource("shape_3")
+
+[node name="Visual" type="ColorRect" parent="PlataformaPagoda"]
+offset_left = -210
+offset_top = -18
+offset_right = 210
+offset_bottom = 18
+color = Color(0.95, 0.98, 1, 1)
+
+[node name="Templo" type="Sprite2D" parent="Decoracion"]
+position = Vector2(3200, 337.5)
+texture = ExtResource("4_templotibeta")
+scale = Vector2(0.95, 0.95)
+
+[node name="Pagoda" type="Sprite2D" parent="Decoracion"]
+position = Vector2(3950, 317.0)
+texture = ExtResource("5_pagodasvg")
+scale = Vector2(0.9, 0.9)
+
+[node name="Banderas1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2350, 240)
+texture = ExtResource("6_banderasrezo")
+scale = Vector2(1.15, 1.15)
+
+[node name="Banderas2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(3650, 220)
+texture = ExtResource("6_banderasrezo")
+
+[node name="Banderas3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1200, 255)
+texture = ExtResource("6_banderasrezo")
+scale = Vector2(0.95, 0.95)
+
+[node name="ColumnaHielo1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(4650, 428.0)
+texture = ExtResource("7_columnahielo")
+
+[node name="ColumnaHielo2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(4870, 453.2)
+texture = ExtResource("7_columnahielo")
+scale = Vector2(0.82, 0.82)
+
+[node name="ColumnaHielo3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(5250, 411.2)
+texture = ExtResource("7_columnahielo")
+scale = Vector2(1.12, 1.12)
+
+[node name="Cristal4" type="Sprite2D" parent="Decoracion"]
+position = Vector2(5050, 499.0)
+texture = ExtResource("8_cristalhielo")
+scale = Vector2(1.15, 1.15)
+
+[node name="Yak1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(4420, 498.0)
+texture = ExtResource("9_yaksvg")
+
+[node name="Yak2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(5450, 505.0)
+texture = ExtResource("9_yaksvg")
+scale = Vector2(0.9, 0.9)
+
+[node name="Discipulo" type="Sprite2D" parent="Decoracion"]
+position = Vector2(3380, 432.0)
+texture = ExtResource("10_monjediscipu")
+scale = Vector2(0.8, 0.8)
+
+[node name="Cristal1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1180, 496.0)
+texture = ExtResource("8_cristalhielo")
+scale = Vector2(1.2, 1.2)
+
+[node name="Cristal2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2250, 511.0)
+texture = ExtResource("8_cristalhielo")
+scale = Vector2(0.95, 0.95)
+
+[node name="RocaDeco1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(800, 510.5)
+texture = ExtResource("11_rocanievesvg")
+scale = Vector2(1.15, 1.15)
+
+[node name="RocaDeco2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2050, 520.5)
+texture = ExtResource("11_rocanievesvg")
+scale = Vector2(0.95, 0.95)
+
+[node name="Campana1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(950, 523.0)
+texture = ExtResource("12_campanatibet")
+
+[node name="RocaDeco3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(3850, 515.5)
+texture = ExtResource("11_rocanievesvg")
+scale = Vector2(1.05, 1.05)
+
+[node name="Suelo" type="StaticBody2D" parent="."]
+position = Vector2(2800, 608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Suelo"]
+shape = SubResource("shape_13")
+
+[node name="Visual" type="ColorRect" parent="Suelo"]
+offset_left = -2800
+offset_top = -40
+offset_right = 2800
+offset_bottom = 40
+color = Color(0.95, 0.98, 1, 1)
+
+[node name="Pared20" type="StaticBody2D" parent="."]
+position = Vector2(-20, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pared20"]
+shape = SubResource("shape_14")
+
+[node name="Pared5620" type="StaticBody2D" parent="."]
+position = Vector2(5620, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pared5620"]
+shape = SubResource("shape_15")
+
+[node name="Plataforma1" type="StaticBody2D" parent="."]
+position = Vector2(700, 470)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma1"]
+shape = SubResource("shape_16")
+
+[node name="Visual" type="ColorRect" parent="Plataforma1"]
+offset_left = -110
+offset_top = -17
+offset_right = 110
+offset_bottom = 17
+color = Color(0.95, 0.98, 1, 1)
+
+[node name="Plataforma2" type="StaticBody2D" parent="."]
+position = Vector2(1000, 380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma2"]
+shape = SubResource("shape_17")
+
+[node name="Visual" type="ColorRect" parent="Plataforma2"]
+offset_left = -110
+offset_top = -17
+offset_right = 110
+offset_bottom = 17
+color = Color(0.95, 0.98, 1, 1)
+
+[node name="Plataforma3" type="StaticBody2D" parent="."]
+position = Vector2(1300, 300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma3"]
+shape = SubResource("shape_18")
+
+[node name="Visual" type="ColorRect" parent="Plataforma3"]
+offset_left = -130
+offset_top = -17
+offset_right = 130
+offset_bottom = 17
+color = Color(0.95, 0.98, 1, 1)
+
+[node name="Plataforma4" type="StaticBody2D" parent="."]
+position = Vector2(1650, 380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma4"]
+shape = SubResource("shape_19")
+
+[node name="Visual" type="ColorRect" parent="Plataforma4"]
+offset_left = -110
+offset_top = -17
+offset_right = 110
+offset_bottom = 17
+color = Color(0.95, 0.98, 1, 1)
+
+[node name="Plataforma5" type="StaticBody2D" parent="."]
+position = Vector2(2000, 470)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma5"]
+shape = SubResource("shape_20")
+
+[node name="Visual" type="ColorRect" parent="Plataforma5"]
+offset_left = -120
+offset_top = -17
+offset_right = 120
+offset_bottom = 17
+color = Color(0.95, 0.98, 1, 1)
+
+[node name="MaestroLama" parent="." instance=ExtResource("21_maestrolamat")]
+position = Vector2(3040, 480)
+
+[node name="Roca1" type="StaticBody2D" parent="."]
+position = Vector2(2450, 568.0)
+script = ExtResource("22_destruiblegr")
+color_trozos = Color(0.55,0.58,0.65,1)
+cuenta_roca = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Roca1"]
+position = Vector2(0, -48)
+shape = SubResource("shape_24")
+
+[node name="Visual" type="Node2D" parent="Roca1"]
+
+[node name="Sprite" type="Sprite2D" parent="Roca1/Visual"]
+position = Vector2(0, -48)
+scale = Vector2(0.73, 0.92)
+texture = ExtResource("11_rocanievesvg")
+
+[node name="Sonido" type="AudioStreamPlayer" parent="Roca1"]
+stream = ExtResource("23_piedrawav")
+
+[node name="Roca2" type="StaticBody2D" parent="."]
+position = Vector2(2680, 568.0)
+script = ExtResource("22_destruiblegr")
+color_trozos = Color(0.55,0.58,0.65,1)
+cuenta_roca = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Roca2"]
+position = Vector2(0, -48)
+shape = SubResource("shape_25")
+
+[node name="Visual" type="Node2D" parent="Roca2"]
+
+[node name="Sprite" type="Sprite2D" parent="Roca2/Visual"]
+position = Vector2(0, -48)
+scale = Vector2(0.73, 0.92)
+texture = ExtResource("11_rocanievesvg")
+
+[node name="Sonido" type="AudioStreamPlayer" parent="Roca2"]
+stream = ExtResource("23_piedrawav")
+
+[node name="Roca3" type="StaticBody2D" parent="."]
+position = Vector2(2910, 568.0)
+script = ExtResource("22_destruiblegr")
+color_trozos = Color(0.55,0.58,0.65,1)
+cuenta_roca = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Roca3"]
+position = Vector2(0, -48)
+shape = SubResource("shape_26")
+
+[node name="Visual" type="Node2D" parent="Roca3"]
+
+[node name="Sprite" type="Sprite2D" parent="Roca3/Visual"]
+position = Vector2(0, -48)
+scale = Vector2(0.73, 0.92)
+texture = ExtResource("11_rocanievesvg")
+
+[node name="Sonido" type="AudioStreamPlayer" parent="Roca3"]
+stream = ExtResource("23_piedrawav")
+
+[node name="Yeti1" type="CharacterBody2D" parent="."]
+position = Vector2(1450, 568.0)
+script = ExtResource("28_enemigogd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Yeti1"]
+position = Vector2(0, -46)
+shape = SubResource("shape_29")
+
+[node name="Visual" type="Node2D" parent="Yeti1"]
+
+[node name="Sprite" type="Sprite2D" parent="Yeti1/Visual"]
+position = Vector2(0, -57)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("27_yetisvg")
+
+[node name="BloqueHielo" type="Node2D" parent="Yeti1"]
+
+[node name="Hielo" type="Polygon2D" parent="Yeti1/BloqueHielo"]
+polygon = PackedVector2Array(-34, -110, 34, -110, 38, -6, -38, -6)
+color = Color(0.6, 0.88, 1, 0.45)
+
+[node name="Yeti2" type="CharacterBody2D" parent="."]
+position = Vector2(2000, 457)
+script = ExtResource("28_enemigogd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Yeti2"]
+position = Vector2(0, -46)
+shape = SubResource("shape_30")
+
+[node name="Visual" type="Node2D" parent="Yeti2"]
+
+[node name="Sprite" type="Sprite2D" parent="Yeti2/Visual"]
+position = Vector2(0, -57)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("27_yetisvg")
+
+[node name="BloqueHielo" type="Node2D" parent="Yeti2"]
+
+[node name="Hielo" type="Polygon2D" parent="Yeti2/BloqueHielo"]
+polygon = PackedVector2Array(-34, -110, 34, -110, 38, -6, -38, -6)
+color = Color(0.6, 0.88, 1, 0.45)
+
+[node name="Yeti3" type="CharacterBody2D" parent="."]
+position = Vector2(3550, 568.0)
+script = ExtResource("28_enemigogd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Yeti3"]
+position = Vector2(0, -46)
+shape = SubResource("shape_31")
+
+[node name="Visual" type="Node2D" parent="Yeti3"]
+
+[node name="Sprite" type="Sprite2D" parent="Yeti3/Visual"]
+position = Vector2(0, -57)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("27_yetisvg")
+
+[node name="BloqueHielo" type="Node2D" parent="Yeti3"]
+
+[node name="Hielo" type="Polygon2D" parent="Yeti3/BloqueHielo"]
+polygon = PackedVector2Array(-34, -110, 34, -110, 38, -6, -38, -6)
+color = Color(0.6, 0.88, 1, 0.45)
+
+[node name="PortalPueblo" parent="." instance=ExtResource("32_puertatransi")]
+position = Vector2(105, 568.0)
+escena_destino = "res://escenas/pueblo.tscn"
+punto_aparicion_destino = "PuntoDesdeViaje"
+
+[node name="Jugador" type="CharacterBody2D" parent="."]
+position = Vector2(220, 520)
+script = ExtResource("1_jugador")
+camara_limite_inferior = 648
+camara_limite_izquierdo = 0
+camara_limite_superior = -700
+camara_limite_derecho = 5600
+nombre_zona = "Tíbet"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador"]
+shape = SubResource("CapsuleShape2D_jugador")
+
+[node name="CuerpoVisual" type="Node2D" parent="Jugador"]
+
+[node name="PiernaIzq" type="Line2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(-10, 12)
+points = PackedVector2Array(0, 0, -2, 13, 0, 26)
+width = 6.0
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PiernaDer" type="Line2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(10, 12)
+points = PackedVector2Array(0, 0, 2, 13, 0, 26)
+width = 6.0
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Torso" type="Sprite2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(0, -6)
+texture = ExtResource("7_jugador_sprite")
+
+[node name="Ojos" type="Node2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(4, -12)
+
+[node name="OjoIzq" type="Polygon2D" parent="Jugador/CuerpoVisual/Ojos"]
+position = Vector2(-7, 0)
+color = Color(0.113725, 0.113725, 0.113725, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[node name="OjoDer" type="Polygon2D" parent="Jugador/CuerpoVisual/Ojos"]
+position = Vector2(7, 0)
+color = Color(0.113725, 0.117647, 0.14902, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[node name="ZonaPatada" type="Area2D" parent="Jugador"]
+position = Vector2(34, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador/ZonaPatada"]
+shape = SubResource("RectangleShape2D_patada")
+
+[node name="EfectoPatada" type="Polygon2D" parent="Jugador/ZonaPatada"]
+color = Color(1, 0.85, 0.3, 0.85)
+polygon = PackedVector2Array(-6, -12, 16, -6, 6, 0, 18, 10, -4, 12)
+
+[node name="SonidoSalto" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("14_salto")
+
+[node name="SonidoPatada" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("15_patada")
+
+[node name="Camera2D" type="Camera2D" parent="Jugador"]
+limit_left = 0
+limit_top = -700
+limit_right = 5600
+limit_bottom = 648
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+
+[node name="Terreno" type="Node" parent="."]
+script = ExtResource("33_decorarterre")
+material = "nieve"

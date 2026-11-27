@@ -3,19 +3,21 @@
 [ext_resource type="Script" path="res://scripts/globo_viaje.gd" id="1_globo"]
 [ext_resource type="Texture2D" path="res://recursos/sprites/globo_viaje.svg" id="2_sprite"]
 [ext_resource type="AudioStream" path="res://recursos/sonidos/puerta.wav" id="3_sonido"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/patada_voladora.wav" id="4_despegue"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_zona"]
-size = Vector2(120, 120)
+size = Vector2(220, 220)
 
 [node name="GloboViaje" type="Node2D"]
 script = ExtResource("1_globo")
 
 [node name="Visual" type="Sprite2D" parent="."]
-position = Vector2(0, -75)
+position = Vector2(0, -128)
+scale = Vector2(1.7, 1.7)
 texture = ExtResource("2_sprite")
 
 [node name="ZonaInteraccion" type="Area2D" parent="."]
-position = Vector2(0, -60)
+position = Vector2(0, -120)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaInteraccion"]
 shape = SubResource("RectangleShape2D_zona")
@@ -24,10 +26,10 @@ shape = SubResource("RectangleShape2D_zona")
 z_index = 10
 layout_mode = 3
 anchors_preset = 0
-offset_left = -52.0
-offset_top = -178.0
-offset_right = 52.0
-offset_bottom = -150.0
+offset_left = -62.0
+offset_top = -300.0
+offset_right = 62.0
+offset_bottom = -270.0
 
 [node name="Fondo" type="ColorRect" parent="Indicador"]
 layout_mode = 1
@@ -77,10 +79,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -190.0
-offset_top = -195.0
-offset_right = 190.0
-offset_bottom = 195.0
+offset_left = -345.0
+offset_top = -300.0
+offset_right = 345.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -125,12 +127,15 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 24.0
-offset_top = 52.0
+offset_top = 64.0
 offset_right = -24.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 6
 
 [node name="SonidoViaje" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_sonido")
+
+[node name="SonidoDespegue" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_despegue")

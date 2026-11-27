@@ -224,6 +224,10 @@ color = Color(0.568627, 0.45098, 0.380392, 1)
 
 [node name="NPC" parent="." instance=ExtResource("4_npc")]
 position = Vector2(130, 568)
+dialogo_inicial = "¡Eh, tú! Soy Rocco, el roquero de la zona de pruebas. Llevo aquí desde que esto era un boceto."
+dialogo_esperando = "Patea la caja hasta el botón rojo y la puerta se abre sola. ¡Rock and roll!"
+dialogo_estrella_recogida = "¡La estrella! Toma, te dedico un solo de guitarra. Bueno, tres acordes."
+dialogo_completado = "El escenario es tuyo, artista. Yo me quedo aquí, dándole al riff."
 
 [node name="ObjetoMision" parent="." instance=ExtResource("5_objeto_mision")]
 position = Vector2(1038, 520)

@@ -1,0 +1,628 @@
+[gd_scene load_steps=28 format=3]
+
+
+
+
+
+
+[ext_resource type="Script" path="res://scripts/paisaje.gd" id="1_paisajegd"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/palmera.svg" id="2_palmerasvg"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/camello.svg" id="3_camellosvg"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/roca_desierto.svg" id="4_rocadesierto"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/jarron.svg" id="5_jarronsvg"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/hierba.svg" id="6_hierbasvg"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/arena_movediza.svg" id="10_arenamovediz"]
+[ext_resource type="Script" path="res://scripts/arena_movediza.gd" id="11_arenamovediz"]
+[ext_resource type="PackedScene" path="res://escenas/ali_baba.tscn" id="14_alibabatscn"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/entrada_cueva.svg" id="15_entradacueva"]
+[ext_resource type="PackedScene" path="res://escenas/puerta_transicion.tscn" id="16_puertatransi"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/puerta_piedra.svg" id="17_puertapiedra"]
+[ext_resource type="Script" path="res://scripts/destruible_grito.gd" id="18_destruiblegr"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/piedra.wav" id="19_piedrawav"]
+[ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/jugador_cuerpo.svg" id="7_jugador_sprite"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/salto.wav" id="14_salto"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/patada.wav" id="15_patada"]
+[ext_resource type="Script" path="res://scripts/decorar_terreno.gd" id="21_decorarterre"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/palmera_detallada.svg" id="30_palmera_det"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/camello_detallado.svg" id="31_camello_det"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/formacion_roca.svg" id="32_formacion"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/oasis.svg" id="33_oasis"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/calavera_toro.svg" id="34_calavera"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/agave.svg" id="35_agave"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/jarron_arabe.svg" id="36_jarron_a"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/jarron_redondo.svg" id="37_jarron_r"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/jarron_ancho.svg" id="38_jarron_w"]
+[ext_resource type="Script" path="res://scripts/camello_pasea.gd" id="91_camello_pasea"]
+[ext_resource type="Script" path="res://scripts/viento_arena.gd" id="92_viento"]
+[ext_resource type="Script" path="res://scripts/brillo_jarron.gd" id="93_brillo"]
+[ext_resource type="Script" path="res://scripts/caravana.gd" id="94_caravana"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/sello_dorado.svg" id="95_sello"]
+[ext_resource type="Script" path="res://scripts/sello_dorado.gd" id="96_sello_gd"]
+[ext_resource type="Script" path="res://scripts/jarron_rompible.gd" id="97_jarron_roto"]
+
+[sub_resource type="RectangleShape2D" id="shape_7"]
+size = Vector2(7600, 80)
+[sub_resource type="RectangleShape2D" id="shape_8"]
+size = Vector2(40, 1200)
+[sub_resource type="RectangleShape2D" id="shape_9"]
+size = Vector2(40, 1200)
+[sub_resource type="RectangleShape2D" id="shape_12"]
+size = Vector2(260, 70)
+[sub_resource type="RectangleShape2D" id="shape_13"]
+size = Vector2(260, 70)
+[sub_resource type="RectangleShape2D" id="shape_20"]
+size = Vector2(120, 200)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jugador"]
+radius = 22.0
+height = 76.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_patada"]
+size = Vector2(56, 64)
+
+
+
+
+
+
+
+
+
+
+[sub_resource type="RectangleShape2D" id="shape_f1"]
+size = Vector2(260, 34)
+
+[sub_resource type="RectangleShape2D" id="shape_f2"]
+size = Vector2(220, 34)
+
+[sub_resource type="RectangleShape2D" id="shape_f3"]
+size = Vector2(240, 34)
+
+[sub_resource type="RectangleShape2D" id="shape_f4"]
+size = Vector2(200, 34)
+
+
+
+
+
+
+
+
+[sub_resource type="RectangleShape2D" id="shape_jarron"]
+size = Vector2(60, 96)
+
+[sub_resource type="CircleShape2D" id="shape_moneda_sello"]
+radius = 24.0
+
+[node name="NivelArabia" type="Node2D"]
+
+[node name="Fondo" type="ColorRect" parent="."]
+offset_left = -200.0
+offset_top = -520.0
+offset_right = 5600.0
+offset_bottom = 700.0
+color = Color(1, 0.9, 0.7, 1)
+
+[node name="Paisaje" type="Node2D" parent="."]
+script = ExtResource("1_paisajegd")
+estilo = "arabia"
+ancho = 7600.0
+sol_x = 3800.0
+sol_y = 165.0
+sol_radio = 96.0
+
+[node name="VientoArena" type="Node2D" parent="."]
+script = ExtResource("92_viento")
+
+[node name="Decoracion" type="Node2D" parent="."]
+
+[node name="Palmera1" type="Sprite2D" parent="Decoracion"]
+z_index = 2
+position = Vector2(1470, 431.5)
+texture = ExtResource("30_palmera_det")
+scale = Vector2(0.83, 0.83)
+
+[node name="Palmera2" type="Sprite2D" parent="Decoracion"]
+z_index = 2
+position = Vector2(2030, 444.5)
+texture = ExtResource("30_palmera_det")
+scale = Vector2(0.75, 0.75)
+
+[node name="Camello1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(760, 480)
+texture = ExtResource("31_camello_det")
+scale = Vector2(0.75, 0.75)
+script = ExtResource("91_camello_pasea")
+velocidad = 16.0
+recorrido = 120.0
+
+
+
+[node name="Camello2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2350, 486)
+texture = ExtResource("31_camello_det")
+scale = Vector2(0.7, 0.7)
+script = ExtResource("91_camello_pasea")
+velocidad = 11.0
+recorrido = 60.0
+
+
+
+[node name="Camello3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(3350, 484)
+texture = ExtResource("31_camello_det")
+scale = Vector2(0.72, 0.72)
+script = ExtResource("91_camello_pasea")
+velocidad = 18.0
+recorrido = 140.0
+
+
+
+[node name="RocaDesierto1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1900, 504.75)
+texture = ExtResource("4_rocadesierto")
+scale = Vector2(1.15, 1.15)
+
+[node name="RocaDesierto2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(3050, 513.0)
+texture = ExtResource("4_rocadesierto")
+
+[node name="JarronSello" type="StaticBody2D" parent="Decoracion"]
+position = Vector2(3660, 505)
+script = ExtResource("97_jarron_roto")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decoracion/JarronSello"]
+shape = SubResource("shape_jarron")
+
+[node name="Visual" type="Sprite2D" parent="Decoracion/JarronSello"]
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("36_jarron_a")
+
+
+
+[node name="Jarron2" type="Sprite2D" parent="Decoracion"]
+z_index = 2
+position = Vector2(4120, 518)
+texture = ExtResource("37_jarron_r")
+scale = Vector2(0.9, 0.9)
+script = ExtResource("93_brillo")
+
+
+[node name="Palmera3" type="Sprite2D" parent="Decoracion"]
+z_index = 2
+position = Vector2(1330, 464.0)
+texture = ExtResource("30_palmera_det")
+scale = Vector2(0.63, 0.63)
+
+[node name="Jarron3" type="Sprite2D" parent="Decoracion"]
+z_index = 2
+position = Vector2(1420, 525)
+texture = ExtResource("38_jarron_w")
+scale = Vector2(0.9, 0.9)
+script = ExtResource("93_brillo")
+
+
+[node name="RocaDesierto3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1760, 518.5)
+texture = ExtResource("4_rocadesierto")
+scale = Vector2(0.9, 0.9)
+
+[node name="Camello4" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2250, 486)
+texture = ExtResource("31_camello_det")
+scale = Vector2(0.7, 0.7)
+script = ExtResource("91_camello_pasea")
+velocidad = 11.0
+recorrido = 55.0
+
+
+
+[node name="Camello5" type="Sprite2D" parent="Decoracion"]
+position = Vector2(4600, 484)
+texture = ExtResource("31_camello_det")
+scale = Vector2(0.72, 0.72)
+script = ExtResource("91_camello_pasea")
+velocidad = 20.0
+recorrido = 150.0
+
+
+
+[node name="RocaDesierto4" type="Sprite2D" parent="Decoracion"]
+position = Vector2(4850, 513.0)
+texture = ExtResource("4_rocadesierto")
+
+[node name="Palmera4" type="Sprite2D" parent="Decoracion"]
+z_index = 2
+position = Vector2(5230, 451.0)
+texture = ExtResource("30_palmera_det")
+scale = Vector2(0.71, 0.71)
+
+[node name="Jarron4" type="Sprite2D" parent="Decoracion"]
+z_index = 2
+position = Vector2(4320, 512)
+texture = ExtResource("36_jarron_a")
+scale = Vector2(0.8, 0.8)
+script = ExtResource("93_brillo")
+
+
+[node name="Hierba1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(450, 541.0)
+texture = ExtResource("6_hierbasvg")
+scale = Vector2(0.9, 0.9)
+
+[node name="Hierba2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1500, 544.0)
+texture = ExtResource("6_hierbasvg")
+scale = Vector2(0.8, 0.8)
+
+[node name="Hierba3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2900, 538.0)
+texture = ExtResource("6_hierbasvg")
+
+[node name="Hierba4" type="Sprite2D" parent="Decoracion"]
+position = Vector2(3700, 542.5)
+texture = ExtResource("6_hierbasvg")
+scale = Vector2(0.85, 0.85)
+
+
+
+
+[node name="FormacionRoca" type="Sprite2D" parent="Decoracion"]
+z_index = 1
+position = Vector2(3900, 406)
+texture = ExtResource("32_formacion")
+scale = Vector2(0.85, 0.85)
+
+[node name="OasisNuevo" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1750, 504)
+texture = ExtResource("33_oasis")
+scale = Vector2(1.2, 1.2)
+
+[node name="Calavera" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2020, 528)
+texture = ExtResource("34_calavera")
+scale = Vector2(0.8, 0.8)
+
+[node name="Agave1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1000, 515)
+texture = ExtResource("35_agave")
+scale = Vector2(0.85, 0.85)
+
+[node name="Agave2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2850, 515)
+texture = ExtResource("35_agave")
+scale = Vector2(0.9, 0.9)
+
+[node name="Agave3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(4470, 515)
+texture = ExtResource("35_agave")
+scale = Vector2(0.8, 0.8)
+
+[node name="Palmera5" type="Sprite2D" parent="Decoracion"]
+z_index = 2
+position = Vector2(1180, 452)
+texture = ExtResource("30_palmera_det")
+scale = Vector2(0.7, 0.7)
+
+[node name="Palmera6" type="Sprite2D" parent="Decoracion"]
+z_index = 2
+position = Vector2(2620, 452)
+texture = ExtResource("30_palmera_det")
+scale = Vector2(0.72, 0.72)
+
+[node name="Plataforma5" type="StaticBody2D" parent="."]
+position = Vector2(5750, 500)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma5"]
+shape = SubResource("shape_f1")
+
+[node name="Visual" type="ColorRect" parent="Plataforma5"]
+offset_left = -130.0
+offset_top = -17.0
+offset_right = 130.0
+offset_bottom = 17.0
+color = Color(0.93, 0.79, 0.52, 1)
+
+[node name="Plataforma6" type="StaticBody2D" parent="."]
+position = Vector2(6150, 420)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma6"]
+shape = SubResource("shape_f2")
+
+[node name="Visual" type="ColorRect" parent="Plataforma6"]
+offset_left = -110.0
+offset_top = -17.0
+offset_right = 110.0
+offset_bottom = 17.0
+color = Color(0.93, 0.79, 0.52, 1)
+
+[node name="Plataforma7" type="StaticBody2D" parent="."]
+position = Vector2(6600, 470)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma7"]
+shape = SubResource("shape_f3")
+
+[node name="Visual" type="ColorRect" parent="Plataforma7"]
+offset_left = -120.0
+offset_top = -17.0
+offset_right = 120.0
+offset_bottom = 17.0
+color = Color(0.93, 0.79, 0.52, 1)
+
+[node name="Plataforma8" type="StaticBody2D" parent="."]
+position = Vector2(7080, 380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plataforma8"]
+shape = SubResource("shape_f4")
+
+[node name="Visual" type="ColorRect" parent="Plataforma8"]
+offset_left = -100.0
+offset_top = -17.0
+offset_right = 100.0
+offset_bottom = 17.0
+color = Color(0.93, 0.79, 0.52, 1)
+
+[node name="Palmera7" type="Sprite2D" parent="Decoracion"]
+z_index = 2
+position = Vector2(5950, 452)
+texture = ExtResource("30_palmera_det")
+scale = Vector2(0.7, 0.7)
+
+[node name="Palmera8" type="Sprite2D" parent="Decoracion"]
+z_index = 2
+position = Vector2(6900, 452)
+texture = ExtResource("30_palmera_det")
+scale = Vector2(0.74, 0.74)
+
+[node name="Agave4" type="Sprite2D" parent="Decoracion"]
+position = Vector2(5600, 515)
+texture = ExtResource("35_agave")
+scale = Vector2(0.85, 0.85)
+
+[node name="Agave5" type="Sprite2D" parent="Decoracion"]
+position = Vector2(7300, 515)
+texture = ExtResource("35_agave")
+scale = Vector2(0.9, 0.9)
+
+[node name="Jarron5" type="Sprite2D" parent="Decoracion"]
+z_index = 2
+position = Vector2(6350, 512)
+texture = ExtResource("36_jarron_a")
+scale = Vector2(0.8, 0.8)
+script = ExtResource("93_brillo")
+
+[node name="Jarron6" type="Sprite2D" parent="Decoracion"]
+z_index = 2
+position = Vector2(6450, 525)
+texture = ExtResource("38_jarron_w")
+scale = Vector2(0.9, 0.9)
+script = ExtResource("93_brillo")
+
+[node name="Calavera2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(7400, 528)
+texture = ExtResource("34_calavera")
+scale = Vector2(0.8, 0.8)
+
+[node name="FormacionRoca2" type="Sprite2D" parent="Decoracion"]
+z_index = 1
+position = Vector2(7150, 424)
+texture = ExtResource("32_formacion")
+scale = Vector2(0.75, 0.75)
+
+[node name="CamelloBebe" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1560, 486)
+texture = ExtResource("31_camello_det")
+scale = Vector2(0.7, 0.7)
+script = ExtResource("91_camello_pasea")
+velocidad = 12.0
+recorrido = 150.0
+bebe_en = 1780.0
+
+[node name="Caravana" type="Node2D" parent="Decoracion"]
+z_index = 1
+position = Vector2(5150, 470)
+script = ExtResource("94_caravana")
+velocidad = 13.0
+recorrido = 240.0
+
+[node name="CamelloA" type="Sprite2D" parent="Decoracion/Caravana"]
+position = Vector2(-160, 18)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("31_camello_det")
+
+[node name="CamelloB" type="Sprite2D" parent="Decoracion/Caravana"]
+position = Vector2(0, 12)
+scale = Vector2(0.54, 0.54)
+texture = ExtResource("31_camello_det")
+
+[node name="CamelloC" type="Sprite2D" parent="Decoracion/Caravana"]
+position = Vector2(160, 20)
+scale = Vector2(0.48, 0.48)
+texture = ExtResource("31_camello_det")
+
+[node name="Sello2" type="Area2D" parent="."]
+position = Vector2(6600, 428)
+script = ExtResource("96_sello_gd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sello2"]
+shape = SubResource("shape_moneda_sello")
+
+[node name="Visual" type="Sprite2D" parent="Sello2"]
+texture = ExtResource("95_sello")
+
+[node name="Sello3" type="Area2D" parent="."]
+position = Vector2(7440, 516)
+script = ExtResource("96_sello_gd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sello3"]
+shape = SubResource("shape_moneda_sello")
+
+[node name="Visual" type="Sprite2D" parent="Sello3"]
+texture = ExtResource("95_sello")
+
+[node name="Suelo" type="StaticBody2D" parent="."]
+position = Vector2(3800, 584)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Suelo"]
+shape = SubResource("shape_7")
+
+[node name="Visual" type="ColorRect" parent="Suelo"]
+offset_left = -3800
+offset_top = -40
+offset_right = 3800
+offset_bottom = 40
+color = Color(0.93, 0.79, 0.52, 1)
+
+[node name="Pared20" type="StaticBody2D" parent="."]
+position = Vector2(-20, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pared20"]
+shape = SubResource("shape_8")
+
+[node name="Pared5420" type="StaticBody2D" parent="."]
+position = Vector2(7620, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pared5420"]
+shape = SubResource("shape_9")
+
+[node name="ArenaMovediza1" type="Area2D" parent="."]
+position = Vector2(1100, 568.0)
+script = ExtResource("11_arenamovediz")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaMovediza1"]
+position = Vector2(0, -14)
+shape = SubResource("shape_12")
+
+[node name="Visual" type="Sprite2D" parent="ArenaMovediza1"]
+position = Vector2(0, -34)
+texture = ExtResource("10_arenamovediz")
+
+[node name="ArenaMovediza2" type="Area2D" parent="."]
+position = Vector2(2650, 568.0)
+script = ExtResource("11_arenamovediz")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaMovediza2"]
+position = Vector2(0, -14)
+shape = SubResource("shape_13")
+
+[node name="Visual" type="Sprite2D" parent="ArenaMovediza2"]
+position = Vector2(0, -34)
+texture = ExtResource("10_arenamovediz")
+
+[node name="AliBaba" parent="." instance=ExtResource("14_alibabatscn")]
+position = Vector2(620, 544.0)
+
+[node name="EntradaCueva" type="Sprite2D" parent="Decoracion"]
+position = Vector2(5000, 407.0)
+texture = ExtResource("15_entradacueva")
+scale = Vector2(1.15, 1.15)
+
+[node name="PortalCueva" parent="." instance=ExtResource("16_puertatransi")]
+position = Vector2(5000, 568.0)
+escena_destino = "res://escenas/cueva_ali.tscn"
+punto_aparicion_destino = ""
+requiere_bandera = "cueva_abierta"
+
+[node name="PuertaCueva" type="StaticBody2D" parent="."]
+position = Vector2(5000, 568.0)
+script = ExtResource("18_destruiblegr")
+color_trozos = Color(0.71, 0.44, 0.29, 1)
+bandera = "cueva_abierta"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PuertaCueva"]
+position = Vector2(0, -100)
+shape = SubResource("shape_20")
+
+[node name="Visual" type="Node2D" parent="PuertaCueva"]
+
+[node name="Sprite" type="Sprite2D" parent="PuertaCueva/Visual"]
+position = Vector2(0, -100)
+scale = Vector2(0.73, 0.92)
+texture = ExtResource("17_puertapiedra")
+
+[node name="Sonido" type="AudioStreamPlayer" parent="PuertaCueva"]
+stream = ExtResource("19_piedrawav")
+
+[node name="PuntoDesdeCueva" type="Marker2D" parent="."]
+position = Vector2(4870, 550)
+
+[node name="PortalPueblo" parent="." instance=ExtResource("16_puertatransi")]
+position = Vector2(105, 568.0)
+escena_destino = "res://escenas/pueblo.tscn"
+punto_aparicion_destino = "PuntoDesdeViaje"
+
+[node name="Jugador" type="CharacterBody2D" parent="."]
+position = Vector2(220, 520)
+script = ExtResource("1_jugador")
+camara_limite_inferior = 648
+camara_limite_izquierdo = 0
+camara_limite_superior = -450
+camara_limite_derecho = 7600
+nombre_zona = "Arabia"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador"]
+shape = SubResource("CapsuleShape2D_jugador")
+
+[node name="CuerpoVisual" type="Node2D" parent="Jugador"]
+
+[node name="PiernaIzq" type="Line2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(-10, 12)
+points = PackedVector2Array(0, 0, -2, 13, 0, 26)
+width = 6.0
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PiernaDer" type="Line2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(10, 12)
+points = PackedVector2Array(0, 0, 2, 13, 0, 26)
+width = 6.0
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Torso" type="Sprite2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(0, -6)
+texture = ExtResource("7_jugador_sprite")
+
+[node name="Ojos" type="Node2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(4, -12)
+
+[node name="OjoIzq" type="Polygon2D" parent="Jugador/CuerpoVisual/Ojos"]
+position = Vector2(-7, 0)
+color = Color(0.113725, 0.113725, 0.113725, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[node name="OjoDer" type="Polygon2D" parent="Jugador/CuerpoVisual/Ojos"]
+position = Vector2(7, 0)
+color = Color(0.113725, 0.117647, 0.14902, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[node name="ZonaPatada" type="Area2D" parent="Jugador"]
+position = Vector2(34, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador/ZonaPatada"]
+shape = SubResource("RectangleShape2D_patada")
+
+[node name="EfectoPatada" type="Polygon2D" parent="Jugador/ZonaPatada"]
+color = Color(1, 0.85, 0.3, 0.85)
+polygon = PackedVector2Array(-6, -12, 16, -6, 6, 0, 18, 10, -4, 12)
+
+[node name="SonidoSalto" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("14_salto")
+
+[node name="SonidoPatada" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("15_patada")
+
+[node name="Camera2D" type="Camera2D" parent="Jugador"]
+limit_left = 0
+limit_top = -450
+limit_right = 5400
+limit_bottom = 648
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+
+[node name="Terreno" type="Node" parent="."]
+script = ExtResource("21_decorarterre")
+material = "arena"

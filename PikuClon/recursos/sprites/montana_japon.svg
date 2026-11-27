@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="300" viewBox="0 0 520 300">
+  <!-- pico secundario -->
+  <path d="M40 280 Q92 234 128 196 Q166 234 214 280 Z" fill="#7F8FA6" stroke="#1D1E26" stroke-width="2.0"/>
+  <path d="M128 196 Q136 212 146 224 Q135 218 128 228 Q120 218 110 224 Q118 212 128 196 Z" fill="#FFF3D6" stroke="#1D1E26" stroke-width="2.0"/>
+  <path d="M84 280 Q74 260 62 250" fill="none" stroke="#1D1E26" stroke-width="2.5" opacity="0.35" stroke-linecap="round"/>
+  <!-- montana principal -->
+  <path d="M148 280 Q208 238 256 170 Q280 132 300 92 Q322 132 346 170 Q396 238 478 280 Z" fill="#7F8FA6" stroke="#1D1E26" stroke-width="2.0"/>
+  <!-- cumbre nevada -->
+  <path d="M300 92 Q312 116 326 140 Q316 130 308 144 Q300 128 292 144 Q282 130 274 140 Q286 116 300 92 Z" fill="#FFF3D6" stroke="#1D1E26" stroke-width="2.0"/>
+  <path d="M286 150 Q282 168 274 184" fill="none" stroke="#FFF3D6" stroke-width="4" stroke-linecap="round"/>
+  <path d="M316 150 Q322 166 330 182" fill="none" stroke="#FFF3D6" stroke-width="4" stroke-linecap="round"/>
+  <!-- vetas de la ladera -->
+  <path d="M236 210 Q224 232 212 254" fill="none" stroke="#1D1E26" stroke-width="2.5" opacity="0.4" stroke-linecap="round"/>
+  <path d="M366 208 Q382 234 396 254" fill="none" stroke="#1D1E26" stroke-width="2.5" opacity="0.4" stroke-linecap="round"/>
+  <path d="M194 256 Q186 266 180 274" fill="none" stroke="#1D1E26" stroke-width="2.5" opacity="0.4" stroke-linecap="round"/>
+  <path d="M334 262 Q342 270 350 276" fill="none" stroke="#1D1E26" stroke-width="2.5" opacity="0.4" stroke-linecap="round"/>
+</svg>

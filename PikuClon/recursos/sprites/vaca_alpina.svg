@@ -1,17 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="76" height="70" viewBox="0 0 76 70">
-  <rect x="10" y="14" width="56" height="54" rx="22" fill="#FFFFFF" stroke="#1D1E26" stroke-width="2.5"/>
-  <ellipse cx="24" cy="30" rx="10" ry="8" fill="#2B2D42"/>
-  <ellipse cx="52" cy="48" rx="9" ry="7" fill="#2B2D42"/>
-  <!-- Ears and horns -->
-  <polygon points="16,16 8,4 22,10" fill="#E09F3E" stroke="#1D1E26" stroke-width="2"/>
-  <polygon points="60,16 68,4 54,10" fill="#E09F3E" stroke="#1D1E26" stroke-width="2"/>
-  <!-- Eyes -->
-  <circle cx="28" cy="30" r="3" fill="#FFFFFF"/>
-  <circle cx="48" cy="30" r="3" fill="#1D1E26"/>
-  <!-- Snout -->
-  <ellipse cx="38" cy="46" rx="16" ry="10" fill="#FFCAD4" stroke="#1D1E26" stroke-width="2"/>
-  <circle cx="32" cy="45" r="2" fill="#1D1E26"/>
-  <circle cx="44" cy="45" r="2" fill="#1D1E26"/>
-  <!-- Cowbell -->
-  <rect x="33" y="57" width="10" height="10" rx="2" fill="#FFD166" stroke="#1D1E26" stroke-width="2"/>
+  <path d="M10 12 L10 64 M26 12 L26 64 M50 12 L50 64 M66 12 L66 64" stroke="#5E5A54" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M8 30 Q8 10 30 10 L56 10 Q70 12 70 30 Q70 46 56 46 L20 46 Q8 44 8 30 Z" fill="#FFF3D6" stroke="#B8AE9C" stroke-width="2"/>
+  <path d="M18 14 Q28 10 36 14 Q30 28 22 26 Z M46 16 Q56 12 62 20 Q54 30 46 24 Z" fill="#2B2D42"/>
+  <path d="M62 26 Q74 28 74 40 Q74 52 62 50 Z" fill="#F4F9FF" stroke="#B8AE9C" stroke-width="2"/>
+  <circle cx="66" cy="34" r="2.6" fill="#2B2D42"/>
+  <path d="M60 20 q10 -4 14 4" fill="none" stroke="#5E5A54" stroke-width="2.5" stroke-linecap="round"/>
 </svg>

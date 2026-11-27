@@ -1,0 +1,816 @@
+[gd_scene load_steps=42 format=3]
+
+
+
+
+
+
+
+[ext_resource type="Texture2D" path="res://recursos/sprites/arco_piedra.svg" id="11_arcopiedrasv"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/columna_piedra.svg" id="12_columnapiedr"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/jarron.svg" id="13_jarronsvg"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/joyas.svg" id="14_joyassvg"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/joyas_grandes.svg" id="15_joyasgrandes"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/monton_monedas.svg" id="16_montonmoneda"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/monton_monedas_b.svg" id="17_montonmoneda"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/monton_monedas_c.svg" id="18_montonmoneda"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/roca_desierto.svg" id="19_rocadesierto"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/estalactita.svg" id="20_estalactitas"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/estalagmita.svg" id="21_estalagmitas"]
+[ext_resource type="Script" path="res://scripts/tesoro.gd" id="22_tesorogd"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/cofre_tesoro.svg" id="23_cofretesoros"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/exito.wav" id="24_exitowav"]
+[ext_resource type="PackedScene" path="res://escenas/puerta_transicion.tscn" id="26_puertatransi"]
+[ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/jugador_cuerpo.svg" id="7_jugador_sprite"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/salto.wav" id="14_salto"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/patada.wav" id="15_patada"]
+[ext_resource type="Script" path="res://scripts/decorar_terreno.gd" id="27_decorarterre"]
+[ext_resource type="Script" path="res://scripts/fondo_cueva.gd" id="30_fondo_cueva"]
+[ext_resource type="Script" path="res://scripts/personaje_decorativo.gd" id="31_decorativo"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/fantasma.svg" id="32_fantasma"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/lampara_maravillas.svg" id="33_lampara"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/escorpion.svg" id="34_escorpion"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/escarabajo.svg" id="35_escarabajo"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/rocas_cueva.svg" id="36_rocas_cueva"]
+[ext_resource type="Script" path="res://scripts/decorar_terreno.gd" id="37_terreno"]
+[ext_resource type="PackedScene" path="res://escenas/genio.tscn" id="40_genio"]
+[ext_resource type="Script" path="res://scripts/roca_patada.gd" id="41_roca_patada"]
+[ext_resource type="Script" path="res://scripts/moneda_deseo.gd" id="42_moneda"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/moneda_deseo.svg" id="43_moneda_tex"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/muro_roca.svg" id="50_muro"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/antorcha.svg" id="60_antorcha"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/cristal_luz.svg" id="61_cristal"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/poza_lava.svg" id="62_lava"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/mural_genio.svg" id="63_mural"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/tesoro_genio.svg" id="64_tesoro"]
+[ext_resource type="Script" path="res://scripts/antorcha.gd" id="65_antorcha_gd"]
+[ext_resource type="Script" path="res://scripts/plataforma_movil.gd" id="66_plat_movil"]
+[ext_resource type="Script" path="res://scripts/bicho.gd" id="67_bicho"]
+[ext_resource type="Script" path="res://scripts/antorcha_objeto.gd" id="68_antorcha_obj"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/pared_cueva.svg" id="70_pared"]
+
+[sub_resource type="RectangleShape2D" id="shape_1"]
+size = Vector2(3200, 100)
+[sub_resource type="RectangleShape2D" id="shape_2"]
+size = Vector2(40, 1600)
+[sub_resource type="RectangleShape2D" id="shape_3"]
+size = Vector2(40, 1600)
+[sub_resource type="RectangleShape2D" id="shape_4"]
+size = Vector2(340, 140)
+[sub_resource type="RectangleShape2D" id="shape_5"]
+size = Vector2(200, 26)
+[sub_resource type="RectangleShape2D" id="shape_6"]
+size = Vector2(200, 26)
+[sub_resource type="RectangleShape2D" id="shape_7"]
+size = Vector2(340, 26)
+[sub_resource type="RectangleShape2D" id="shape_8"]
+size = Vector2(320, 70)
+[sub_resource type="RectangleShape2D" id="shape_9"]
+size = Vector2(200, 26)
+[sub_resource type="RectangleShape2D" id="shape_10"]
+size = Vector2(560, 26)
+[sub_resource type="RectangleShape2D" id="shape_25"]
+size = Vector2(90, 80)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jugador"]
+radius = 22.0
+height = 76.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_patada"]
+size = Vector2(56, 64)
+
+
+
+
+
+
+
+
+
+
+
+
+
+[sub_resource type="RectangleShape2D" id="shape_platF"]
+size = Vector2(260, 28)
+
+[sub_resource type="RectangleShape2D" id="shape_platG"]
+size = Vector2(220, 28)
+
+[sub_resource type="RectangleShape2D" id="shape_platH"]
+size = Vector2(240, 28)
+
+[sub_resource type="RectangleShape2D" id="shape_platI"]
+size = Vector2(200, 28)
+
+[sub_resource type="RectangleShape2D" id="shape_roca_patada"]
+size = Vector2(90, 70)
+
+[sub_resource type="CircleShape2D" id="shape_moneda"]
+radius = 22.0
+
+
+[sub_resource type="RectangleShape2D" id="shape_muro"]
+size = Vector2(110, 220)
+
+
+
+
+
+
+
+
+
+[sub_resource type="RectangleShape2D" id="shape_movil"]
+size = Vector2(200, 26)
+
+[sub_resource type="RectangleShape2D" id="shape_bicho"]
+size = Vector2(56, 34)
+
+
+
+[node name="CuevaAli" type="Node2D"]
+
+[node name="Fondo" type="ColorRect" parent="."]
+offset_left = -200.0
+offset_top = -400.0
+offset_right = 3400.0
+offset_bottom = 700.0
+color = Color(0.23, 0.2, 0.28, 1)
+
+[node name="MuroFondo" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.55, 1)
+
+
+[node name="Panel1" type="Sprite2D" parent="MuroFondo"]
+position = Vector2(300, 560)
+scale = Vector2(1, 2.6)
+texture = ExtResource("70_pared")
+
+[node name="Panel2" type="Sprite2D" parent="MuroFondo"]
+position = Vector2(898, 560)
+scale = Vector2(1, 2.6)
+texture = ExtResource("70_pared")
+
+[node name="Panel3" type="Sprite2D" parent="MuroFondo"]
+position = Vector2(1496, 560)
+scale = Vector2(1, 2.6)
+texture = ExtResource("70_pared")
+
+[node name="Panel4" type="Sprite2D" parent="MuroFondo"]
+position = Vector2(2094, 560)
+scale = Vector2(1, 2.6)
+texture = ExtResource("70_pared")
+
+[node name="MuralGenio" type="Sprite2D" parent="MuroFondo"]
+position = Vector2(1072, 690)
+scale = Vector2(1.15, 1.15)
+texture = ExtResource("63_mural")
+[node name="FondoCueva" type="Node2D" parent="."]
+script = ExtResource("30_fondo_cueva")
+ancho = 3200.0
+
+[node name="Decoracion" type="Node2D" parent="."]
+[node name="TechoEstalactita1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(340, 1011)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("20_estalactitas")
+
+[node name="TechoEstalactita2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(460, 1011)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("20_estalactitas")
+
+[node name="TechoEstalactita3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(580, 1011)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("20_estalactitas")
+
+
+
+[node name="Fantasma" type="Node2D" parent="."]
+position = Vector2(1520, 380)
+script = ExtResource("31_decorativo")
+
+[node name="Visual" type="Sprite2D" parent="Fantasma"]
+texture = ExtResource("32_fantasma")
+
+[node name="Lampara" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1700, 445)
+texture = ExtResource("33_lampara")
+
+
+
+
+
+[node name="Terreno" type="Node" parent="."]
+script = ExtResource("37_terreno")
+material = "piedra"
+
+[node name="PlataformaF" type="StaticBody2D" parent="."]
+position = Vector2(2350, 980)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaF"]
+shape = SubResource("shape_platF")
+
+[node name="Visual" type="ColorRect" parent="PlataformaF"]
+offset_left = -130.0
+offset_top = -14.0
+offset_right = 130.0
+offset_bottom = 14.0
+color = Color(0.42, 0.39, 0.48, 1)
+
+[node name="PlataformaG" type="StaticBody2D" parent="."]
+position = Vector2(2650, 850)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaG"]
+shape = SubResource("shape_platG")
+
+[node name="Visual" type="ColorRect" parent="PlataformaG"]
+offset_left = -110.0
+offset_top = -14.0
+offset_right = 110.0
+offset_bottom = 14.0
+color = Color(0.42, 0.39, 0.48, 1)
+
+[node name="PlataformaH" type="StaticBody2D" parent="."]
+position = Vector2(2920, 720)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaH"]
+shape = SubResource("shape_platH")
+
+[node name="Visual" type="ColorRect" parent="PlataformaH"]
+offset_left = -120.0
+offset_top = -14.0
+offset_right = 120.0
+offset_bottom = 14.0
+color = Color(0.42, 0.39, 0.48, 1)
+
+[node name="PlataformaI" type="StaticBody2D" parent="."]
+position = Vector2(3120, 590)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaI"]
+shape = SubResource("shape_platI")
+
+[node name="Visual" type="ColorRect" parent="PlataformaI"]
+offset_left = -100.0
+offset_top = -14.0
+offset_right = 100.0
+offset_bottom = 14.0
+color = Color(0.42, 0.39, 0.48, 1)
+
+[node name="RocaPatada1" type="StaticBody2D" parent="."]
+position = Vector2(2180, 1071)
+script = ExtResource("41_roca_patada")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RocaPatada1"]
+shape = SubResource("shape_roca_patada")
+
+[node name="Visual" type="Sprite2D" parent="RocaPatada1"]
+rotation = -0.06
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("36_rocas_cueva")
+
+[node name="RocaPatada2" type="StaticBody2D" parent="."]
+position = Vector2(2520, 942)
+script = ExtResource("41_roca_patada")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RocaPatada2"]
+shape = SubResource("shape_roca_patada")
+
+[node name="Visual" type="Sprite2D" parent="RocaPatada2"]
+rotation = 0.08
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("36_rocas_cueva")
+
+[node name="RocaPatada3" type="StaticBody2D" parent="."]
+position = Vector2(2800, 805)
+script = ExtResource("41_roca_patada")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RocaPatada3"]
+shape = SubResource("shape_roca_patada")
+
+[node name="Visual" type="Sprite2D" parent="RocaPatada3"]
+rotation = -0.04
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("36_rocas_cueva")
+
+[node name="RocaPatada4" type="StaticBody2D" parent="."]
+position = Vector2(3010, 680)
+script = ExtResource("41_roca_patada")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RocaPatada4"]
+shape = SubResource("shape_roca_patada")
+
+[node name="Visual" type="Sprite2D" parent="RocaPatada4"]
+rotation = 0.1
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("36_rocas_cueva")
+
+[node name="MonedaDeseo1" type="Area2D" parent="."]
+position = Vector2(2400, 930)
+script = ExtResource("42_moneda")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MonedaDeseo1"]
+shape = SubResource("shape_moneda")
+
+[node name="Visual" type="Sprite2D" parent="MonedaDeseo1"]
+texture = ExtResource("43_moneda_tex")
+
+[node name="MonedaDeseo2" type="Area2D" parent="."]
+position = Vector2(2700, 800)
+script = ExtResource("42_moneda")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MonedaDeseo2"]
+shape = SubResource("shape_moneda")
+
+[node name="Visual" type="Sprite2D" parent="MonedaDeseo2"]
+texture = ExtResource("43_moneda_tex")
+
+[node name="MonedaDeseo3" type="Area2D" parent="."]
+position = Vector2(3050, 670)
+script = ExtResource("42_moneda")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MonedaDeseo3"]
+shape = SubResource("shape_moneda")
+
+[node name="Visual" type="Sprite2D" parent="MonedaDeseo3"]
+texture = ExtResource("43_moneda_tex")
+
+[node name="Genio" parent="." instance=ExtResource("40_genio")]
+position = Vector2(3150, 1100)
+
+[node name="MuroRoca1" type="StaticBody2D" parent="."]
+position = Vector2(2110, 990)
+script = ExtResource("41_roca_patada")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MuroRoca1"]
+shape = SubResource("shape_muro")
+
+[node name="Visual" type="Sprite2D" parent="MuroRoca1"]
+texture = ExtResource("50_muro")
+
+[node name="MuroRoca2" type="StaticBody2D" parent="."]
+position = Vector2(3060, 990)
+script = ExtResource("41_roca_patada")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MuroRoca2"]
+shape = SubResource("shape_muro")
+
+[node name="Visual" type="Sprite2D" parent="MuroRoca2"]
+texture = ExtResource("50_muro")
+
+[node name="Antorcha1" type="Node2D" parent="Decoracion"]
+position = Vector2(180, 850)
+script = ExtResource("65_antorcha_gd")
+
+[node name="Visual" type="Sprite2D" parent="Decoracion/Antorcha1"]
+texture = ExtResource("60_antorcha")
+
+[node name="Antorcha2" type="Node2D" parent="Decoracion"]
+position = Vector2(980, 860)
+script = ExtResource("65_antorcha_gd")
+
+[node name="Visual" type="Sprite2D" parent="Decoracion/Antorcha2"]
+texture = ExtResource("60_antorcha")
+
+[node name="Antorcha3" type="Node2D" parent="Decoracion"]
+position = Vector2(1600, 880)
+script = ExtResource("65_antorcha_gd")
+
+[node name="Visual" type="Sprite2D" parent="Decoracion/Antorcha3"]
+texture = ExtResource("60_antorcha")
+
+[node name="Antorcha4" type="Node2D" parent="Decoracion"]
+position = Vector2(2420, 900)
+script = ExtResource("65_antorcha_gd")
+
+[node name="Visual" type="Sprite2D" parent="Decoracion/Antorcha4"]
+texture = ExtResource("60_antorcha")
+
+[node name="Antorcha5" type="Node2D" parent="Decoracion"]
+position = Vector2(2960, 860)
+script = ExtResource("65_antorcha_gd")
+
+[node name="Visual" type="Sprite2D" parent="Decoracion/Antorcha5"]
+texture = ExtResource("60_antorcha")
+
+position = Vector2(700, 1047)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("61_cristal")
+
+position = Vector2(1520, 1057)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("61_cristal")
+
+[node name="Cristal3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2280, 1050)
+scale = Vector2(1.0, 1.0)
+texture = ExtResource("61_cristal")
+
+position = Vector2(2980, 1042)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("61_cristal")
+
+[node name="Lava1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(900, 1092)
+texture = ExtResource("62_lava")
+
+[node name="Lava2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2550, 1092)
+texture = ExtResource("62_lava")
+
+
+[node name="EstalactitaGrande1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(600, 250)
+scale = Vector2(1.9, 1.9)
+texture = ExtResource("20_estalactitas")
+
+[node name="EstalactitaGrande2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1300, 210)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("20_estalactitas")
+
+[node name="EstalactitaGrande3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2150, 260)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("20_estalactitas")
+
+
+[node name="EstalagmitaGrande2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2650, 1009.0)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("21_estalagmitas")
+
+position = Vector2(250, 894)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("12_columnapiedr")
+
+position = Vector2(2220, 862)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("12_columnapiedr")
+
+[node name="TesoroGenio" type="Sprite2D" parent="Decoracion"]
+position = Vector2(2920, 1025)
+texture = ExtResource("64_tesoro")
+
+[node name="PlataformaMovil1" type="AnimatableBody2D" parent="."]
+position = Vector2(2320, 760)
+script = ExtResource("66_plat_movil")
+desplazamiento = Vector2(0, -170)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaMovil1"]
+shape = SubResource("shape_movil")
+
+[node name="Visual" type="ColorRect" parent="PlataformaMovil1"]
+offset_left = -100.0
+offset_top = -13.0
+offset_right = 100.0
+offset_bottom = 13.0
+color = Color(0.42, 0.39, 0.48, 1)
+
+[node name="PlataformaMovil2" type="AnimatableBody2D" parent="."]
+position = Vector2(2820, 880)
+script = ExtResource("66_plat_movil")
+desplazamiento = Vector2(160, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaMovil2"]
+shape = SubResource("shape_movil")
+
+[node name="Visual" type="ColorRect" parent="PlataformaMovil2"]
+offset_left = -100.0
+offset_top = -13.0
+offset_right = 100.0
+offset_bottom = 13.0
+color = Color(0.42, 0.39, 0.48, 1)
+
+[node name="Bicho1" type="Area2D" parent="."]
+position = Vector2(1500, 1086)
+script = ExtResource("67_bicho")
+limite_izquierdo = -120
+limite_derecho = 120
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bicho1"]
+shape = SubResource("shape_bicho")
+
+[node name="Visual" type="Sprite2D" parent="Bicho1"]
+texture = ExtResource("34_escorpion")
+
+[node name="Bicho2" type="Area2D" parent="."]
+position = Vector2(2380, 949)
+script = ExtResource("67_bicho")
+limite_izquierdo = -90
+limite_derecho = 90
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bicho2"]
+shape = SubResource("shape_bicho")
+
+[node name="Visual" type="Sprite2D" parent="Bicho2"]
+texture = ExtResource("35_escarabajo")
+
+[node name="Bicho3" type="Area2D" parent="."]
+position = Vector2(700, 1086)
+script = ExtResource("67_bicho")
+limite_izquierdo = -120
+limite_derecho = 120
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bicho3"]
+shape = SubResource("shape_bicho")
+
+[node name="Visual" type="Sprite2D" parent="Bicho3"]
+texture = ExtResource("34_escorpion")
+
+[node name="Bicho4" type="Area2D" parent="."]
+position = Vector2(2700, 819)
+script = ExtResource("67_bicho")
+limite_izquierdo = -80
+limite_derecho = 80
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bicho4"]
+shape = SubResource("shape_bicho")
+
+[node name="Visual" type="Sprite2D" parent="Bicho4"]
+texture = ExtResource("35_escarabajo")
+
+[node name="Bicho5" type="Area2D" parent="."]
+position = Vector2(1900, 1086)
+script = ExtResource("67_bicho")
+limite_izquierdo = -140
+limite_derecho = 140
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bicho5"]
+shape = SubResource("shape_bicho")
+
+[node name="Visual" type="Sprite2D" parent="Bicho5"]
+texture = ExtResource("34_escorpion")
+
+[node name="AntorchaObjeto" type="Area2D" parent="."]
+position = Vector2(1240, 1063)
+script = ExtResource("68_antorcha_obj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AntorchaObjeto"]
+shape = SubResource("shape_moneda")
+
+[node name="Visual" type="Sprite2D" parent="AntorchaObjeto"]
+texture = ExtResource("60_antorcha")
+
+[node name="Suelo" type="StaticBody2D" parent="."]
+position = Vector2(1600, 1150)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Suelo"]
+shape = SubResource("shape_1")
+
+[node name="Visual" type="ColorRect" parent="Suelo"]
+offset_left = -1600
+offset_top = -50
+offset_right = 1600
+offset_bottom = 50
+color = Color(0.29, 0.27, 0.35, 1)
+
+[node name="Pared20" type="StaticBody2D" parent="."]
+position = Vector2(-20, 500)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pared20"]
+shape = SubResource("shape_2")
+
+[node name="Pared2020" type="StaticBody2D" parent="."]
+position = Vector2(3230, 500)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pared2020"]
+shape = SubResource("shape_3")
+
+[node name="Techo1" type="StaticBody2D" parent="."]
+position = Vector2(460, 960)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Techo1"]
+shape = SubResource("shape_4")
+
+[node name="Visual" type="ColorRect" parent="Techo1"]
+offset_left = -170
+offset_top = -70
+offset_right = 170
+offset_bottom = 70
+color = Color(0.36, 0.33, 0.42, 1)
+
+[node name="PlataformaA" type="StaticBody2D" parent="."]
+position = Vector2(760, 1000)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaA"]
+shape = SubResource("shape_5")
+
+[node name="Visual" type="ColorRect" parent="PlataformaA"]
+offset_left = -100
+offset_top = -13
+offset_right = 100
+offset_bottom = 13
+color = Color(0.4, 0.37, 0.46, 1)
+
+[node name="PlataformaB" type="StaticBody2D" parent="."]
+position = Vector2(1000, 900)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaB"]
+shape = SubResource("shape_6")
+
+[node name="Visual" type="ColorRect" parent="PlataformaB"]
+offset_left = -100
+offset_top = -13
+offset_right = 100
+offset_bottom = 13
+color = Color(0.4, 0.37, 0.46, 1)
+
+[node name="PlataformaC" type="StaticBody2D" parent="."]
+position = Vector2(1180, 780)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaC"]
+shape = SubResource("shape_7")
+
+[node name="Visual" type="ColorRect" parent="PlataformaC"]
+offset_left = -170
+offset_top = -13
+offset_right = 170
+offset_bottom = 13
+color = Color(0.4, 0.37, 0.46, 1)
+
+[node name="Techo2" type="StaticBody2D" parent="."]
+position = Vector2(1180, 672)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Techo2"]
+shape = SubResource("shape_8")
+
+[node name="Visual" type="ColorRect" parent="Techo2"]
+offset_left = -160
+offset_top = -35
+offset_right = 160
+offset_bottom = 35
+color = Color(0.36, 0.33, 0.42, 1)
+
+[node name="PlataformaD" type="StaticBody2D" parent="."]
+position = Vector2(1500, 680)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaD"]
+shape = SubResource("shape_9")
+
+[node name="Visual" type="ColorRect" parent="PlataformaD"]
+offset_left = -100
+offset_top = -13
+offset_right = 100
+offset_bottom = 13
+color = Color(0.4, 0.37, 0.46, 1)
+
+[node name="PlataformaE" type="StaticBody2D" parent="."]
+position = Vector2(1700, 480)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaE"]
+shape = SubResource("shape_10")
+
+[node name="Visual" type="ColorRect" parent="PlataformaE"]
+offset_left = -280
+offset_top = -13
+offset_right = 280
+offset_bottom = 13
+color = Color(0.4, 0.37, 0.46, 1)
+
+[node name="ArcoPiedra" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1700, 290.0)
+texture = ExtResource("11_arcopiedrasv")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[node name="Estalactita1" type="Sprite2D" parent="Decoracion"]
+position = Vector2(420, 120)
+texture = ExtResource("20_estalactitas")
+scale = Vector2(1.2, 1.2)
+
+[node name="Estalactita2" type="Sprite2D" parent="Decoracion"]
+position = Vector2(980, 100)
+texture = ExtResource("20_estalactitas")
+
+[node name="Estalactita3" type="Sprite2D" parent="Decoracion"]
+position = Vector2(1560, 110)
+texture = ExtResource("20_estalactitas")
+scale = Vector2(1.1, 1.1)
+
+position = Vector2(340, 1050)
+texture = ExtResource("21_estalagmitas")
+
+position = Vector2(1220, 1042)
+texture = ExtResource("21_estalagmitas")
+scale = Vector2(0.9, 0.9)
+
+position = Vector2(1880, 1050)
+texture = ExtResource("21_estalagmitas")
+scale = Vector2(1.1, 1.1)
+
+[node name="Tesoro" type="Area2D" parent="."]
+position = Vector2(1720, 397)
+script = ExtResource("22_tesorogd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tesoro"]
+shape = SubResource("shape_25")
+
+[node name="Visual" type="Node2D" parent="Tesoro"]
+
+[node name="Sprite" type="Sprite2D" parent="Tesoro/Visual"]
+texture = ExtResource("23_cofretesoros")
+
+[node name="Sonido" type="AudioStreamPlayer" parent="Tesoro"]
+stream = ExtResource("24_exitowav")
+
+[node name="PortalSalida" parent="." instance=ExtResource("26_puertatransi")]
+position = Vector2(40, 1100)
+escena_destino = "res://escenas/nivel_arabia.tscn"
+punto_aparicion_destino = "PuntoDesdeCueva"
+
+[node name="Jugador" type="CharacterBody2D" parent="."]
+position = Vector2(240, 1040)
+script = ExtResource("1_jugador")
+camara_limite_inferior = 1200
+camara_limite_izquierdo = 0
+camara_limite_superior = -400
+camara_limite_derecho = 3200
+nombre_zona = "Cueva de Ali Babá"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador"]
+shape = SubResource("CapsuleShape2D_jugador")
+
+[node name="CuerpoVisual" type="Node2D" parent="Jugador"]
+
+[node name="PiernaIzq" type="Line2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(-10, 12)
+points = PackedVector2Array(0, 0, -2, 13, 0, 26)
+width = 6.0
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PiernaDer" type="Line2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(10, 12)
+points = PackedVector2Array(0, 0, 2, 13, 0, 26)
+width = 6.0
+default_color = Color(0.113725, 0.113725, 0.113725, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Torso" type="Sprite2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(0, -6)
+texture = ExtResource("7_jugador_sprite")
+
+[node name="Ojos" type="Node2D" parent="Jugador/CuerpoVisual"]
+position = Vector2(4, -12)
+
+[node name="OjoIzq" type="Polygon2D" parent="Jugador/CuerpoVisual/Ojos"]
+position = Vector2(-7, 0)
+color = Color(0.113725, 0.113725, 0.113725, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[node name="OjoDer" type="Polygon2D" parent="Jugador/CuerpoVisual/Ojos"]
+position = Vector2(7, 0)
+color = Color(0.113725, 0.117647, 0.14902, 1)
+polygon = PackedVector2Array(-3, -3, 3, -3, 3, 3, -3, 3)
+
+[node name="ZonaPatada" type="Area2D" parent="Jugador"]
+position = Vector2(34, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador/ZonaPatada"]
+shape = SubResource("RectangleShape2D_patada")
+
+[node name="EfectoPatada" type="Polygon2D" parent="Jugador/ZonaPatada"]
+color = Color(1, 0.85, 0.3, 0.85)
+polygon = PackedVector2Array(-6, -12, 16, -6, 6, 0, 18, 10, -4, 12)
+
+[node name="SonidoSalto" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("14_salto")
+
+[node name="SonidoPatada" type="AudioStreamPlayer" parent="Jugador"]
+stream = ExtResource("15_patada")
+
+[node name="Camera2D" type="Camera2D" parent="Jugador"]
+limit_left = 0
+limit_top = -400
+limit_right = 2000
+limit_bottom = 1200
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+
+[node name="Terreno" type="Node" parent="."]
+script = ExtResource("27_decorarterre")
+material = "piedra"

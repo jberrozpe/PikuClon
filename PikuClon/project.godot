@@ -26,6 +26,22 @@ MapaUI="*res://escenas/mapa_ui.tscn"
 ArmarioUI="*res://escenas/armario_ui.tscn"
 HudUI="*res://escenas/hud_ui.tscn"
 MusicaManager="*res://scripts/musica_manager.gd"
+Pantalla="*res://scripts/pantalla.gd"
+PausaUI="*res://escenas/pausa_ui.tscn"
+ControlesTactiles="*res://scripts/controles_tactiles.gd"
+
+[display]
+
+window/size/viewport_width=1152
+window/size/viewport_height=648
+window/size/resizable=true
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[gui]
+
+theme/custom_font="res://recursos/fuentes/Baloo2.ttf"
+theme/default_font_size=16
 
 [rendering]
 

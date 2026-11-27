@@ -1,0 +1,123 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/maestro_karate.gd" id="1_maestro"]
+[ext_resource type="Texture2D" path="res://recursos/sprites/maestro_karate.svg" id="2_sprite"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/maestro_hablar.wav" id="3_hablar"]
+[ext_resource type="AudioStream" path="res://recursos/sonidos/exito.wav" id="4_exito"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_zona"]
+size = Vector2(170, 150)
+
+[node name="MaestroKarate" type="Node2D"]
+script = ExtResource("1_maestro")
+
+[node name="Visual" type="Sprite2D" parent="."]
+scale = Vector2(0.78, 0.677)
+position = Vector2(0, -42)
+texture = ExtResource("2_sprite")
+
+[node name="ZonaInteraccion" type="Area2D" parent="."]
+position = Vector2(0, -50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaInteraccion"]
+shape = SubResource("RectangleShape2D_zona")
+
+[node name="Indicador" type="Control" parent="."]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -52.0
+offset_top = -132.0
+offset_right = 52.0
+offset_bottom = -104.0
+
+[node name="Fondo" type="ColorRect" parent="Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 0.85)
+
+[node name="Texto" type="Label" parent="Indicador"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 13
+text = "[E] Hablar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bocadillo" type="Control" parent="."]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -200.0
+offset_top = -244.0
+offset_right = 200.0
+offset_bottom = -86.0
+
+[node name="Borde" type="ColorRect" parent="Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.117647, 0.14902, 1)
+
+[node name="Fondo" type="ColorRect" parent="Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.980392, 0.94902, 0.866667, 1)
+
+[node name="Nombre" type="Label" parent="Bocadillo"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = -12.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.898039, 0.223529, 0.27451, 1)
+theme_override_colors/font_outline_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 15
+text = "MAESTRO KIMONO"
+horizontal_alignment = 1
+
+[node name="Texto" type="Label" parent="Bocadillo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 38.0
+offset_right = -14.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.113725, 0.117647, 0.14902, 1)
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SonidoHablar" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_hablar")
+
+[node name="SonidoExito" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_exito")

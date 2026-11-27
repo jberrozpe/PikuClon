@@ -1,5 +1,6 @@
 [gd_scene load_steps=32 format=3]
 
+
 [ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
 [ext_resource type="PackedScene" path="res://escenas/nube_plataforma.tscn" id="2_nube_plat"]
 [ext_resource type="PackedScene" path="res://escenas/globo_viaje.tscn" id="3_globo"]
@@ -25,6 +26,8 @@
 [ext_resource type="Texture2D" path="res://recursos/sprites/enanito.svg" id="23_enanito"]
 [ext_resource type="Texture2D" path="res://recursos/sprites/caballero_ingles.svg" id="24_ingles"]
 [ext_resource type="Texture2D" path="res://recursos/sprites/mono_termal.svg" id="25_mono"]
+[ext_resource type="Script" path="res://scripts/fondo_colinas.gd" id="80_colinas"]
+[ext_resource type="Script" path="res://scripts/decorar_terreno.gd" id="81_terreno_colinas"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
 size = Vector2(2400, 80)
@@ -45,6 +48,7 @@ size = Vector2(120, 110)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_carta"]
 size = Vector2(36, 28)
 
+
 [node name="Pueblo" type="Node2D"]
 
 [node name="Fondo" type="ColorRect" parent="."]
@@ -52,48 +56,37 @@ offset_right = 2400.0
 offset_bottom = 648.0
 color = Color(0.858824, 0.945098, 0.992157, 1)
 
+[node name="Paisaje" type="Node2D" parent="."]
+script = ExtResource("80_colinas")
+estilo = "pueblo"
+ancho = 2400.0
+
+[node name="Terreno" type="Node" parent="."]
+script = ExtResource("81_terreno_colinas")
+material = "hierba"
+
 [node name="Decoracion" type="Node2D" parent="."]
 
-[node name="Colina1" type="Polygon2D" parent="Decoracion"]
-color = Color(0.729412, 0.878431, 0.729412, 1)
-polygon = PackedVector2Array(60, 568, 280, 390, 540, 568)
 
-[node name="Colina2" type="Polygon2D" parent="Decoracion"]
-color = Color(0.658824, 0.839216, 0.678431, 1)
-polygon = PackedVector2Array(1050, 568, 1340, 370, 1660, 568)
 
-[node name="Colina3" type="Polygon2D" parent="Decoracion"]
-color = Color(0.729412, 0.878431, 0.729412, 1)
-polygon = PackedVector2Array(1750, 568, 2020, 410, 2320, 568)
 
-[node name="NubeFondo1" type="Sprite2D" parent="Decoracion"]
-position = Vector2(230, 110)
-texture = ExtResource("14_nube")
 
-[node name="NubeFondo2" type="Sprite2D" parent="Decoracion"]
-position = Vector2(760, 95)
-scale = Vector2(0.9, 0.9)
-texture = ExtResource("14_nube")
 
-[node name="NubeFondo3" type="Sprite2D" parent="Decoracion"]
-position = Vector2(1420, 115)
-scale = Vector2(1.1, 1.1)
-texture = ExtResource("14_nube")
 
-[node name="NubeFondo4" type="Sprite2D" parent="Decoracion"]
-position = Vector2(2040, 100)
-texture = ExtResource("14_nube")
 
 [node name="CasaRoja" type="Sprite2D" parent="Decoracion"]
-position = Vector2(460, 488)
+scale = Vector2(1.8, 1.8)
+position = Vector2(460, 424)
 texture = ExtResource("7_casa_roja")
 
 [node name="CasaAzul" type="Sprite2D" parent="Decoracion"]
-position = Vector2(960, 493)
+scale = Vector2(1.8, 1.8)
+position = Vector2(960, 433)
 texture = ExtResource("8_casa_azul")
 
 [node name="CasaAmarilla" type="Sprite2D" parent="Decoracion"]
-position = Vector2(1580, 485)
+scale = Vector2(1.8, 1.8)
+position = Vector2(1580, 419)
 texture = ExtResource("9_casa_amarilla")
 
 [node name="Hierba1" type="Sprite2D" parent="Decoracion"]
@@ -193,6 +186,7 @@ script = ExtResource("4_npc_pueblo")
 
 [node name="Visual" type="Sprite2D" parent="Alcalde"]
 position = Vector2(0, -42)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("11_alcalde")
 
 [node name="ZonaInteraccion" type="Area2D" parent="Alcalde"]

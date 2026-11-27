@@ -1,0 +1,17 @@
+# Caché de Godot
+.godot/
+*.translation
+
+# Sistema
+.DS_Store
+
+# Artefactos de compilación
+*.app/
+*.zip
+*.apk
+*.exe
+*.dmg
+build/
+
+# Claves de firma (no publicar)
+PikuClon/tools/firma/*.keystore

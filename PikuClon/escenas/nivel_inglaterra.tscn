@@ -1,5 +1,6 @@
 [gd_scene load_steps=28 format=3]
 
+
 [ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
 [ext_resource type="PackedScene" path="res://escenas/puerta_transicion.tscn" id="2_transicion"]
 [ext_resource type="Script" path="res://scripts/npc_ingles.gd" id="3_npc_ingles"]
@@ -17,6 +18,8 @@
 [ext_resource type="AudioStream" path="res://recursos/sonidos/patada.wav" id="15_patada"]
 [ext_resource type="AudioStream" path="res://recursos/sonidos/npc_hablar.wav" id="16_hablar"]
 [ext_resource type="AudioStream" path="res://recursos/sonidos/estrella.wav" id="17_estrella"]
+[ext_resource type="Script" path="res://scripts/fondo_colinas.gd" id="80_colinas"]
+[ext_resource type="Script" path="res://scripts/decorar_terreno.gd" id="81_terreno_colinas"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suelo"]
 size = Vector2(2400, 80)
@@ -62,6 +65,7 @@ size = Vector2(120, 110)
 [sub_resource type="CircleShape2D" id="CircleShape2D_coleccionable"]
 radius = 22.0
 
+
 [node name="NivelInglaterra" type="Node2D"]
 
 [node name="Fondo" type="ColorRect" parent="."]
@@ -69,6 +73,15 @@ offset_top = -260.0
 offset_right = 2400.0
 offset_bottom = 648.0
 color = Color(0.823529, 0.909804, 0.94902, 1)
+
+[node name="Paisaje" type="Node2D" parent="."]
+script = ExtResource("80_colinas")
+estilo = "pueblo"
+ancho = 2400.0
+
+[node name="Terreno" type="Node" parent="."]
+script = ExtResource("81_terreno_colinas")
+material = "hierba"
 
 [node name="Decoracion" type="Node2D" parent="."]
 
@@ -98,11 +111,13 @@ position = Vector2(1740, 40)
 texture = ExtResource("12_nube")
 
 [node name="Cabina1" type="Sprite2D" parent="Decoracion"]
-position = Vector2(290, 503)
+scale = Vector2(2.0, 2.0)
+position = Vector2(290, 438)
 texture = ExtResource("8_cabina")
 
 [node name="Cabina2" type="Sprite2D" parent="Decoracion"]
-position = Vector2(2240, 315)
+scale = Vector2(2.0, 2.0)
+position = Vector2(2240, 250)
 texture = ExtResource("8_cabina")
 
 [node name="Hierba1" type="Sprite2D" parent="Decoracion"]
@@ -207,9 +222,10 @@ color = Color(0.411765, 0.690196, 0.376471, 1)
 polygon = PackedVector2Array(1220, 568, 1300, 505, 1480, 568)
 
 [node name="RizoCamino" type="Path2D" parent="."]
-position = Vector2(1580, 536)
+position = Vector2(1700, 565)
 curve = SubResource("Curve2D_rizo")
 script = ExtResource("5_rizo")
+velocidad_salida = Vector2(380, -560)
 
 [node name="PistaVisual" type="Line2D" parent="RizoCamino"]
 width = 12.0
@@ -228,7 +244,7 @@ loop = false
 shape = SubResource("RectangleShape2D_entrada_rizo")
 
 [node name="PlataformaMeta" type="StaticBody2D" parent="."]
-position = Vector2(2040, 394)
+position = Vector2(2080, 430)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlataformaMeta"]
 shape = SubResource("RectangleShape2D_plat_meta")
@@ -241,7 +257,7 @@ offset_bottom = 14.0
 color = Color(0.411765, 0.690196, 0.376471, 1)
 
 [node name="PiezaBrillante3" type="Area2D" parent="."]
-position = Vector2(2110, 340)
+position = Vector2(2110, 376)
 script = ExtResource("6_pieza")
 zona_pieza = "inglaterra"
 
